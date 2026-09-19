@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>トレーニングアプリ</title>
-    <meta name="theme-color" content="#1a202c">
-    <meta name="description" content="毎日のトレーニング・ストレッチ・有酸素運動をスマートに管理するアプリ">
+    <title>筋トレアプリ</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icon-192.png">
-
+    <meta name="theme-color" content="#1e293b">
+    <!-- 成長グラフ表示用のChart.jsライブラリ -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
-            --card-completed: #0f291e;
-            --primary: #3b82f6;
-            --primary-hover: #2563eb;
-            --success: #10b981;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
-            --border-color: #334155;
-            --accent: #f59e0b;
+            --completed-bg: #0d2720;
+            --completed-border: #10b981;
+            --border-radius: 12px;
         }
 
         * {
@@ -34,778 +32,793 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding-bottom: 40px;
+            padding-bottom: 60px;
             max-width: 600px;
             margin: 0 auto;
-            min-height: 100vh;
         }
 
         header {
-            background-color: var(--card-bg);
-            padding: 16px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 20px 16px;
+            border-bottom: 1px solid #334155;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
         }
 
-        .header-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--text-sub);
-            margin-bottom: 4px;
-        }
-
-        .day-info {
+        .header-top {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
+            margin-bottom: 8px;
         }
 
-        .current-day {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .target-part {
+        h1 {
             font-size: 1.2rem;
-            font-weight: bold;
-            background-color: #334155;
+            color: var(--text-sub);
+            font-weight: 500;
+        }
+
+        .today-badge {
+            background-color: var(--accent-color);
+            color: white;
             padding: 4px 12px;
             border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
 
-        .progress-section {
-            margin-top: 12px;
+        .workout-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
         }
 
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            margin-bottom: 6px;
-            color: var(--text-sub);
-        }
-
-        .progress-bar-bg {
-            background-color: var(--border-color);
+        .progress-container {
+            background-color: #334155;
             height: 10px;
             border-radius: 5px;
             overflow: hidden;
+            margin-bottom: 6px;
         }
 
-        .progress-bar-fill {
-            background-color: var(--success);
+        .progress-bar {
             height: 100%;
+            background-color: #10b981;
             width: 0%;
             transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            text-align: right;
         }
 
         main {
             padding: 16px;
         }
 
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin: 20px 0 12px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-main);
-            border-left: 4px solid var(--primary);
-            padding-left: 8px;
-        }
-
         .special-day-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 32px 16px;
             text-align: center;
-            border: 1px solid var(--border-color);
-            margin-top: 16px;
+            border: 1px solid #334155;
+            margin-top: 20px;
         }
 
-        .special-day-card h2 {
+        .special-day-title {
             font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .special-day-card p {
-            color: var(--text-sub);
-        }
-
-        .badge-notice {
-            background-color: rgba(245, 158, 11, 0.15);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 16px;
+            color: var(--accent-color);
             font-weight: bold;
-            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .special-day-desc {
+            color: var(--text-sub);
+            font-size: 1rem;
+        }
+
+        .section-header {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 24px 0 12px 0;
+            color: var(--text-sub);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .card {
+        .exercise-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 16px;
-            margin-bottom: 12px;
-            border: 1px solid var(--border-color);
+            margin-bottom: 16px;
+            border: 1px solid #334155;
             transition: all 0.2s ease;
         }
 
-        .card.completed {
-            background-color: var(--card-completed);
-            border-color: #15803d;
+        .exercise-card.completed {
+            background-color: var(--completed-bg);
+            border-color: var(--completed-border);
             opacity: 0.85;
         }
 
-        .card-header {
+        .card-top {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
+            align-items: flex-start;
+            margin-bottom: 10px;
         }
 
         .exercise-name {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
         }
 
-        .btn-change {
-            background: transparent;
-            border: 1px solid var(--text-sub);
-            color: var(--text-sub);
-            padding: 4px 10px;
-            border-radius: 6px;
+        .exercise-guide-box {
+            background-color: #0f172a;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px dashed #334155;
+        }
+
+        .guide-icon {
+            font-size: 2.2rem;
+            line-height: 1;
+        }
+
+        .guide-info {
+            flex: 1;
+        }
+
+        .guide-desc {
             font-size: 0.8rem;
-            cursor: pointer;
+            color: var(--text-sub);
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .yt-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: #ff4545;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #2a1215;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #5c1d24;
         }
 
         .controls-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-bottom: 12px;
         }
 
-        .control-group {
-            flex: 1;
+        .input-group {
             display: flex;
             flex-direction: column;
             gap: 4px;
         }
 
-        .control-group label {
-            font-size: 0.75rem;
+        .input-group label {
+            font-size: 0.8rem;
             color: var(--text-sub);
         }
 
-        .input-number-wrapper {
+        .number-control {
             display: flex;
             align-items: center;
-            background-color: var(--bg-color);
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
+            background-color: #0f172a;
+            border-radius: 8px;
+            border: 1px solid #334155;
             overflow: hidden;
         }
 
-        .btn-step {
-            background-color: var(--border-color);
-            color: var(--text-main);
+        .btn-num {
+            background-color: #334155;
+            color: white;
             border: none;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .input-number-wrapper input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--text-main);
+        .num-val {
+            flex: 1;
             text-align: center;
-            font-size: 1rem;
             font-weight: bold;
-            padding: 4px;
+            font-size: 1.1rem;
         }
 
         .sets-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-direction: column;
             gap: 8px;
             margin-bottom: 12px;
         }
 
-        .btn-set {
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-sub);
-            padding: 10px 0;
+        .set-item-card {
+            background-color: #0f172a;
+            border: 1px solid #334155;
             border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .set-item-card.locked {
+            background-color: #0d2720;
+            border-color: #10b981;
+        }
+
+        .set-label {
             font-weight: bold;
             font-size: 0.85rem;
+            color: var(--text-sub);
+            width: 60px;
+        }
+
+        .counter-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-count {
+            background-color: #0284c7;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
             cursor: pointer;
+        }
+
+        .count-display {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #38bdf8;
+            min-width: 40px;
             text-align: center;
         }
 
-        .btn-set.active {
-            background-color: rgba(59, 130, 246, 0.2);
-            border-color: var(--primary);
-            color: var(--primary);
+        .btn-finish-set {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            cursor: pointer;
         }
 
         .btn-complete {
             width: 100%;
             padding: 12px;
-            border: none;
             border-radius: 8px;
-            background-color: var(--primary);
+            border: none;
+            background-color: var(--accent-color);
             color: white;
             font-weight: bold;
             font-size: 1rem;
             cursor: pointer;
-            transition: background 0.2s;
         }
 
-        .card.completed .btn-complete {
-            background-color: #15803d;
+        .completed .btn-complete {
+            background-color: #059669;
         }
 
-        /* ストレッチタイマー */
-        .timer-card {
+        .chart-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 16px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .timer-display {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin: 8px 0;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .stretch-name {
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--text-main);
-            min-height: 1.5em;
-        }
-
-        .timer-btn-group {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
+            border: 1px solid #334155;
             margin-top: 12px;
         }
 
-        .btn-timer {
-            flex: 1;
-            padding: 10px;
+        .chart-select {
+            width: 100%;
+            padding: 8px;
             border-radius: 6px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            background-color: var(--border-color);
-            color: var(--text-main);
-        }
-
-        .btn-timer.primary {
-            background-color: var(--primary);
+            background-color: #0f172a;
             color: white;
-        }
-
-        /* モーダル */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.75);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 16px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease;
-        }
-
-        .modal-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            width: 100%;
-            max-width: 400px;
-            max-height: 80vh;
-            overflow-y: auto;
-            padding: 20px;
-            border: 1px solid var(--border-color);
-        }
-
-        .modal-title {
-            font-size: 1.2rem;
+            border: 1px solid #334155;
             margin-bottom: 12px;
-            font-weight: bold;
+            font-size: 0.95rem;
         }
 
-        .exercise-option-list {
+        .log-list {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: var(--border-radius);
+            padding: 12px;
+            max-height: 250px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+        }
+
+        .log-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #1e293b;
             display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 16px;
+            justify-content: space-between;
         }
 
-        .btn-option {
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 12px;
-            border-radius: 8px;
-            text-align: left;
-            font-size: 1rem;
-            cursor: pointer;
+        .log-item:last-child {
+            border-bottom: none;
         }
 
-        .btn-close {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--border-color);
-            color: var(--text-main);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        select.cardio-select {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-top: 8px;
+        .log-time {
+            color: var(--text-sub);
+            font-size: 0.75rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-title">筋トレアプリ</div>
-        <div class="day-info">
-            <div class="current-day" id="day-display">--曜日</div>
-            <div class="target-part" id="part-display">--</div>
+        <div class="header-top">
+            <h1>筋トレアプリ</h1>
+            <div id="today-badge" class="today-badge">-</div>
         </div>
-        <div class="progress-section" id="progress-container">
-            <div class="progress-text">
-                <span>今日の進捗</span>
-                <span id="progress-text-val">0 / 0 完了</span>
-            </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progress-bar-fill"></div>
-            </div>
+        <div id="workout-title" class="workout-title">読み込み中...</div>
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
         </div>
+        <div id="progress-text" class="progress-text">0 / 0 完了</div>
     </header>
 
     <main>
-        <!-- 朝サウナ等メッセージ表示エリア -->
-        <div id="notice-area"></div>
+        <div id="special-day-container"></div>
 
-        <!-- ストレッチ（5分）タイマー -->
-        <div class="section-title">毎日5分ストレッチ (1分×5種目)</div>
-        <div class="timer-card">
-            <div class="stretch-name" id="stretch-name">準備完了</div>
-            <div class="timer-display" id="stretch-timer-display">01:00</div>
-            <div class="timer-btn-group">
-                <button class="btn-timer primary" id="btn-stretch-start">スタート</button>
-                <button class="btn-timer" id="btn-stretch-pause" disabled>一時停止</button>
-                <button class="btn-timer" id="btn-stretch-next">次へ</button>
+        <div id="uncompleted-section">
+            <div class="section-header">未完了の種目</div>
+            <div id="uncompleted-list"></div>
+        </div>
+
+        <div id="completed-section" style="margin-top: 24px;">
+            <div class="section-header">完了済みの種目</div>
+            <div id="completed-list"></div>
+        </div>
+
+        <!-- 成長グラフ -->
+        <div style="margin-top: 32px;">
+            <div class="section-header">📈 重量・回数の成長推移グラフ</div>
+            <div class="chart-card">
+                <select id="chart-exercise-select" class="chart-select" onchange="updateChart()"></select>
+                <canvas id="growthChart" height="200"></canvas>
             </div>
         </div>
 
-        <!-- トレーニングメインエリア -->
-        <div id="workout-area">
-            <div class="section-title">【未完了】筋トレ種目</div>
-            <div id="pending-exercises"></div>
-
-            <div class="section-title">【完了済み】筋トレ種目</div>
-            <div id="completed-exercises"></div>
-
-            <!-- 有酸素運動 -->
-            <div class="section-title" id="cardio-title">有酸素運動 (20分)</div>
-            <div class="card" id="cardio-card">
-                <label for="cardio-type" style="font-size: 0.85rem; color: var(--text-sub);">種目を選択してください</label>
-                <select id="cardio-type" class="cardio-select">
-                    <option value="ランニング">ランニング (トレッドミル 20分)</option>
-                    <option value="バイク">バイク (20分)</option>
-                    <option value="ローイング">ローイング (20分)</option>
-                    <option value="階段・ステア">階段・ステア (20分)</option>
-                </select>
-            </div>
+        <!-- 履歴ログ -->
+        <div style="margin-top: 32px;">
+            <div class="section-header">📜 過去の全トレーニング記録</div>
+            <div id="log-list" class="log-list"></div>
         </div>
-
-        <!-- 水曜・金曜などの特殊画面エリア -->
-        <div id="special-day-area" style="display: none;"></div>
     </main>
 
-    <!-- 種目変更用モーダル -->
-    <div class="modal-overlay" id="exercise-modal">
-        <div class="modal">
-            <div class="modal-title">種目を変更</div>
-            <div class="exercise-option-list" id="modal-option-list"></div>
-            <button class="btn-close" id="btn-close-modal">キャンセル</button>
-        </div>
-    </div>
-
     <script>
-        // --- 1. 基本データ＆スケジュール構造 ---
+        const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
+
+        // アップロードされたCSVの過去記録データ（初期組み込み）
+        const INITIAL_PAST_LOGS = [
+            { timestamp: "2026/09/17 09:30", exercise: "ロープハンマーカール", weight: 15.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/17 09:30", exercise: "ケーブルフライ", weight: 10.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/17 09:20", exercise: "ケーブルサイドレイズ", weight: 5.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/17 09:17", exercise: "リアデルトフライ", weight: 6.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/17 09:10", exercise: "サイドレイズ", weight: 12.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/17 09:05", exercise: "ショルダープレス", weight: 20.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/15 19:51", exercise: "アシスト懸垂", weight: 14.0, reps: 5, sets: 3 },
+            { timestamp: "2026/09/15 19:44", exercise: "ストレートアームプルダウン", weight: 15.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/15 19:28", exercise: "ダンベルカール", weight: 10.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/15 19:28", exercise: "ハンマーカール", weight: 10.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/15 19:16", exercise: "ワンアームローイング", weight: 14.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/15 19:07", exercise: "シーテッドローイング", weight: 35.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/15 18:59", exercise: "ラットプルダウン", weight: 35.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/14 18:50", exercise: "デッドバグ", weight: 0.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/14 18:41", exercise: "オーバーヘッドトライセプスエクステンション", weight: 10.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/14 18:31", exercise: "プレスダウン", weight: 15.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/14 18:24", exercise: "インクラインダンベルプレス", weight: 10.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/14 18:18", exercise: "ケーブルフライ", weight: 10.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/14 18:11", exercise: "チェストプレス", weight: 30.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/12 09:30", exercise: "レッグプレス", weight: 50.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/12 09:20", exercise: "スクワット", weight: 40.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/10 18:30", exercise: "ショルダープレス", weight: 18.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/10 18:20", exercise: "サイドレイズ", weight: 10.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/08 19:30", exercise: "ラットプルダウン", weight: 30.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/08 19:15", exercise: "シーテッドローイング", weight: 30.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/07 18:30", exercise: "チェストプレス", weight: 25.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/07 18:15", exercise: "インクラインダンベルプレス", weight: 8.0, reps: 10, sets: 3 }
+        ];
+
         const SCHEDULE = {
-            0: { name: "日", part: "弱点部位", exercises: ["レッグプレス", "レッグエクステンション", "レッグカール", "ケーブルクロスオーバー", "サイドレイズ", "アブローラー"] },
-            1: { name: "月", part: "胸", exercises: ["チェストプレス", "ケーブルフライ", "インクラインダンベルプレス", "ローププレスダウン", "オーバーヘッドトライセプスエクステンション", "デッドバグ"] },
-            2: { name: "火", part: "背中", exercises: ["ラットプルダウン", "シーテッドロー", "ワンアームダンベルロー", "フェイスプル", "ダンベルカール", "アブ系"] },
-            3: { name: "水", part: "ボクシングレッスン", special: "今日はボクシングレッスン" },
-            4: { name: "木", part: "肩・肩幅", exercises: ["ショルダープレス", "サイドレイズ", "リアレイズ", "ケーブルフライ", "フェイスプル", "アブ系"] },
-            5: { name: "金", part: "休養", special: "今日は休養日" },
-            6: { name: "土", part: "全身", exercises: ["スクワット", "レッグプレス", "ラットプルダウン", "ダンベルプレス", "サイドレイズ", "アブ系"] }
+            "月": { title: "胸", special: null },
+            "火": { title: "背中", special: null },
+            "水": { title: "ボクシングレッスン", special: "今日はボクシングレッスン（筋トレなし）" },
+            "木": { title: "肩・肩幅", special: null },
+            "金": { title: "休養", special: "今日は休養日（筋トレなし）" },
+            "土": { title: "全身", special: null },
+            "日": { title: "弱点部位", special: null }
         };
 
-        const EXERCISE_CANDIDATES = [
-            "チェストプレス", "ケーブルフライ", "インクラインダンベルプレス", "ダンベルプレス",
-            "ラットプルダウン", "シーテッドロー", "ワンアームダンベルロー", "フェイスプル",
-            "ショルダープレス", "サイドレイズ", "リアレイズ",
-            "ローププレスダウン", "オーバーヘッドトライセプスエクステンション", "ダンベルカール",
-            "スクワット", "レッグプレス", "レッグカール", "レッグエクステンション",
-            "デッドバグ", "アブ系", "アブローラー"
-        ];
+        const INITIAL_MENU = {
+            "月": ["チェストプレス", "ケーブルフライ", "インクラインダンベルプレス", "プレスダウン", "オーバーヘッドトライセプスエクステンション", "デッドバグ"],
+            "火": ["ラットプルダウン", "シーテッドローイング", "ワンアームローイング", "フェイスプル", "ダンベルカール", "アブ系"],
+            "木": ["ショルダープレス", "サイドレイズ", "リアデルトフライ", "ケーブルフライ", "フェイスプル", "アブ系"],
+            "土": ["スクワット", "レッグプレス", "ラットプルダウン", "チェストプレス", "サイドレイズ", "アブ系"],
+            "日": ["ショルダープレス", "ラットプルダウン", "ケーブルフライ", "レッグエクステンション", "ダンベルカール", "デッドバグ"]
+        };
 
-        const STRETCH_LIST = [
-            "首・肩周りのストレッチ",
-            "胸・大胸筋伸ばし",
-            "背中・キャット＆カウ",
-            "股関節・太もも伸ばし",
-            "アキレス腱・ふくらはぎストレッチ"
-        ];
+        const EXERCISE_GUIDE = {
+            "チェストプレス": { icon: "🏋️‍♂️", desc: "シートに深めに座り、グリップを胸の高さで前方に押し出します。" },
+            "ケーブルフライ": { icon: "🥷", desc: "胸を開いてケーブルを抱きかかえるように中心に寄せます。" },
+            "インクラインダンベルプレス": { icon: "📐", desc: "ベンチを傾け、斜め上に向かってダンベルを押し上げます。" },
+            "プレスダウン": { icon: "🪢", desc: "肘を固定し、ロープ・バーを下に向かって押し下げます。" },
+            "オーバーヘッドトライセプスエクステンション": { icon: "🙆‍♂️", desc: "頭の後ろで重量を持ち、肘を上に向けて伸ばします。" },
+            "デッドバグ": { icon: "🪲", desc: "仰向けで対角の手足を交互にゆっくり伸ばし体幹を鍛えます。" },
+            "ラットプルダウン": { icon: "⬇️", desc: "バーを胸の上に引き寄せ、肩甲骨を下へ寄せます。" },
+            "シーテッドローイング": { icon: "🚣‍♂️", desc: "お腹に向かってグリップを引いて背筋を収縮させます。" },
+            "ワンアームローイング": { icon: "🏋️", desc: "片手片膝をベンチにつき、ダンベルを脇腹へ引き上げます。" },
+            "フェイスプル": { icon: "👁️", desc: "ロープを顔の高さまで引き、肩の後ろと背中上部を鍛えます。" },
+            "ダンベルカール": { icon: "💪", desc: "肘の位置を固定し、腕の力でダンベルを持ち上げます。" },
+            "ショルダープレス": { icon: "🙆‍♂️", desc: "ダンベルまたはマシンを真上に向かって押し上げます。" },
+            "サイドレイズ": { icon: "🦅", desc: "肘を軽く曲げ、肩の高さまで横に腕を持ち上げます。" },
+            "リアデルトフライ": { icon: "🙇‍♂️", desc: "前傾姿勢になり、ダンベルを斜め後ろへ開くように持ち上げます。" },
+            "スクワット": { icon: "🦵", desc: "お尻を後ろに引くようにしゃがみ、かかとで立ち上がります。" },
+            "レッグプレス": { icon: "🦶", desc: "プレートに足を載せ、膝が内側に入らないよう押し出します。" }
+        };
 
-        // --- 2. 状態管理 (State) ---
         let state = {
             dateStr: "",
-            dayOfWeek: 0,
-            exercises: [],
-            stretchIndex: 0,
-            cardioType: "ランニング"
+            dayOfWeek: "",
+            exercises: []
         };
 
-        // タイマー変数
-        let stretchTimer = null;
-        let stretchSeconds = 60;
-        let isStretchRunning = false;
+        let myChart = null;
 
-        // --- 3. 日付判定 & ストレージ管理 ---
         function getTodayInfo() {
             const now = new Date();
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const date = String(now.getDate()).padStart(2, '0');
             const dateStr = `${year}-${month}-${date}`;
-            const dayOfWeek = now.getDay(); // 0(日)〜6(土)
-            return { dateStr, dayOfWeek };
+            const dayOfWeek = WEEKDAYS[now.getDay()];
+            return { dateStr, dayOfWeek, now };
         }
 
-        function loadState() {
-            const today = getTodayInfo();
-            const savedData = localStorage.getItem('kintore_app_data');
+        function initApp() {
+            const { dateStr, dayOfWeek } = getTodayInfo();
+            state.dateStr = dateStr;
+            state.dayOfWeek = dayOfWeek;
 
-            if (savedData) {
-                const parsed = JSON.parse(savedData);
-                // 日付が変わっていなければ保存データをロード
-                if (parsed.dateStr === today.dateStr) {
-                    state = parsed;
-                    return;
-                }
+            if (!localStorage.getItem("kintore_logs")) {
+                localStorage.setItem("kintore_logs", JSON.stringify(INITIAL_PAST_LOGS));
             }
 
-            // 日付が変わっている場合、または新規作成時
-            initDayState(today);
-        }
-
-        function initDayState(today) {
-            const daySched = SCHEDULE[today.dayOfWeek];
-            let defaultExercises = [];
-
-            if (daySched.exercises) {
-                defaultExercises = daySched.exercises.map(name => ({
+            const saved = localStorage.getItem("kintore_data_" + dateStr);
+            if (saved) {
+                state = JSON.parse(saved);
+            } else {
+                const names = INITIAL_MENU[dayOfWeek] || [];
+                state.exercises = names.map(name => ({
                     name: name,
-                    weight: 30.0,
+                    weight: 20.0,
                     reps: 10,
-                    sets: [false, false, false],
+                    setsData: [
+                        { count: 0, locked: false },
+                        { count: 0, locked: false },
+                        { count: 0, locked: false }
+                    ],
                     completed: false
                 }));
+                saveState();
             }
 
-            state = {
-                dateStr: today.dateStr,
-                dayOfWeek: today.dayOfWeek,
-                exercises: defaultExercises,
-                stretchIndex: 0,
-                cardioType: "ランニング"
-            };
-
-            saveState();
+            renderHeader();
+            renderContent();
+            renderHistoryLogs();
+            initChartSelect();
         }
 
         function saveState() {
-            localStorage.setItem('kintore_app_data', JSON.stringify(state));
+            localStorage.setItem("kintore_data_" + state.dateStr, JSON.stringify(state));
         }
 
-        // --- 4. UI 描画処理 ---
-        function renderApp() {
-            const daySched = SCHEDULE[state.dayOfWeek];
-            
-            // ヘッダー更新
-            document.getElementById('day-display').textContent = `${daySched.name}曜日`;
-            document.getElementById('part-display').textContent = daySched.part;
+        function saveHistoryLog(exName, weight, reps, setsCount) {
+            const { dateStr, now } = getTodayInfo();
+            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
 
-            // 特殊通知エリア (朝サウナなど)
-            const noticeArea = document.getElementById('notice-area');
-            noticeArea.innerHTML = '';
-            if (state.dayOfWeek === 4) { // 木曜日
-                noticeArea.innerHTML = `<div class="badge-notice">♨️ 朝：サウナ</div>`;
-            } else if (state.dayOfWeek === 2) { // 火曜日
-                noticeArea.innerHTML = `<div class="badge-notice">♨️ トレーニング後：ジャグジー・サウナ 20分</div>`;
-            }
+            logs.unshift({
+                timestamp: `${dateStr.replace(/-/g, '/')} ${timeStr}`,
+                exercise: exName,
+                weight: weight,
+                reps: reps,
+                sets: setsCount
+            });
 
-            const workoutArea = document.getElementById('workout-area');
-            const specialDayArea = document.getElementById('special-day-area');
-            const progressContainer = document.getElementById('progress-container');
+            localStorage.setItem("kintore_logs", JSON.stringify(logs));
+            renderHistoryLogs();
+            updateChart();
+        }
 
-            // 休養日 / ボクシングレッスンの判定
-            if (daySched.special) {
-                workoutArea.style.display = 'none';
-                progressContainer.style.display = 'none';
-                specialDayArea.style.display = 'block';
-                specialDayArea.innerHTML = `
-                    <div class="special-day-card">
-                        <h2>${daySched.special}</h2>
-                        <p>本日は指定のスケジュールに沿ってリフレッシュまたはレッスンに集中してください。</p>
-                    </div>
-                `;
+        function renderHistoryLogs() {
+            const container = document.getElementById("log-list");
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+
+            if (logs.length === 0) {
+                container.innerHTML = "まだ記録はありません。";
                 return;
             }
 
-            // 通常トレーニング日
-            workoutArea.style.display = 'block';
-            progressContainer.style.display = 'block';
-            specialDayArea.style.display = 'none';
+            container.innerHTML = logs.map(l => `
+                <div class="log-item">
+                    <div>
+                        <strong>${l.exercise}</strong> (${l.weight}kg × ${l.reps}回 × ${l.sets}セット)
+                    </div>
+                    <div class="log-time">${l.timestamp}</div>
+                </div>
+            `).join('');
+        }
 
+        function initChartSelect() {
+            const select = document.getElementById("chart-exercise-select");
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            const exercises = [...new Set(logs.map(l => l.exercise))];
+
+            select.innerHTML = exercises.map(ex => `<option value="${ex}">${ex}</option>`).join('');
+            if (exercises.length > 0) {
+                updateChart();
+            }
+        }
+
+        function updateChart() {
+            const select = document.getElementById("chart-exercise-select");
+            const selectedEx = select.value;
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+
+            const exLogs = logs.filter(l => l.exercise === selectedEx).reverse();
+
+            const labels = exLogs.map(l => l.timestamp.split(' ')[0]);
+            const weights = exLogs.map(l => l.weight);
+            const totalReps = exLogs.map(l => l.reps * l.sets);
+
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '重量 (kg)',
+                            data: weights,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            yAxisID: 'y',
+                            tension: 0.2
+                        },
+                        {
+                            label: '合計回数 (回)',
+                            data: totalReps,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                            yAxisID: 'y1',
+                            tension: 0.2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' } },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: 'kg', color: '#3b82f6' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: { display: true, text: '回', color: '#10b981' },
+                            grid: { drawOnChartArea: false },
+                            ticks: { color: '#94a3b8' }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#f8fafc' } }
+                    }
+                }
+            });
+        }
+
+        function renderHeader() {
+            document.getElementById("today-badge").innerText = state.dayOfWeek + "曜日";
+            const info = SCHEDULE[state.dayOfWeek];
+            document.getElementById("workout-title").innerText = info.title;
+
+            if (info.special) {
+                document.getElementById("progress-bar").style.width = "0%";
+                document.getElementById("progress-text").innerText = "";
+            } else {
+                const total = state.exercises.length;
+                const done = state.exercises.filter(e => e.completed).length;
+                const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+                document.getElementById("progress-bar").style.width = pct + "%";
+                document.getElementById("progress-text").innerText = `${done} / ${total} 完了`;
+            }
+        }
+
+        function renderContent() {
+            const info = SCHEDULE[state.dayOfWeek];
+            const specialContainer = document.getElementById("special-day-container");
+            const uncompletedSection = document.getElementById("uncompleted-section");
+            const completedSection = document.getElementById("completed-section");
+
+            specialContainer.innerHTML = "";
+
+            if (info.special) {
+                specialContainer.innerHTML = `
+                    <div class="special-day-card">
+                        <div class="special-day-title">${info.special}</div>
+                        <div class="special-day-desc">しっかりと身体を休めてコンディションを整えましょう。</div>
+                    </div>
+                `;
+                uncompletedSection.style.display = "none";
+                completedSection.style.display = "none";
+                return;
+            }
+
+            uncompletedSection.style.display = "block";
+            completedSection.style.display = "block";
             renderExercises();
-            updateProgress();
         }
 
         function renderExercises() {
-            const pendingContainer = document.getElementById('pending-exercises');
-            const completedContainer = document.getElementById('completed-exercises');
+            const uncompletedList = document.getElementById("uncompleted-list");
+            const completedList = document.getElementById("completed-list");
 
-            pendingContainer.innerHTML = '';
-            completedContainer.innerHTML = '';
+            uncompletedList.innerHTML = "";
+            completedList.innerHTML = "";
 
-            state.exercises.forEach((ex, index) => {
-                const card = document.createElement('div');
-                card.className = `card ${ex.completed ? 'completed' : ''}`;
+            state.exercises.forEach((ex, idx) => {
+                const card = document.createElement("div");
+                card.className = "exercise-card" + (ex.completed ? " completed" : "");
+                const guide = EXERCISE_GUIDE[ex.name] || { icon: "🏋️", desc: "フォームに注意して行いましょう。" };
+                const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name + ' フォーム Shorts')}`;
 
                 card.innerHTML = `
-                    <div class="card-header">
+                    <div class="card-top">
                         <div class="exercise-name">${ex.name}</div>
-                        <button class="btn-change" onclick="openChangeModal(${index})">種目変更</button>
                     </div>
+
+                    <div class="exercise-guide-box">
+                        <div class="guide-icon">${guide.icon}</div>
+                        <div class="guide-info">
+                            <div class="guide-desc">${guide.desc}</div>
+                            <a href="${ytSearchUrl}" target="_blank" class="yt-link">🎬 Shortsで動画確認</a>
+                        </div>
+                    </div>
+
                     <div class="controls-row">
-                        <div class="control-group">
+                        <div class="input-group">
                             <label>重量 (kg)</label>
-                            <div class="input-number-wrapper">
-                                <button class="btn-step" onclick="updateWeight(${index}, -0.5)">-</button>
-                                <input type="number" step="0.5" value="${ex.weight}" readonly>
-                                <button class="btn-step" onclick="updateWeight(${index}, 0.5)">+</button>
+                            <div class="number-control">
+                                <button class="btn-num" onclick="updateVal(${idx}, 'weight', -0.5)">-</button>
+                                <div class="num-val">${ex.weight.toFixed(1)}</div>
+                                <button class="btn-num" onclick="updateVal(${idx}, 'weight', 0.5)">+</button>
                             </div>
                         </div>
-                        <div class="control-group">
+                        <div class="input-group">
                             <label>目標回数</label>
-                            <div class="input-number-wrapper">
-                                <button class="btn-step" onclick="updateReps(${index}, -1)">-</button>
-                                <input type="number" value="${ex.reps}" readonly>
-                                <button class="btn-step" onclick="updateReps(${index}, 1)">+</button>
+                            <div class="number-control">
+                                <button class="btn-num" onclick="updateVal(${idx}, 'reps', -1)">-</button>
+                                <div class="num-val">${ex.reps}回</div>
+                                <button class="btn-num" onclick="updateVal(${idx}, 'reps', 1)">+</button>
                             </div>
                         </div>
                     </div>
+
                     <div class="sets-container">
-                        <button class="btn-set ${ex.sets[0] ? 'active' : ''}" onclick="toggleSet(${index}, 0)">セット 1</button>
-                        <button class="btn-set ${ex.sets[1] ? 'active' : ''}" onclick="toggleSet(${index}, 1)">セット 2</button>
-                        <button class="btn-set ${ex.sets[2] ? 'active' : ''}" onclick="toggleSet(${index}, 2)">セット 3</button>
+                        ${ex.setsData.map((s, sIdx) => `
+                            <div class="set-item-card ${s.locked ? 'locked' : ''}">
+                                <div class="set-label">セット ${sIdx + 1}</div>
+                                <div class="counter-box">
+                                    ${s.locked ? `
+                                        <div class="count-display" style="color:#10b981;">✓ ${s.count} 回完了</div>
+                                    ` : `
+                                        <button class="btn-count" onclick="countUp(${idx}, ${sIdx})">1回！</button>
+                                        <div class="count-display">${s.count} / ${ex.reps}</div>
+                                    `}
+                                </div>
+                                <button class="btn-finish-set" onclick="toggleLockSet(${idx},${sIdx})">
+                                    ${s.locked ? '解除' : '終了'}
+                                </button>
+                            </div>
+                        `).join('')}
                     </div>
-                    <button class="btn-complete" onclick="toggleExerciseComplete(${index})">
-                        ${ex.completed ? '✓ 完了済み (未完了に戻す)' : '種目を完了する'}
+
+                    <button class="btn-complete" onclick="toggleComplete(${idx})">
+                        ${ex.completed ? '完了済み（タップで未完了へ戻す）' : 'この種目を完了する'}
                     </button>
                 `;
 
                 if (ex.completed) {
-                    completedContainer.appendChild(card);
+                    completedList.appendChild(card);
                 } else {
-                    pendingContainer.appendChild(card);
+                    uncompletedList.appendChild(card);
                 }
             });
         }
 
-        function updateProgress() {
-            const total = state.exercises.length;
-            if (total === 0) return;
-            const completed = state.exercises.filter(e => e.completed).length;
-            
-            document.getElementById('progress-text-val').textContent = `${completed} / ${total} 完了`;
-            const pct = (completed / total) * 100;
-            document.getElementById('progress-bar-fill').style.width = `${pct}%`;
-        }
-
-        // --- 5. 操作ロジック ---
-        function updateWeight(index, delta) {
-            state.exercises[index].weight = Math.max(0, state.exercises[index].weight + delta);
-            saveState();
-            renderExercises();
-        }
-
-        function updateReps(index, delta) {
-            state.exercises[index].reps = Math.max(1, state.exercises[index].reps + delta);
-            saveState();
-            renderExercises();
-        }
-
-        function toggleSet(exIndex, setIndex) {
-            state.exercises[exIndex].sets[setIndex] = !state.exercises[exIndex].sets[setIndex];
-            saveState();
-            renderExercises();
-        }
-
-        function toggleExerciseComplete(index) {
-            state.exercises[index].completed = !state.exercises[index].completed;
-            saveState();
-            renderApp();
-        }
-
-        // 種目変更モーダル
-        let currentTargetIndex = null;
-        function openChangeModal(index) {
-            currentTargetIndex = index;
-            const modal = document.getElementById('exercise-modal');
-            const optionList = document.getElementById('modal-option-list');
-            optionList.innerHTML = '';
-
-            EXERCISE_CANDIDATES.forEach(name => {
-                const btn = document.createElement('button');
-                btn.className = 'btn-option';
-                btn.textContent = name;
-                btn.onclick = () => selectNewExercise(name);
-                optionList.appendChild(btn);
-            });
-
-            modal.classList.add('open');
-        }
-
-        function selectNewExercise(newName) {
-            if (currentTargetIndex !== null) {
-                state.exercises[currentTargetIndex].name = newName;
-                state.exercises[currentTargetIndex].sets = [false, false, false];
-                state.exercises[currentTargetIndex].completed = false;
+        function countUp(exIdx, setIdx) {
+            const set = state.exercises[exIdx].setsData[setIdx];
+            if (!set.locked) {
+                set.count++;
                 saveState();
-                renderApp();
+                renderExercises();
             }
-            closeModal();
         }
 
-        function closeModal() {
-            document.getElementById('exercise-modal').classList.remove('open');
-            currentTargetIndex = null;
-        }
+        function toggleLockSet(exIdx, setIdx) {
+            const set = state.exercises[exIdx].setsData[setIdx];
+            set.locked = !set.locked;
 
-        // --- 6. ストレッチタイマー機能 ---
-        function updateStretchDisplay() {
-            document.getElementById('stretch-name').textContent = STRETCH_LIST[state.stretchIndex];
-            const mins = String(Math.floor(stretchSeconds / 60)).padStart(2, '0');
-            const secs = String(stretchSeconds % 60).padStart(2, '0');
-            document.getElementById('stretch-timer-display').textContent = `${mins}:${secs}`;
-        }
+            const allLocked = state.exercises[exIdx].setsData.every(s => s.locked);
+            if (allLocked) {
+                state.exercises[exIdx].completed = true;
+                saveHistoryLog(state.exercises[exIdx].name, state.exercises[exIdx].weight, state.exercises[exIdx].reps, 3);
+            } else if (!set.locked) {
+                state.exercises[exIdx].completed = false;
+            }
 
-        function startStretchTimer() {
-            if (isStretchRunning) return;
-            isStretchRunning = true;
-            document.getElementById('btn-stretch-start').disabled = true;
-            document.getElementById('btn-stretch-pause').disabled = false;
-
-            stretchTimer = setInterval(() => {
-                stretchSeconds--;
-                if (stretchSeconds < 0) {
-                    nextStretch();
-                } else {
-                    updateStretchDisplay();
-                }
-            }, 1000);
-        }
-
-        function pauseStretchTimer() {
-            isStretchRunning = false;
-            clearInterval(stretchTimer);
-            document.getElementById('btn-stretch-start').disabled = false;
-            document.getElementById('btn-stretch-pause').disabled = true;
-        }
-
-        function nextStretch() {
-            pauseStretchTimer();
-            state.stretchIndex = (state.stretchIndex + 1) % STRETCH_LIST.length;
-            stretchSeconds = 60;
             saveState();
-            updateStretchDisplay();
+            renderHeader();
+            renderExercises();
         }
 
-        // --- 7. 初期化イベント ---
-        document.addEventListener('DOMContentLoaded', () => {
-            loadState();
-            renderApp();
-            updateStretchDisplay();
+        function updateVal(idx, key, delta) {
+            if (key === 'weight') {
+                state.exercises[idx].weight = Math.max(0, state.exercises[idx].weight + delta);
+            } else if (key === 'reps') {
+                state.exercises[idx].reps = Math.max(1, state.exercises[idx].reps + delta);
+            }
+            saveState();
+            renderExercises();
+        }
 
-            // ストレッチボタンイベント
-            document.getElementById('btn-stretch-start').onclick = startStretchTimer;
-            document.getElementById('btn-stretch-pause').onclick = pauseStretchTimer;
-            document.getElementById('btn-stretch-next').onclick = nextStretch;
+        function toggleComplete(exIdx) {
+            state.exercises[exIdx].completed = !state.exercises[exIdx].completed;
+            if (state.exercises[exIdx].completed) {
+                saveHistoryLog(state.exercises[exIdx].name, state.exercises[exIdx].weight, state.exercises[exIdx].reps, 3);
+            }
+            saveState();
+            renderHeader();
+            renderExercises();
+        }
 
-            // モーダル閉じる
-            document.getElementById('btn-close-modal').onclick = closeModal;
-
-            // 有酸素運動選択
-            const cardioSelect = document.getElementById('cardio-type');
-            cardioSelect.value = state.cardioType || "ランニング";
-            cardioSelect.onchange = (e) => {
-                state.cardioType = e.target.value;
-                saveState();
-            };
-        });
+        initApp();
     </script>
 </body>
 </html>
