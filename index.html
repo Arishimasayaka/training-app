@@ -67,7 +67,6 @@
             font-size: 0.85rem;
         }
 
-        /* --- 曜日ナビゲーション --- */
         .day-tabs {
             display: flex;
             justify-content: space-between;
@@ -105,7 +104,6 @@
             color: #10b981;
         }
 
-        /* --- カテゴリーメニュータブ --- */
         .category-nav {
             display: flex;
             overflow-x: auto;
@@ -278,6 +276,7 @@
             cursor: pointer;
         }
 
+        /* --- 改善された図解＆説明カード --- */
         .exercise-diagram-box {
             background-color: #0f172a;
             border-radius: 8px;
@@ -285,19 +284,20 @@
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             border: 1px solid #334155;
         }
 
         .diagram-svg {
-            width: 55px;
-            height: 55px;
+            width: 75px;
+            height: 75px;
             background-color: #1e293b;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            border: 1px solid #475569;
         }
 
         .guide-info {
@@ -307,8 +307,20 @@
         .guide-desc {
             font-size: 0.8rem;
             color: #cbd5e1;
-            line-height: 1.3;
+            line-height: 1.35;
             margin-bottom: 4px;
+        }
+
+        .muscle-target-tag {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #10b981;
+            background-color: rgba(16, 185, 129, 0.15);
+            border: 1px solid #059669;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            display: inline-block;
         }
 
         .item-target-badge {
@@ -693,7 +705,7 @@
         <div id="cat-protein" class="tab-content">
             <div class="protein-card">
                 <h3 style="color:#93c5fd; margin-bottom:6px;">🥤 50代男性のプロテイン・タンパク質ガイド</h3>
-                <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5;">1日の必要量: <strong>体重 × 1.2〜1.5g</strong>（体重70kgなら約80〜100g）。<br>トレーニング直後45分以内または朝食時の摂取が最も効果的です！</p>
+                <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5;">1日の必要量: <strong>体重 × 1.2〜1.5g</strong>（体重70kgなら約80〜100g）。<br>トレーニング直後45分以内または朝一番の摂取が最も効果的です！</p>
                 <div style="margin-top:12px;">
                     <button class="btn-spa-action" style="width:100%; border-color:#3b82f6; color:#93c5fd;" onclick="recordProteinLog('プロテイン 25g 摂取')">🥤 プロテイン1杯（25g）を記録する</button>
                 </div>
@@ -759,30 +771,62 @@
             { name: "5. 全身前屈リセット", query: "前屈 柔らかくなる ストレッチ" }
         ];
 
+        /* --- リアル人型ピクトグラム＋効く部位付き図解データ --- */
         const EXERCISE_DIAGRAMS = {
-            "バーベルベンチプレス": {
-                svg: `<svg viewBox="0 0 100 100" width="45" height="45"><rect x="15" y="60" width="70" height="10" fill="#94a3b8"/><circle cx="35" cy="50" r="8" fill="#38bdf8"/><line x1="10" y1="30" x2="90" y2="30" stroke="#ef4444" stroke-width="6"/></svg>`,
-                desc: "仰向けでバーベルを胸の上へ押し上げる（胸全体）",
-                target: "🎯 50代目安: 40〜60 kg"
-            },
             "バーベルスクワット": {
-                svg: `<svg viewBox="0 0 100 100" width="45" height="45"><circle cx="45" cy="35" r="8" fill="#38bdf8"/><line x1="20" y1="30" x2="70" y2="30" stroke="#ef4444" stroke-width="6"/></svg>`,
-                desc: "バーベルを担ぎしゃがみ込む動作（下半身全般）",
+                svg: `<svg viewBox="0 0 100 100" width="55" height="55">
+                        <circle cx="50" cy="22" r="6" fill="#f8fafc"/>
+                        <rect x="20" y="28" width="60" height="5" fill="#ef4444"/>
+                        <path d="M 50 28 L 50 50 L 35 75 L 25 90 M 50 50 L 65 75 L 75 90" stroke="#38bdf8" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <path d="M 50 35 L 30 30 M 50 35 L 70 30" stroke="#f8fafc" stroke-width="4" stroke-linecap="round"/>
+                      </svg>`,
+                desc: "バーベルを首の後ろに担ぎ、股関節から腰をしっかり落とす動作",
+                muscle: "💪 効く部位: 太もも前（大腿四頭筋）・お尻（大臀筋）・体幹",
                 target: "🎯 50代目安: 50〜75 kg"
             },
+            "バーベルベンチプレス": {
+                svg: `<svg viewBox="0 0 100 100" width="55" height="55">
+                        <rect x="15" y="65" width="70" height="8" fill="#64748b"/>
+                        <circle cx="30" cy="55" r="6" fill="#f8fafc"/>
+                        <path d="M 30 60 L 70 60 L 80 85" stroke="#38bdf8" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <line x1="10" y1="35" x2="90" y2="35" stroke="#ef4444" stroke-width="6"/>
+                        <path d="M 30 60 L 45 40 M 30 60 L 15 40" stroke="#f8fafc" stroke-width="4"/>
+                      </svg>`,
+                desc: "ベンチに寝てバーベルを胸まで落とし押し上げる動作",
+                muscle: "💪 効く部位: 胸（大胸筋）・肩の前・二の腕",
+                target: "🎯 50代目安: 40〜60 kg"
+            },
             "バーベルデッドリフト": {
-                svg: `<svg viewBox="0 0 100 100" width="45" height="45"><line x1="15" y1="75" x2="85" y2="75" stroke="#ef4444" stroke-width="6"/><circle cx="45" cy="40" r="8" fill="#38bdf8"/></svg>`,
-                desc: "床からバーベルを持ち上げる動作（背中・もも裏）",
+                svg: `<svg viewBox="0 0 100 100" width="55" height="55">
+                        <circle cx="45" cy="25" r="6" fill="#f8fafc"/>
+                        <path d="M 45 31 L 40 55 L 35 85 M 40 55 L 55 85" stroke="#38bdf8" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <line x1="15" y1="75" x2="85" y2="75" stroke="#ef4444" stroke-width="6"/>
+                        <path d="M 45 35 L 35 70 M 45 35 L 55 70" stroke="#f8fafc" stroke-width="4"/>
+                      </svg>`,
+                desc: "床の重量を前傾姿勢から上体を起こして引き上げる動作",
+                muscle: "💪 効く部位: 背中全体（脊柱起立筋）・お尻・もも裏",
                 target: "🎯 50代目安: 60〜85 kg"
             },
             "チェストプレス": {
-                svg: `<svg viewBox="0 0 100 100" width="45" height="45"><circle cx="30" cy="40" r="8" fill="#38bdf8"/><path d="M 35 55 L 65 55" stroke="#10b981" stroke-width="4"/></svg>`,
-                desc: "座ってグリップを前方へ押し出す（大胸筋）",
+                svg: `<svg viewBox="0 0 100 100" width="55" height="55">
+                        <rect x="25" y="30" width="10" height="50" fill="#64748b"/>
+                        <circle cx="35" cy="35" r="6" fill="#f8fafc"/>
+                        <path d="M 35 41 L 35 65 L 55 85" stroke="#38bdf8" stroke-width="6" fill="none"/>
+                        <path d="M 35 45 L 65 45 M 65 35 L 65 55" stroke="#10b981" stroke-width="5"/>
+                      </svg>`,
+                desc: "シートに座りグリップを前方に押し出すマシン運動",
+                muscle: "💪 効く部位: 胸（大胸筋前部）・腕の裏",
                 target: "🎯 50代目安: 35〜50 kg"
             },
             "ラットプルダウン": {
-                svg: `<svg viewBox="0 0 100 100" width="45" height="45"><line x1="20" y1="20" x2="80" y2="20" stroke="#ef4444" stroke-width="6"/><circle cx="50" cy="45" r="8" fill="#38bdf8"/></svg>`,
-                desc: "頭上のバーを胸の上に引き下ろす動作（背中）",
+                svg: `<svg viewBox="0 0 100 100" width="55" height="55">
+                        <line x1="15" y1="20" x2="85" y2="20" stroke="#ef4444" stroke-width="6"/>
+                        <circle cx="50" cy="40" r="6" fill="#f8fafc"/>
+                        <path d="M 50 46 L 50 75" stroke="#38bdf8" stroke-width="6"/>
+                        <path d="M 50 48 L 25 22 M 50 48 L 75 22" stroke="#f8fafc" stroke-width="4"/>
+                      </svg>`,
+                desc: "頭上のバーを胸の上に引き下ろして背中を寄せる動作",
+                muscle: "💪 効く部位: 背中広背筋（逆三角形をつくる）・肩甲骨周り",
                 target: "🎯 50代目安: 35〜45 kg"
             }
         };
@@ -1208,8 +1252,9 @@
                 card.className = "exercise-card" + (ex.completed ? " completed" : "");
                 
                 const diagram = EXERCISE_DIAGRAMS[ex.name] || {
-                    svg: `<svg viewBox="0 0 100 100" width="45" height="45"><circle cx="50" cy="40" r="10" fill="#38bdf8"/></svg>`,
-                    desc: "姿勢と動作を意識して行いましょう。",
+                    svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="30" r="6" fill="#f8fafc"/><path d="M 50 36 L 50 65 L 35 85 M 50 65 L 65 85" stroke="#38bdf8" stroke-width="6" fill="none"/></svg>`,
+                    desc: "フォームと姿勢を意識して丁寧に行いましょう。",
+                    muscle: "💪 効く部位: 全身の筋肉・体幹",
                     target: "🎯 50代目安: 20〜40 kg"
                 };
                 const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name + ' フォーム Shorts')}`;
@@ -1224,6 +1269,7 @@
                         <div class="diagram-svg">${diagram.svg}</div>
                         <div class="guide-info">
                             <div class="item-target-badge">${diagram.target}</div>
+                            <div class="muscle-target-tag">${diagram.muscle}</div>
                             <div class="guide-desc">${diagram.desc}</div>
                             <a href="${ytSearchUrl}" target="_blank" class="yt-link">🎬 Shorts動画を見る</a>
                         </div>
