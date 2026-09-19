@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>筋トレアプリ</title>
+    <meta name="theme-color" content="#1a202c">
+    <meta name="description" content="毎日のトレーニング・ストレッチ・有酸素運動をスマートに管理するアプリ">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --card-completed: #0f291e;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --success: #10b981;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --border-color: #334155;
+            --accent: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-sub);
+            margin-bottom: 4px;
+        }
+
+        .day-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .current-day {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .target-part {
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-color: #334155;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .progress-section {
+            margin-top: 12px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: var(--text-sub);
+        }
+
+        .progress-bar-bg {
+            background-color: var(--border-color);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background-color: var(--success);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        main {
+            padding: 16px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 20px 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            border-left: 4px solid var(--primary);
+            padding-left: 8px;
+        }
+
+        .special-day-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 32px 16px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            margin-top: 16px;
+        }
+
+        .special-day-card h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .special-day-card p {
+            color: var(--text-sub);
+        }
+
+        .badge-notice {
+            background-color: rgba(245, 158, 11, 0.15);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .card.completed {
+            background-color: var(--card-completed);
+            border-color: #15803d;
+            opacity: 0.85;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .exercise-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .btn-change {
+            background: transparent;
+            border: 1px solid var(--text-sub);
+            color: var(--text-sub);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .control-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .control-group label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+        }
+
+        .input-number-wrapper {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-color);
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .btn-step {
+            background-color: var(--border-color);
+            color: var(--text-main);
+            border: none;
+            width: 36px;
+            height: 36px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .input-number-wrapper input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 4px;
+        }
+
+        .sets-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .btn-set {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-sub);
+            padding: 10px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-set.active {
+            background-color: rgba(59, 130, 246, 0.2);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-complete {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card.completed .btn-complete {
+            background-color: #15803d;
+        }
+
+        /* ストレッチタイマー */
+        .timer-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .timer-display {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 8px 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stretch-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--text-main);
+            min-height: 1.5em;
+        }
+
+        .timer-btn-group {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+
+        .btn-timer {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-timer.primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* モーダル */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .exercise-option-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .btn-option {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-close {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--border-color);
+            color: var(--text-main);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        select.cardio-select {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">筋トレアプリ</div>
+        <div class="day-info">
+            <div class="current-day" id="day-display">--曜日</div>
+            <div class="target-part" id="part-display">--</div>
+        </div>
+        <div class="progress-section" id="progress-container">
+            <div class="progress-text">
+                <span>今日の進捗</span>
+                <span id="progress-text-val">0 / 0 完了</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar-fill"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 朝サウナ等メッセージ表示エリア -->
+        <div id="notice-area"></div>
+
+        <!-- ストレッチ（5分）タイマー -->
+        <div class="section-title">毎日5分ストレッチ (1分×5種目)</div>
+        <div class="timer-card">
+            <div class="stretch-name" id="stretch-name">準備完了</div>
+            <div class="timer-display" id="stretch-timer-display">01:00</div>
+            <div class="timer-btn-group">
+                <button class="btn-timer primary" id="btn-stretch-start">スタート</button>
+                <button class="btn-timer" id="btn-stretch-pause" disabled>一時停止</button>
+                <button class="btn-timer" id="btn-stretch-next">次へ</button>
+            </div>
+        </div>
+
+        <!-- トレーニングメインエリア -->
+        <div id="workout-area">
+            <div class="section-title">【未完了】筋トレ種目</div>
+            <div id="pending-exercises"></div>
+
+            <div class="section-title">【完了済み】筋トレ種目</div>
+            <div id="completed-exercises"></div>
+
+            <!-- 有酸素運動 -->
+            <div class="section-title" id="cardio-title">有酸素運動 (20分)</div>
+            <div class="card" id="cardio-card">
+                <label for="cardio-type" style="font-size: 0.85rem; color: var(--text-sub);">種目を選択してください</label>
+                <select id="cardio-type" class="cardio-select">
+                    <option value="ランニング">ランニング (トレッドミル 20分)</option>
+                    <option value="バイク">バイク (20分)</option>
+                    <option value="ローイング">ローイング (20分)</option>
+                    <option value="階段・ステア">階段・ステア (20分)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 水曜・金曜などの特殊画面エリア -->
+        <div id="special-day-area" style="display: none;"></div>
+    </main>
+
+    <!-- 種目変更用モーダル -->
+    <div class="modal-overlay" id="exercise-modal">
+        <div class="modal">
+            <div class="modal-title">種目を変更</div>
+            <div class="exercise-option-list" id="modal-option-list"></div>
+            <button class="btn-close" id="btn-close-modal">キャンセル</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. 基本データ＆スケジュール構造 ---
+        const SCHEDULE = {
+            0: { name: "日", part: "弱点部位", exercises: ["レッグプレス", "レッグエクステンション", "レッグカール", "ケーブルクロスオーバー", "サイドレイズ", "アブローラー"] },
+            1: { name: "月", part: "胸", exercises: ["チェストプレス", "ケーブルフライ", "インクラインダンベルプレス", "ローププレスダウン", "オーバーヘッドトライセプスエクステンション", "デッドバグ"] },
+            2: { name: "火", part: "背中", exercises: ["ラットプルダウン", "シーテッドロー", "ワンアームダンベルロー", "フェイスプル", "ダンベルカール", "アブ系"] },
+            3: { name: "水", part: "ボクシングレッスン", special: "今日はボクシングレッスン" },
+            4: { name: "木", part: "肩・肩幅", exercises: ["ショルダープレス", "サイドレイズ", "リアレイズ", "ケーブルフライ", "フェイスプル", "アブ系"] },
+            5: { name: "金", part: "休養", special: "今日は休養日" },
+            6: { name: "土", part: "全身", exercises: ["スクワット", "レッグプレス", "ラットプルダウン", "ダンベルプレス", "サイドレイズ", "アブ系"] }
+        };
+
+        const EXERCISE_CANDIDATES = [
+            "チェストプレス", "ケーブルフライ", "インクラインダンベルプレス", "ダンベルプレス",
+            "ラットプルダウン", "シーテッドロー", "ワンアームダンベルロー", "フェイスプル",
+            "ショルダープレス", "サイドレイズ", "リアレイズ",
+            "ローププレスダウン", "オーバーヘッドトライセプスエクステンション", "ダンベルカール",
+            "スクワット", "レッグプレス", "レッグカール", "レッグエクステンション",
+            "デッドバグ", "アブ系", "アブローラー"
+        ];
+
+        const STRETCH_LIST = [
+            "首・肩周りのストレッチ",
+            "胸・大胸筋伸ばし",
+            "背中・キャット＆カウ",
+            "股関節・太もも伸ばし",
+            "アキレス腱・ふくらはぎストレッチ"
+        ];
+
+        // --- 2. 状態管理 (State) ---
+        let state = {
+            dateStr: "",
+            dayOfWeek: 0,
+            exercises: [],
+            stretchIndex: 0,
+            cardioType: "ランニング"
+        };
+
+        // タイマー変数
+        let stretchTimer = null;
+        let stretchSeconds = 60;
+        let isStretchRunning = false;
+
+        // --- 3. 日付判定 & ストレージ管理 ---
+        function getTodayInfo() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+            const dateStr = `${year}-${month}-${date}`;
+            const dayOfWeek = now.getDay(); // 0(日)〜6(土)
+            return { dateStr, dayOfWeek };
+        }
+
+        function loadState() {
+            const today = getTodayInfo();
+            const savedData = localStorage.getItem('kintore_app_data');
+
+            if (savedData) {
+                const parsed = JSON.parse(savedData);
+                // 日付が変わっていなければ保存データをロード
+                if (parsed.dateStr === today.dateStr) {
+                    state = parsed;
+                    return;
+                }
+            }
+
+            // 日付が変わっている場合、または新規作成時
+            initDayState(today);
+        }
+
+        function initDayState(today) {
+            const daySched = SCHEDULE[today.dayOfWeek];
+            let defaultExercises = [];
+
+            if (daySched.exercises) {
+                defaultExercises = daySched.exercises.map(name => ({
+                    name: name,
+                    weight: 30.0,
+                    reps: 10,
+                    sets: [false, false, false],
+                    completed: false
+                }));
+            }
+
+            state = {
+                dateStr: today.dateStr,
+                dayOfWeek: today.dayOfWeek,
+                exercises: defaultExercises,
+                stretchIndex: 0,
+                cardioType: "ランニング"
+            };
+
+            saveState();
+        }
+
+        function saveState() {
+            localStorage.setItem('kintore_app_data', JSON.stringify(state));
+        }
+
+        // --- 4. UI 描画処理 ---
+        function renderApp() {
+            const daySched = SCHEDULE[state.dayOfWeek];
+            
+            // ヘッダー更新
+            document.getElementById('day-display').textContent = `${daySched.name}曜日`;
+            document.getElementById('part-display').textContent = daySched.part;
+
+            // 特殊通知エリア (朝サウナなど)
+            const noticeArea = document.getElementById('notice-area');
+            noticeArea.innerHTML = '';
+            if (state.dayOfWeek === 4) { // 木曜日
+                noticeArea.innerHTML = `<div class="badge-notice">♨️ 朝：サウナ</div>`;
+            } else if (state.dayOfWeek === 2) { // 火曜日
+                noticeArea.innerHTML = `<div class="badge-notice">♨️ トレーニング後：ジャグジー・サウナ 20分</div>`;
+            }
+
+            const workoutArea = document.getElementById('workout-area');
+            const specialDayArea = document.getElementById('special-day-area');
+            const progressContainer = document.getElementById('progress-container');
+
+            // 休養日 / ボクシングレッスンの判定
+            if (daySched.special) {
+                workoutArea.style.display = 'none';
+                progressContainer.style.display = 'none';
+                specialDayArea.style.display = 'block';
+                specialDayArea.innerHTML = `
+                    <div class="special-day-card">
+                        <h2>${daySched.special}</h2>
+                        <p>本日は指定のスケジュールに沿ってリフレッシュまたはレッスンに集中してください。</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 通常トレーニング日
+            workoutArea.style.display = 'block';
+            progressContainer.style.display = 'block';
+            specialDayArea.style.display = 'none';
+
+            renderExercises();
+            updateProgress();
+        }
+
+        function renderExercises() {
+            const pendingContainer = document.getElementById('pending-exercises');
+            const completedContainer = document.getElementById('completed-exercises');
+
+            pendingContainer.innerHTML = '';
+            completedContainer.innerHTML = '';
+
+            state.exercises.forEach((ex, index) => {
+                const card = document.createElement('div');
+                card.className = `card ${ex.completed ? 'completed' : ''}`;
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="exercise-name">${ex.name}</div>
+                        <button class="btn-change" onclick="openChangeModal(${index})">種目変更</button>
+                    </div>
+                    <div class="controls-row">
+                        <div class="control-group">
+                            <label>重量 (kg)</label>
+                            <div class="input-number-wrapper">
+                                <button class="btn-step" onclick="updateWeight(${index}, -0.5)">-</button>
+                                <input type="number" step="0.5" value="${ex.weight}" readonly>
+                                <button class="btn-step" onclick="updateWeight(${index}, 0.5)">+</button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>目標回数</label>
+                            <div class="input-number-wrapper">
+                                <button class="btn-step" onclick="updateReps(${index}, -1)">-</button>
+                                <input type="number" value="${ex.reps}" readonly>
+                                <button class="btn-step" onclick="updateReps(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sets-container">
+                        <button class="btn-set ${ex.sets[0] ? 'active' : ''}" onclick="toggleSet(${index}, 0)">セット 1</button>
+                        <button class="btn-set ${ex.sets[1] ? 'active' : ''}" onclick="toggleSet(${index}, 1)">セット 2</button>
+                        <button class="btn-set ${ex.sets[2] ? 'active' : ''}" onclick="toggleSet(${index}, 2)">セット 3</button>
+                    </div>
+                    <button class="btn-complete" onclick="toggleExerciseComplete(${index})">
+                        ${ex.completed ? '✓ 完了済み (未完了に戻す)' : '種目を完了する'}
+                    </button>
+                `;
+
+                if (ex.completed) {
+                    completedContainer.appendChild(card);
+                } else {
+                    pendingContainer.appendChild(card);
+                }
+            });
+        }
+
+        function updateProgress() {
+            const total = state.exercises.length;
+            if (total === 0) return;
+            const completed = state.exercises.filter(e => e.completed).length;
+            
+            document.getElementById('progress-text-val').textContent = `${completed} / ${total} 完了`;
+            const pct = (completed / total) * 100;
+            document.getElementById('progress-bar-fill').style.width = `${pct}%`;
+        }
+
+        // --- 5. 操作ロジック ---
+        function updateWeight(index, delta) {
+            state.exercises[index].weight = Math.max(0, state.exercises[index].weight + delta);
+            saveState();
+            renderExercises();
+        }
+
+        function updateReps(index, delta) {
+            state.exercises[index].reps = Math.max(1, state.exercises[index].reps + delta);
+            saveState();
+            renderExercises();
+        }
+
+        function toggleSet(exIndex, setIndex) {
+            state.exercises[exIndex].sets[setIndex] = !state.exercises[exIndex].sets[setIndex];
+            saveState();
+            renderExercises();
+        }
+
+        function toggleExerciseComplete(index) {
+            state.exercises[index].completed = !state.exercises[index].completed;
+            saveState();
+            renderApp();
+        }
+
+        // 種目変更モーダル
+        let currentTargetIndex = null;
+        function openChangeModal(index) {
+            currentTargetIndex = index;
+            const modal = document.getElementById('exercise-modal');
+            const optionList = document.getElementById('modal-option-list');
+            optionList.innerHTML = '';
+
+            EXERCISE_CANDIDATES.forEach(name => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-option';
+                btn.textContent = name;
+                btn.onclick = () => selectNewExercise(name);
+                optionList.appendChild(btn);
+            });
+
+            modal.classList.add('open');
+        }
+
+        function selectNewExercise(newName) {
+            if (currentTargetIndex !== null) {
+                state.exercises[currentTargetIndex].name = newName;
+                state.exercises[currentTargetIndex].sets = [false, false, false];
+                state.exercises[currentTargetIndex].completed = false;
+                saveState();
+                renderApp();
+            }
+            closeModal();
+        }
+
+        function closeModal() {
+            document.getElementById('exercise-modal').classList.remove('open');
+            currentTargetIndex = null;
+        }
+
+        // --- 6. ストレッチタイマー機能 ---
+        function updateStretchDisplay() {
+            document.getElementById('stretch-name').textContent = STRETCH_LIST[state.stretchIndex];
+            const mins = String(Math.floor(stretchSeconds / 60)).padStart(2, '0');
+            const secs = String(stretchSeconds % 60).padStart(2, '0');
+            document.getElementById('stretch-timer-display').textContent = `${mins}:${secs}`;
+        }
+
+        function startStretchTimer() {
+            if (isStretchRunning) return;
+            isStretchRunning = true;
+            document.getElementById('btn-stretch-start').disabled = true;
+            document.getElementById('btn-stretch-pause').disabled = false;
+
+            stretchTimer = setInterval(() => {
+                stretchSeconds--;
+                if (stretchSeconds < 0) {
+                    nextStretch();
+                } else {
+                    updateStretchDisplay();
+                }
+            }, 1000);
+        }
+
+        function pauseStretchTimer() {
+            isStretchRunning = false;
+            clearInterval(stretchTimer);
+            document.getElementById('btn-stretch-start').disabled = false;
+            document.getElementById('btn-stretch-pause').disabled = true;
+        }
+
+        function nextStretch() {
+            pauseStretchTimer();
+            state.stretchIndex = (state.stretchIndex + 1) % STRETCH_LIST.length;
+            stretchSeconds = 60;
+            saveState();
+            updateStretchDisplay();
+        }
+
+        // --- 7. 初期化イベント ---
+        document.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            renderApp();
+            updateStretchDisplay();
+
+            // ストレッチボタンイベント
+            document.getElementById('btn-stretch-start').onclick = startStretchTimer;
+            document.getElementById('btn-stretch-pause').onclick = pauseStretchTimer;
+            document.getElementById('btn-stretch-next').onclick = nextStretch;
+
+            // モーダル閉じる
+            document.getElementById('btn-close-modal').onclick = closeModal;
+
+            // 有酸素運動選択
+            const cardioSelect = document.getElementById('cardio-type');
+            cardioSelect.value = state.cardioType || "ランニング";
+            cardioSelect.onchange = (e) => {
+                state.cardioType = e.target.value;
+                saveState();
+            };
+        });
+    </script>
+</body>
+</html>
