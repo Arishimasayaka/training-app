@@ -360,1505 +360,12 @@
             border: 1px solid #5c1d24;
         }
 
-        .controls-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .input-group label {
-            font-size: 0.75rem;
-            color: var(--text-sub);
-        }
-
-        .number-control {
-            display: flex;
-            align-items: center;
-            background-color: #0f172a;
-            border-radius: 6px;
-            border: 1px solid #334155;
-            overflow: hidden;
-        }
-
-        .btn-num {
-            background-color: #334155;
-            color: white;
-            border: none;
-            width: 36px;
-            height: 36px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .num-val {
-            flex: 1;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .sets-container {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 10px;
-        }
-
-        .set-item-card {
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 6px;
-            padding: 6px 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .set-item-card.locked {
-            background-color: #0d2720;
-            border-color: #10b981;
-        }
-
-        .set-label {
-            font-weight: bold;
-            font-size: 0.8rem;
-            color: var(--text-sub);
-        }
-
-        .counter-box {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-start-speech {
-            background-color: #0284c7;
-            color: white;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-
-        .btn-start-speech.counting {
-            background-color: #d97706;
-        }
-
-        .count-display {
-            font-size: 0.95rem;
-            font-weight: bold;
-            color: #38bdf8;
-            min-width: 45px;
-            text-align: center;
-        }
-
-        .btn-finish-set {
-            background-color: #10b981;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            cursor: pointer;
-        }
-
-        .btn-complete {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: none;
-            background-color: var(--accent-color);
-            color: white;
-            font-weight: bold;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        .timer-card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 16px;
-            margin-top: 12px;
-            border: 1px solid #334155;
-            text-align: center;
-        }
-
-        .timer-display {
-            font-size: 2.5rem;
-            font-weight: bold;
-            font-family: monospace;
-            margin: 6px 0;
-            color: #38bdf8;
-        }
-
-        .stretch-nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            background-color: #0f172a;
-            padding: 4px;
-            border-radius: 6px;
-            border: 1px solid #334155;
-        }
-
-        .btn-stretch-step {
-            width: 28px;
-            height: 28px;
-            border-radius: 4px;
-            background: transparent;
-            border: 1px solid #334155;
-            color: var(--text-sub);
-            font-weight: bold;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-
-        .btn-stretch-step.active {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        .btn-stretch-arrow {
-            background-color: #334155;
-            color: white;
-            border: none;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-
-        .btn-timer {
-            padding: 8px 16px;
-            border-radius: 6px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        .spa-card {
-            background: linear-gradient(135deg, #451a03, #1e293b);
-            border: 1px solid #f97316;
-            border-radius: var(--border-radius);
-            padding: 16px;
-            margin-top: 12px;
-        }
-
-        .spa-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .btn-spa-action {
-            background-color: #292524;
-            border: 1px solid #78350f;
-            color: #fdba74;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-
-        .protein-card {
-            background: linear-gradient(135deg, #1e3a8a, #0f172a);
-            border: 1px solid #3b82f6;
-            border-radius: var(--border-radius);
-            padding: 16px;
-            margin-top: 12px;
-        }
-
-        .chart-card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 14px;
-            border: 1px solid #334155;
-            margin-top: 12px;
-        }
-
-        .chart-select {
-            width: 100%;
-            padding: 8px;
-            border-radius: 6px;
-            background-color: #0f172a;
-            color: white;
-            border: 1px solid #334155;
-            margin-bottom: 10px;
-        }
-
-        .log-list {
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            border-radius: var(--border-radius);
-            padding: 10px;
-            max-height: 250px;
-            overflow-y: auto;
-            font-size: 0.85rem;
-        }
-
-        .log-item {
-            padding: 6px 0;
-            border-bottom: 1px solid #1e293b;
-            display: flex;
-            justify-content: space-between;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="header-top">
-            <h1>トレーニングアプリ</h1>
-            <div id="today-badge" class="today-badge">-</div>
-        </div>
-
-        <div class="day-tabs">
-            <button class="btn-day-tab" onclick="switchSelectedDay('月')">月</button>
-            <button class="btn-day-tab" onclick="switchSelectedDay('火')">火</button>
-            <button class="btn-day-tab" onclick="switchSelectedDay('水')">水</button>
-            <button class="btn-day-tab" onclick="switchSelectedDay('木')">木</button>
-            <button class="btn-day-tab" onclick="switchSelectedDay('金')">金</button>
-            <button class="btn-day-tab" onclick="switchSelectedDay('土')">土</button>
-            <button class="btn-day-tab" onclick="switchSelectedDay('日')">日</button>
-        </div>
-
-        <div class="workout-title-row">
-            <div id="workout-title" class="workout-title">読み込み中...</div>
-            <button id="btn-today-reset" class="btn-reset-today" onclick="resetToToday()" style="display:none;">今日へ戻る</button>
-        </div>
-
-        <div class="progress-container">
-            <div id="progress-bar" class="progress-bar"></div>
-        </div>
-        <div id="progress-text" class="progress-text">0 / 0 完了</div>
-    </header>
-
-    <nav class="category-nav">
-        <button class="btn-cat-tab active" onclick="switchCategory('cat-workout')">🏋️ トレーニング</button>
-        <button class="btn-cat-tab" onclick="switchCategory('cat-stretch')">🧘 柔軟・朝夜</button>
-        <button class="btn-cat-tab" onclick="switchCategory('cat-protein')">🥤 プロテイン</button>
-        <button class="btn-cat-tab" onclick="switchCategory('cat-spa')">♨️ サウナ</button>
-        <button class="btn-cat-tab" onclick="switchCategory('cat-logs')">📜 記録・グラフ</button>
-    </nav>
-
-    <main>
-        <div class="quote-card">
-            <div class="quote-header">
-                <span id="quote-tag" class="quote-tag">🔥 モチベーション</span>
-                <button class="quote-refresh-btn" onclick="getRandomQuote()">🔄 別の名言</button>
-            </div>
-            <div id="quote-text" class="quote-text">読み込み中...</div>
-            <div id="quote-author" class="quote-author" style="font-size:0.75rem; color:#cbd5e1; text-align:right;"></div>
-        </div>
-
-        <!-- 1. トレーニングタブ -->
-        <div id="cat-workout" class="tab-content active">
-            <div id="special-day-container"></div>
-            <div id="uncompleted-section">
-                <div class="section-header">🌆 トレーニング中</div>
-                <div id="uncompleted-list"></div>
-            </div>
-            <div id="completed-section" style="margin-top: 20px;">
-                <div class="section-header">✅ 完了済み（ロック中）</div>
-                <div id="completed-list"></div>
-            </div>
-        </div>
-
-        <!-- 2. 柔軟・朝夜コンディショニングタブ -->
-        <div id="cat-stretch" class="tab-content">
-            <div id="morning-section" class="timer-card" style="background: linear-gradient(135deg, #064e3b, #0f172a); border-color: #10b981;">
-                <h3>🌅 朝コンディショニング（5分）</h3>
-                <p style="color: #a7f3d0; font-size: 0.8rem;">マインドフルネス瞑想＆スッキリストレッチ</p>
-                <div class="stretch-nav-bar" style="margin-top: 10px;">
-                    <button class="btn-stretch-arrow" onclick="moveMorningStep(-1)">◀</button>
-                    <div id="morning-step-dots" style="display:flex; gap:4px;"></div>
-                    <button class="btn-stretch-arrow" onclick="moveMorningStep(1)">▶</button>
-                </div>
-                <div id="morning-name" style="font-weight: bold; font-size: 1rem; color: #6ee7b7;"></div>
-                <div style="margin-top: 4px;"><a id="morning-yt-link" href="#" target="_blank" class="yt-link">🎬 Shorts動画を見る</a></div>
-                <div id="morning-timer" class="timer-display" style="color: #6ee7b7;">01:00</div>
-                <button id="morning-start-btn" class="btn-timer" style="background-color: #059669;" onclick="toggleMorningTimer()">スタート</button>
-            </div>
-
-            <div id="stretch-section" class="timer-card">
-                <h3>🧘 夕方：前屈・もも裏ストレッチ（5分）</h3>
-                <p style="color: var(--text-sub); font-size: 0.8rem;">硬い方向け（息を吐きながら伸ばす）</p>
-                <div class="stretch-nav-bar" style="margin-top: 10px;">
-                    <button class="btn-stretch-arrow" onclick="moveStretchStep(-1)">◀</button>
-                    <div id="stretch-step-dots" style="display:flex; gap:4px;"></div>
-                    <button class="btn-stretch-arrow" onclick="moveStretchStep(1)">▶</button>
-                </div>
-                <div id="stretch-name" style="font-weight: bold; font-size: 1rem; color: #38bdf8;"></div>
-                <div style="margin-top: 4px;"><a id="stretch-yt-link" href="#" target="_blank" class="yt-link">🎬 Shorts動画を見る</a></div>
-                <div id="stretch-timer" class="timer-display">01:00</div>
-                <button id="stretch-start-btn" class="btn-timer" onclick="toggleStretchTimer()">スタート</button>
-            </div>
-        </div>
-
-        <!-- 3. プロテイン＆栄養タブ -->
-        <div id="cat-protein" class="tab-content">
-            <div class="protein-card">
-                <h3 style="color:#93c5fd; margin-bottom:6px;">🥤 50代男性のプロテイン・タンパク質ガイド</h3>
-                <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5;">1日の必要量: <strong>体重 × 1.2〜1.5g</strong>（体重70kgなら約80〜100g）。<br>トレーニング直後45分以内または朝一番の摂取が最も効果的です！</p>
-                <div style="margin-top:12px;">
-                    <button class="btn-spa-action" style="width:100%; border-color:#3b82f6; color:#93c5fd;" onclick="recordProteinLog('プロテイン 25g 摂取')">🥤 プロテイン1杯（25g）を記録する</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. サウナ＆温泉タブ（10分・20分選択可能） -->
-        <div id="cat-spa" class="tab-content">
-            <div class="spa-card">
-                <div class="spa-title">♨️ サウナ・ジャグジー リカバリー記録</div>
-                <p style="font-size:0.8rem; color:#fed7aa;">血行促進・筋疲労の除去に。ワンタップで記録！</p>
-                <div class="spa-buttons">
-                    <button class="btn-spa-action" onclick="recordSpaActivity('サウナ 10分')">🧖‍♂️ サウナ 10分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('サウナ 20分')">🧖‍♂️ サウナ 20分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('ジャグジー 10分')">🛁 ジャグジー 10分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('ジャグジー 20分')">🛁 ジャグジー 20分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('サウナ＋ジャグジー 30分')">🔥 併用 30分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('温冷交互浴 15分')">❄️ 温冷交互浴 15分</button>
-                </div>
-            </div>
-            <div class="chart-card">
-                <h4 style="color:#fb923c; margin-bottom:8px; font-size:0.9rem;">♨️ 温冷交互浴の推奨時間目安</h4>
-                <canvas id="spaGuideChart" height="160"></canvas>
-            </div>
-        </div>
-
-        <!-- 5. 記録・グラフタブ -->
-        <div id="cat-logs" class="tab-content">
-            <div class="chart-card">
-                <h4 style="color:#60a5fa; margin-bottom:8px; font-size:0.9rem;">📈 重量・回数の成長推移グラフ</h4>
-                <select id="chart-exercise-select" class="chart-select" onchange="updateChart()"></select>
-                <canvas id="growthChart" height="180"></canvas>
-            </div>
-            <div style="margin-top: 16px;">
-                <div class="section-header">📜 過去の全記録（トレーニング・プロテイン・サウナ）</div>
-                <div id="log-list" class="log-list"></div>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
-
-        const MOTIVATIONAL_QUOTES = [
-            { text: "限界を決めるのは自分自身だ。あと1回挙げた時、身体は確実に変わる。", author: "アーノルド・シュワルツェネッガー", type: "名言" },
-            { text: "準備に妥協がなければ、結果に対して不安になることはない。", author: "イチロー", type: "アスリート" },
-            { text: "サウナやジャグジーで温まると、筋肉の疲労物質が抜けやすくなり回復が早まる！", author: "コンディショニング雑学", type: "豆知識" },
-            { text: "今日やらなかった後悔は、明日やってくる筋肉痛よりずっと重い。", author: "トレーニング格言", type: "モチベーション" },
-            { text: "プロテインはトレーニング後45分以内または朝一番に飲むと効果絶大！", author: "栄養雑学", type: "豆知識" }
-        ];
-
-        const MORNING_STEPS = [
-            { name: "1. 深呼吸マインドフルネス瞑想", query: "マインドフルネス 瞑想 やり方" },
-            { name: "2. キャット＆カウ（背中ストレッチ）", query: "キャットアンドカウ ストレッチ" },
-            { name: "3. 股関節・腸腰筋あさストレッチ", query: "股関節 腸腰筋 ストレッチ" },
-            { name: "4. もも裏朝の軽め伸ばし", query: "ハムストリングス ストレッチ" },
-            { name: "5. 全身伸び＆ポジティブ呼吸", query: "全身伸び ストレッチ" }
-        ];
-
-        const HAMSTRING_STRETCHES = [
-            { name: "1. ジャックナイフストレッチ", query: "ジャックナイフストレッチ 前屈" },
-            { name: "2. 骨盤立て片足伸ばし", query: "ハムストリングス 骨盤 ストレッチ" },
-            { name: "3. 股関節前側伸ばし", query: "股関節前側 ストレッチ" },
-            { name: "4. お尻・臀筋ストレッチ", query: "お尻 臀筋 ストレッチ" },
-            { name: "5. 全身前屈リセット", query: "前屈 柔らかくなる ストレッチ" }
-        ];
-
-        const EXERCISE_DIAGRAMS = {
-            "バーベルベンチプレス": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><rect x="15" y="65" width="70" height="8" fill="#64748b"/><circle cx="30" cy="55" r="6" fill="#f8fafc"/><path d="M 30 60 L 70 60 L 80 85" stroke="#38bdf8" stroke-width="6" fill="none"/><line x1="10" y1="35" x2="90" y2="35" stroke="#ef4444" stroke-width="6"/></svg>`,
-                desc: "仰向けで重量を押し上げる（胸の厚み・腕のバルクアップ）",
-                muscle: "💪 効く部位: 大胸筋（胸全般）・三頭筋（腕の裏）",
-                target: "🎯 50代目安: 40〜60 kg"
-            },
-            "チェストプレス": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><rect x="25" y="30" width="10" height="50" fill="#64748b"/><circle cx="35" cy="35" r="6" fill="#f8fafc"/><path d="M 35 45 L 65 45 M 65 35 L 65 55" stroke="#10b981" stroke-width="5"/></svg>`,
-                desc: "座ってグリップを前面へ押し出し胸に厚みをつくる",
-                muscle: "💪 効く部位: 大胸筋・三角筋前部",
-                target: "🎯 50代目安: 35〜50 kg"
-            },
-            "インクラインダンベルプレス": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><line x1="20" y1="80" x2="60" y2="40" stroke="#64748b" stroke-width="6"/><circle cx="45" cy="35" r="6" fill="#f8fafc"/><path d="M 45 40 L 70 15" stroke="#38bdf8" stroke-width="5"/></svg>`,
-                desc: "ベンチを傾けて斜め上へ押し上げ胸上部を引き締める",
-                muscle: "💪 効く部位: 大胸筋上部（鎖骨周り）",
-                target: "🎯 50代目安: 10〜18 kg（片手）"
-            },
-            "バーベルカール": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70" stroke="#38bdf8" stroke-width="6"/><line x1="20" y1="30" x2="50" y2="30" stroke="#ef4444" stroke-width="6"/></svg>`,
-                desc: "肘の位置を固定し、バーベルを持ち上げて力こぶをつくる",
-                muscle: "💪 効く部位: 上腕二頭筋（力こぶ）",
-                target: "🎯 50代目安: 15〜25 kg"
-            },
-            "ダンベルカール": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70" stroke="#38bdf8" stroke-width="6"/><circle cx="30" cy="35" r="5" fill="#ef4444"/></svg>`,
-                desc: "片手ずつダンベルを引き上げ力こぶを強烈に収縮させる",
-                muscle: "💪 効く部位: 上腕二頭筋",
-                target: "🎯 50代目安: 8〜14 kg（片手）"
-            },
-            "バーベルスクワット": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="22" r="6" fill="#f8fafc"/><rect x="20" y="28" width="60" height="5" fill="#ef4444"/><path d="M 50 28 L 50 50 L 35 75 L 25 90 M 50 50 L 65 75 L 75 90" stroke="#38bdf8" stroke-width="6" fill="none"/></svg>`,
-                desc: "お尻を引いて腰を深める。10kmマラソンを支える脚力土台",
-                muscle: "💪 効く部位: 太もも（大腿四頭筋）・お尻（大臀筋）",
-                target: "🎯 50代目安: 50〜75 kg"
-            },
-            "アンクルホップ＆ボクシングステップ": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 65 L 40 85 M 50 65 L 60 85" stroke="#38bdf8" stroke-width="6"/></svg>`,
-                desc: "つま先でバウンドし足首のバネを鍛える（マラソン推進力＆ステップ）",
-                muscle: "💪 効く部位: ふくらはぎ（下腿三頭筋）・足首の腱",
-                target: "🎯 50代目安: 20〜30 回 × 3セット"
-            },
-            "バーベルデッドリフト": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="45" cy="25" r="6" fill="#f8fafc"/><line x1="15" y1="75" x2="85" y2="75" stroke="#ef4444" stroke-width="6"/></svg>`,
-                desc: "床からバーベルを引き上げ全身の体幹と背面を強化する",
-                muscle: "💪 効く部位: 背中・もも裏・お尻",
-                target: "🎯 50代目安: 60〜85 kg"
-            },
-            "ラットプルダウン": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><line x1="15" y1="20" x2="85" y2="20" stroke="#ef4444" stroke-width="6"/><circle cx="50" cy="40" r="6" fill="#f8fafc"/></svg>`,
-                desc: "バーを胸の上に引き下ろし逆三角形の広い背中をつくる",
-                muscle: "💪 効く部位: 広背筋・肩甲骨周辺",
-                target: "🎯 50代目安: 35〜45 kg"
-            }
-        };
-
-        const INITIAL_PAST_LOGS = [
-            { timestamp: "2026/09/17 09:30", exercise: "バーベルベンチプレス", weight: 45.0, reps: 10, sets: 3 },
-            { timestamp: "2026/09/17 09:30", exercise: "ケーブルフライ", weight: 10.0, reps: 10, sets: 3 },
-            { timestamp: "2026/09/12 09:30", exercise: "バーベルスクワット", weight: 50.0, reps: 10, sets: 3 }
-        ];
-
-        const SCHEDULE = {
-            "月": { title: "胸・腕集中（最優先強化）", special: null },
-            "火": { title: "背中・二の腕", special: null },
-            "水": { title: "ボクシングレッスン", special: "今日はボクシングレッスン（トレーニングなし）" },
-            "木": { title: "肩・パンチ力強化", special: null },
-            "金": { title: "休養", special: "今日は休養日（トレーニングなし）" },
-            "土": { title: "全身・胸・マラソン脚力", special: null },
-            "日": { title: "胸・腕・ボクシングステップ", special: null }
-        };
-
-        const INITIAL_MENU = {
-            "月": ["バーベルベンチプレス", "チェストプレス", "インクラインダンベルプレス", "バーベルカール", "デッドバグ"],
-            "火": ["バーベルデッドリフト", "ラットプルダウン", "シーテッドローイング", "ダンベルカール", "フェイスプル"],
-            "木": ["バーベルショルダープレス", "ショルダープレス", "サイドレイズ", "ケーブルフライ", "デッドバグ"],
-            "土": ["バーベルスクワット", "バーベルベンチプレス", "アンクルホップ＆ボクシングステップ", "ラットプルダウン", "バーベルショルダープレス", "バーベルカール"],
-            "日": ["バーベルベンチプレス", "インクラインダンベルプレス", "バーベルデッドリフト", "アンクルホップ＆ボクシングステップ", "ダンベルカール", "デッドバグ"]
-        };
-
-        let realTodayDayOfWeek = "";
-        let selectedDayOfWeek = "";
-
-        let state = {
-            exercises: [],
-            stretchIndex: 0,
-            stretchTime: 60,
-            stretchRunning: false,
-            morningIndex: 0,
-            morningTime: 60,
-            morningRunning: false
-        };
-
-        let myChart = null;
-        let spaChart = null;
-        let stretchInterval = null;
-        let morningInterval = null;
-
-        function getTodayInfo() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const date = String(now.getDate()).padStart(2, '0');
-            const dateStr = `${year}-${month}-${date}`;
-            const dayOfWeek = WEEKDAYS[now.getDay()];
-            return { dateStr, dayOfWeek, now };
-        }
-
-        function getRandomQuote() {
-            const randomIndex = Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length);
-            const quote = MOTIVATIONAL_QUOTES[randomIndex];
-            document.getElementById("quote-tag").innerText = "🔥 " + quote.type;
-            document.getElementById("quote-text").innerText = `「${quote.text}」`;
-            document.getElementById("quote-author").innerText = quote.author ? `— ${quote.author}` : "";
-        }
-
-        function switchCategory(catId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.btn-cat-tab').forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(catId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-
-        function initApp() {
-            const { dateStr, dayOfWeek } = getTodayInfo();
-            realTodayDayOfWeek = dayOfWeek;
-            selectedDayOfWeek = dayOfWeek;
-
-            if (!localStorage.getItem("kintore_logs")) {
-                localStorage.setItem("kintore_logs", JSON.stringify(INITIAL_PAST_LOGS));
-            }
-
-            loadDayData(selectedDayOfWeek);
-
-            getRandomQuote();
-            renderHeader();
-            renderContent();
-            renderStretchUI();
-            renderMorningUI();
-            renderHistoryLogs();
-            initChartSelect();
-            initSpaChart();
-        }
-
-        function loadDayData(day) {
-            const key = "kintore_menu_" + day;
-            const saved = localStorage.getItem(key);
-
-            if (saved) {
-                state.exercises = JSON.parse(saved);
-            } else {
-                const names = INITIAL_MENU[day] || [];
-                state.exercises = names.map(name => ({
-                    name: name,
-                    weight: name.includes("バーベル") ? 40.0 : 20.0,
-                    reps: 10,
-                    setsData: [
-                        { count: 0, locked: false, counting: false },
-                        { count: 0, locked: false, counting: false },
-                        { count: 0, locked: false, counting: false }
-                    ],
-                    completed: false
-                }));
-                saveState();
-            }
-        }
-
-        function saveState() {
-            const key = "kintore_menu_" + selectedDayOfWeek;
-            localStorage.setItem(key, JSON.stringify(state.exercises));
-        }
-
-        function switchSelectedDay(day) {
-            selectedDayOfWeek = day;
-            loadDayData(day);
-            renderHeader();
-            renderContent();
-        }
-
-        function resetToToday() {
-            switchSelectedDay(realTodayDayOfWeek);
-        }
-
-        function swapExercise(idx) {
-            const currentName = state.exercises[idx].name;
-            const newName = prompt(`「${currentName}」から変更する種目名を入力してください:`, currentName);
-            if (newName && newName.trim() !== "") {
-                state.exercises[idx].name = newName.trim();
-                saveState();
-                renderExercises();
-            }
-        }
-
-        function recordSpaActivity(actName) {
-            const { dateStr, now } = getTodayInfo();
-            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
-
-            logs.unshift({
-                timestamp: `${dateStr.replace(/-/g, '/')} ${timeStr}`,
-                exercise: `♨️ ${actName}`,
-                weight: 0,
-                reps: 0,
-                sets: 1
-            });
-
-            localStorage.setItem("kintore_logs", JSON.stringify(logs));
-            renderHistoryLogs();
-            alert(`「${actName}」の記録を追加しました！`);
-        }
-
-        function recordProteinLog(actName) {
-            const { dateStr, now } = getTodayInfo();
-            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
-
-            logs.unshift({
-                timestamp: `${dateStr.replace(/-/g, '/')} ${timeStr}`,
-                exercise: `🥤 ${actName}`,
-                weight: 0,
-                reps: 0,
-                sets: 1
-            });
-
-            localStorage.setItem("kintore_logs", JSON.stringify(logs));
-            renderHistoryLogs();
-            alert(`「${actName}」の記録を追加しました！`);
-        }
-
-        function startSpeechCount(exIdx, setIdx) {
-            const set = state.exercises[exIdx].setsData[setIdx];
-            if (set.locked || set.counting) return;
-
-            set.counting = true;
-            renderExercises();
-
-            let current = 1;
-            const target = state.exercises[exIdx].reps || 10;
-
-            const speakNext = () => {
-                if (current > target) {
-                    set.count = target;
-                    set.locked = true;
-                    set.counting = false;
-
-                    const allLocked = state.exercises[exIdx].setsData.every(s => s.locked);
-                    if (allLocked) {
-                        state.exercises[exIdx].completed = true;
-                        saveHistoryLog(state.exercises[exIdx].name, state.exercises[exIdx].weight, state.exercises[exIdx].reps, 3);
-                    }
-
-                    saveState();
-                    renderHeader();
-                    renderExercises();
-                    return;
-                }
-
-                set.count = current;
-                renderExercises();
-
-                if ('speechSynthesis' in window) {
-                    const uttr = new SpeechSynthesisUtterance(current.toString());
-                    uttr.lang = 'ja-JP';
-                    uttr.rate = 1.0;
-
-                    const voices = window.speechSynthesis.getVoices();
-                    const femaleVoice = voices.find(v => v.lang.includes('ja') && (v.name.includes('Female') || v.name.includes('Kyoko') || v.name.includes('Google')));
-                    if (femaleVoice) uttr.voice = femaleVoice;
-
-                    window.speechSynthesis.speak(uttr);
-                }
-
-                current++;
-                setTimeout(speakNext, 2000);
-            };
-
-            speakNext();
-        }
-
-        function saveHistoryLog(exName, weight, reps, setsCount) {
-            const { dateStr, now } = getTodayInfo();
-            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
-
-            logs.unshift({
-                timestamp: `${dateStr.replace(/-/g, '/')} ${timeStr}`,
-                exercise: exName,
-                weight: weight,
-                reps: reps,
-                sets: setsCount
-            });
-
-            localStorage.setItem("kintore_logs", JSON.stringify(logs));
-            renderHistoryLogs();
-            updateChart();
-        }
-
-        function renderHistoryLogs() {
-            const container = document.getElementById("log-list");
-            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
-
-            if (logs.length === 0) {
-                container.innerHTML = "まだ記録はありません。";
-                return;
-            }
-
-            container.innerHTML = logs.map(l => `
-                <div class="log-item">
-                    <div>
-                        <strong>${l.exercise}</strong> ${(l.exercise.includes('♨️') || l.exercise.includes('🥤')) ? '' : `(${l.weight}kg × ${l.reps}回 × ${l.sets}セット)`}
-                    </div>
-                    <div class="log-time">${l.timestamp}</div>
-                </div>
-            `).join('');
-        }
-
-        function initChartSelect() {
-            const select = document.getElementById("chart-exercise-select");
-            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
-            const exercises = [...new Set(logs.filter(l => !l.exercise.includes('♨️') && !l.exercise.includes('🥤')).map(l => l.exercise))];
-
-            select.innerHTML = exercises.map(ex => `<option value="${ex}">${ex}</option>`).join('');
-            if (exercises.length > 0) {
-                updateChart();
-            }
-        }
-
-        function updateChart() {
-            const select = document.getElementById("chart-exercise-select");
-            const selectedEx = select.value;
-            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
-
-            const exLogs = logs.filter(l => l.exercise === selectedEx).reverse();
-
-            const labels = exLogs.map(l => l.timestamp.split(' ')[0]);
-            const weights = exLogs.map(l => l.weight);
-            const totalReps = exLogs.map(l => l.reps * l.sets);
-
-            const ctx = document.getElementById('growthChart').getContext('2d');
-            if (myChart) myChart.destroy();
-
-            myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: '重量 (kg)',
-                            data: weights,
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                            yAxisID: 'y',
-                            tension: 0.2
-                        },
-                        {
-                            label: '合計回数 (回)',
-                            data: totalReps,
-                            borderColor: '#10b981',
-                            backgroundColor: 'rgba(16, 185, 129, 0.2)',
-                            yAxisID: 'y1',
-                            tension: 0.2
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: { ticks: { color: '#94a3b8' } },
-                        y: {
-                            type: 'linear',
-                            display: true,
-                            position: 'left',
-                            title: { display: true, text: 'kg', color: '#3b82f6' },
-                            ticks: { color: '#94a3b8' }
-                        },
-                        y1: {
-                            type: 'linear',
-                            display: true,
-                            position: 'right',
-                            title: { display: true, text: '回', color: '#10b981' },
-                            grid: { drawOnChartArea: false },
-                            ticks: { color: '#94a3b8' }
-                        }
-                    },
-                    plugins: {
-                        legend: { labels: { color: '#f8fafc' } }
-                    }
-                }
-            });
-        }
-
-        function initSpaChart() {
-            const ctx = document.getElementById('spaGuideChart').getContext('2d');
-            spaChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['サウナ', '水風呂', 'ジャグジー', '合計'],
-                    datasets: [
-                        {
-                            label: '推奨 下限 (分)',
-                            data: [8, 1, 10, 19],
-                            backgroundColor: '#f97316'
-                        },
-                        {
-                            label: '推奨 上限 (分)',
-                            data: [12, 2, 15, 29],
-                            backgroundColor: '#38bdf8'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: { ticks: { color: '#94a3b8' } },
-                        y: { ticks: { color: '#94a3b8' } }
-                    },
-                    plugins: {
-                        legend: { labels: { color: '#f8fafc' } }
-                    }
-                }
-            });
-        }
-
-        function renderHeader() {
-            document.getElementById("today-badge").innerText = "本日: " + realTodayDayOfWeek + "曜日";
-            const info = SCHEDULE[selectedDayOfWeek];
-            document.getElementById("workout-title").innerText = selectedDayOfWeek + "曜日： " + info.title;
-
-            document.querySelectorAll('.btn-day-tab').forEach(btn => {
-                const dayStr = btn.innerText.trim().charAt(0);
-                btn.classList.toggle('active', dayStr === selectedDayOfWeek);
-                btn.classList.toggle('is-today-marker', dayStr === realTodayDayOfWeek);
-            });
-
-            const btnReset = document.getElementById("btn-today-reset");
-            btnReset.style.display = (selectedDayOfWeek !== realTodayDayOfWeek) ? "block" : "none";
-
-            if (info.special) {
-                document.getElementById("progress-bar").style.width = "0%";
-                document.getElementById("progress-text").innerText = "";
-            } else {
-                const total = state.exercises.length;
-                const done = state.exercises.filter(e => e.completed).length;
-                const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-                document.getElementById("progress-bar").style.width = pct + "%";
-                document.getElementById("progress-text").innerText = `${done} / ${total} 完了`;
-            }
-        }
-
-        function renderContent() {
-            const info = SCHEDULE[selectedDayOfWeek];
-            const specialContainer = document.getElementById("special-day-container");
-            const uncompletedSection = document.getElementById("uncompleted-section");
-            const completedSection = document.getElementById("completed-section");
-
-            specialContainer.innerHTML = "";
-
-            if (info.special) {
-                specialContainer.innerHTML = `
-                    <div class="special-day-card">
-                        <div class="special-day-title">${info.special}</div>
-                        <div class="special-day-desc">しっかりと身体を休めてコンディションを整えましょう。</div>
-                    </div>
-                `;
-                uncompletedSection.style.display = "none";
-                completedSection.style.display = "none";
-                return;
-            }
-
-            uncompletedSection.style.display = "block";
-            completedSection.style.display = "block";
-            renderExercises();
-        }
-
-        function renderExercises() {
-            const uncompletedList = document.getElementById("uncompleted-list");
-            const completedList = document.getElementById("completed-list");
-
-            uncompletedList.innerHTML = "";
-            completedList.innerHTML = "";
-
-            state.exercises.forEach((ex, idx) => {
-                const card = document.createElement("div");
-                card.className = "exercise-card" + (ex.completed ? " completed" : "");
-                
-                const diagram = EXERCISE_DIAGRAMS[ex.name] || {
-                    svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="30" r="6" fill="#f8fafc"/><path d="M 50 36 L 50 65 L 35 85 M 50 65 L 65 85" stroke="#38bdf8" stroke-width="6" fill="none"/></svg>`,
-                    desc: "フォームと姿勢を意識して丁寧に行いましょう。",
-                    muscle: "💪 効く部位: 全身の筋肉・体幹",
-                    target: "🎯 50代目安: 20〜40 kg"
-                };
-                const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name + ' フォーム Shorts')}`;
-
-                card.innerHTML = `
-                    <div class="card-top">
-                        <div class="exercise-name">
-                            ${ex.name}
-                            <button class="btn-swap-ex" onclick="swapExercise(${idx})">🔄 種目を変更</button>
-                        </div>
-                        ${ex.completed ? `<button class="btn-edit-lock" onclick="toggleComplete(${idx})">✏️ 記録を編集</button>` : ''}
-                    </div>
-
-                    <div class="exercise-diagram-box">
-                        <div class="diagram-svg">${diagram.svg}</div>
-                        <div class="guide-info">
-                            <div class="item-target-badge">${diagram.target}</div>
-                            <div class="muscle-target-tag">${diagram.muscle}</div>
-                            <div class="guide-desc">${diagram.desc}</div>
-                            <a href="${ytSearchUrl}" target="_blank" class="yt-link">🎬 Shorts動画を見る</a>
-                        </div>
-                    </div>
-
-                    <div class="controls-row">
-                        <div class="input-group">
-                            <label>重量 (kg)</label>
-                            <div class="number-control">
-                                <button class="btn-num" onclick="updateVal(${idx}, 'weight', -0.5)" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
-                                <div class="num-val">${ex.weight.toFixed(1)}</div>
-                                <button class="btn-num" onclick="updateVal(${idx}, 'weight', 0.5)" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label>目標回数</label>
-                            <div class="number-control">
-                                <button class="btn-num" onclick="updateVal(${idx}, 'reps', -1)" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
-                                <div class="num-val">${ex.reps}回</div>
-                                <button class="btn-num" onclick="updateVal(${idx}, 'reps', 1)" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sets-container">
-                        ${ex.setsData.map((s, sIdx) => `
-                            <div class="set-item-card ${s.locked || ex.completed ? 'locked' : ''}">
-                                <div class="set-label">セット ${sIdx + 1}</div>
-                                <div class="counter-box">
-                                    ${s.locked || ex.completed ? `
-                                        <div class="count-display" style="color:#10b981;">✓ ${s.count} 回完了</div>
-                                    ` : `
-                                        <button class="btn-start-speech ${s.counting ? 'counting' : ''}" onclick="startSpeechCount(${idx}, ${sIdx})">
-                                            ▶ ${s.counting ? 'カウント中...' : '開始'}
-                                        </button>
-                                        <div class="count-display">${s.count} / ${ex.reps}</div>
-                                    `}
-                                </div>
-                                <button class="btn-finish-set" onclick="toggleLockSet(${idx}, ${sIdx})" ${ex.completed ? 'style="display:none;"' : ''}>
-                                    ${s.locked ? '解除' : '手動完了'}
-                                </button>
-                            </div>
-                        `).join('')}
-                    </div>
-
-                    ${!ex.completed ? `
-                        <button class="btn-complete" onclick="toggleComplete(${idx})">
-                            この種目を完了（一番下へ移動）
-                        </button>
-                    ` : ''}
-                `;
-
-                if (ex.completed) {
-                    completedList.appendChild(card);
-                } else {
-                    uncompletedList.appendChild(card);
-                }
-            });
-        }
-
-        function renderMorningUI() {
-            const dotsContainer = document.getElementById("morning-step-dots");
-            dotsContainer.innerHTML = MORNING_STEPS.map((_, i) => `
-                <button class="btn-stretch-step ${i === state.morningIndex ? 'active' : ''}" onclick="jumpMorningStep(${i})">${i + 1}</button>
-            `).join('');
-
-            const cur = MORNING_STEPS[state.morningIndex];
-            document.getElementById("morning-name").innerText = cur.name;
-            document.getElementById("morning-yt-link").href = `https://www.youtube.com/results?search_query=${encodeURIComponent(cur.query + ' Shorts')}`;
-
-            const m = String(Math.floor(state.morningTime / 60)).padStart(2, '0');
-            const s = String(state.morningTime % 60).padStart(2, '0');
-            document.getElementById("morning-timer").innerText = `${m}:${s}`;
-            document.getElementById("morning-start-btn").innerText = state.morningRunning ? "一時停止" : "スタート";
-        }
-
-        function jumpMorningStep(idx) {
-            clearInterval(morningInterval);
-            state.morningRunning = false;
-            state.morningIndex = idx;
-            state.morningTime = 60;
-            renderMorningUI();
-        }
-
-        function moveMorningStep(dir) {
-            let next = state.morningIndex + dir;
-            if (next < 0) next = MORNING_STEPS.length - 1;
-            if (next >= MORNING_STEPS.length) next = 0;
-            jumpMorningStep(next);
-        }
-
-        function toggleMorningTimer() {
-            if (state.morningRunning) {
-                clearInterval(morningInterval);
-                state.morningRunning = false;
-            } else {
-                state.morningRunning = true;
-                morningInterval = setInterval(() => {
-                    if (state.morningTime > 0) {
-                        state.morningTime--;
-                    } else {
-                        moveMorningStep(1);
-                    }
-                    renderMorningUI();
-                }, 1000);
-            }
-            renderMorningUI();
-        }
-
-        function renderStretchUI() {
-            const dotsContainer = document.getElementById("stretch-step-dots");
-            dotsContainer.innerHTML = HAMSTRING_STRETCHES.map((_, i) => `
-                <button class="btn-stretch-step ${i === state.stretchIndex ? 'active' : ''}" onclick="jumpStretchStep(${i})">${i + 1}</button>
-            `).join('');
-
-            const cur = HAMSTRING_STRETCHES[state.stretchIndex];
-            document.getElementById("stretch-name").innerText = cur.name;
-            document.getElementById("stretch-yt-link").href = `https://www.youtube.com/results?search_query=${encodeURIComponent(cur.query + ' Shorts')}`;
-
-            const m = String(Math.floor(state.stretchTime / 60)).padStart(2, '0');
-            const s = String(state.stretchTime % 60).padStart(2, '0');
-            document.getElementById("stretch-timer").innerText = `${m}:${s}`;
-            document.getElementById("stretch-start-btn").innerText = state.stretchRunning ? "一時停止" : "スタート";
-        }
-
-        function jumpStretchStep(idx) {
-            clearInterval(stretchInterval);
-            state.stretchRunning = false;
-            state.stretchIndex = idx;
-            state.stretchTime = 60;
-            renderStretchUI();
-        }
-
-        function moveStretchStep(dir) {
-            let next = state.stretchIndex + dir;
-            if (next < 0) next = HAMSTRING_STRETCHES.length - 1;
-            if (next >= HAMSTRING_STRETCHES.length) next = 0;
-            jumpStretchStep(next);
-        }
-
-        function toggleStretchTimer() {
-            if (state.stretchRunning) {
-                clearInterval(stretchInterval);
-                state.stretchRunning = false;
-            } else {
-                state.stretchRunning = true;
-                stretchInterval = setInterval(() => {
-                    if (state.stretchTime > 0) {
-                        state.stretchTime--;
-                    } else {
-                        moveStretchStep(1);
-                    }
-                    renderStretchUI();
-                }, 1000);
-            }
-            renderStretchUI();
-        }
-
-        function toggleLockSet(exIdx, setIdx) {
-            const set = state.exercises[exIdx].setsData[setIdx];
-            set.locked = !set.locked;
-
-            if (set.locked && set.count === 0) {
-                set.count = state.exercises[exIdx].reps || 10;
-            }
-
-            const allLocked = state.exercises[exIdx].setsData.every(s => s.locked);
-            if (allLocked) {
-                state.exercises[exIdx].completed = true;
-                saveHistoryLog(state.exercises[exIdx].name, state.exercises[exIdx].weight, state.exercises[exIdx].reps, 3);
-            }
-
-            saveState();
-            renderHeader();
-            renderExercises();
-        }
-
-        function updateVal(idx, key, delta) {
-            if (key === 'weight') {
-                state.exercises[idx].weight = Math.max(0, state.exercises[idx].weight + delta);
-            } else if (key === 'reps') {
-                state.exercises[idx].reps = Math.max(1, state.exercises[idx].reps + delta);
-            }
-            saveState();
-            renderExercises();
-        }
-
-        function toggleComplete(exIdx) {
-            state.exercises[exIdx].completed = !state.exercises[exIdx].completed;
-            if (state.exercises[exIdx].completed) {
-                state.exercises[exIdx].setsData.forEach(s => {
-                    s.locked = true;
-                    if (s.count === 0) s.count = state.exercises[exIdx].reps || 10;
-                });
-                saveHistoryLog(state.exercises[exIdx].name, state.exercises[exIdx].weight, state.exercises[exIdx].reps, 3);
-            } else {
-                state.exercises[exIdx].setsData.forEach(s => s.locked = false);
-            }
-            saveState();
-            renderHeader();
-            renderExercises();
-        }
-
-        initApp();
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>トレーニングアプリ</title>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1e293b">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #3b82f6;
-            --accent-hover: #2563eb;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --completed-bg: #0d2720;
-            --completed-border: #10b981;
-            --border-radius: 12px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            padding-bottom: 60px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            padding: 12px 16px 8px 16px;
-            border-bottom: 1px solid #334155;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .weight-note {
+            font-size: 0.7rem;
+            color: #fbbf24;
             margin-bottom: 6px;
         }
 
-        h1 {
-            font-size: 1.1rem;
-            color: var(--text-sub);
-            font-weight: 500;
-        }
-
-        .today-badge {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 0.85rem;
-        }
-
-        .day-tabs {
-            display: flex;
-            justify-content: space-between;
-            gap: 2px;
-            margin-top: 6px;
-            background-color: #0f172a;
-            padding: 3px;
-            border-radius: 8px;
-            border: 1px solid #334155;
-        }
-
-        .btn-day-tab {
-            flex: 1;
-            padding: 6px 0;
-            background: transparent;
-            border: none;
-            color: var(--text-sub);
-            font-size: 0.8rem;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-day-tab.active {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        .btn-day-tab.is-today-marker::after {
-            content: "•";
-            display: block;
-            font-size: 0.9rem;
-            line-height: 0.2;
-            color: #10b981;
-        }
-
-        .category-nav {
-            display: flex;
-            overflow-x: auto;
-            gap: 6px;
-            padding: 8px 16px;
-            background-color: #1e293b;
-            border-bottom: 1px solid #334155;
-            position: sticky;
-            top: 86px;
-            z-index: 90;
-            white-space: nowrap;
-        }
-
-        .btn-cat-tab {
-            padding: 8px 14px;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            color: var(--text-sub);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .btn-cat-tab.active {
-            background-color: #3b82f6;
-            color: white;
-            border-color: #60a5fa;
-        }
-
-        .workout-title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 6px 0;
-        }
-
-        .workout-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .btn-reset-today {
-            background-color: #334155;
-            border: 1px solid #475569;
-            color: #38bdf8;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            cursor: pointer;
-        }
-
-        .progress-container {
-            background-color: #334155;
-            height: 6px;
-            border-radius: 3px;
-            overflow: hidden;
-            margin-bottom: 2px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background-color: #10b981;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .progress-text {
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            text-align: right;
-        }
-
-        main {
-            padding: 16px;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .quote-card {
-            background: linear-gradient(135deg, #1e1b4b, #311b92);
-            border: 1px solid #6366f1;
-            border-radius: var(--border-radius);
-            padding: 12px 14px;
-            margin-bottom: 16px;
-        }
-
-        .quote-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4px;
-        }
-
-        .quote-tag {
-            font-size: 0.7rem;
-            font-weight: bold;
-            color: #a5b4fc;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .quote-refresh-btn {
-            background: transparent;
-            border: none;
-            color: #c7d2fe;
-            font-size: 0.75rem;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .quote-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #ffffff;
-            line-height: 1.4;
-        }
-
-        .section-header {
-            font-size: 1rem;
-            font-weight: 600;
-            margin: 16px 0 10px 0;
-            color: var(--text-sub);
-        }
-
-        .exercise-card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 14px;
-            margin-bottom: 12px;
-            border: 1px solid #334155;
-            position: relative;
-        }
-
-        .exercise-card.completed {
-            background-color: var(--completed-bg);
-            border-color: var(--completed-border);
-            opacity: 0.9;
-        }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .exercise-name {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        .btn-swap-ex {
-            background-color: #334155;
-            border: 1px solid #475569;
-            color: #fbbf24;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 6px;
-        }
-
-        .btn-edit-lock {
-            background-color: #334155;
-            border: 1px solid #475569;
-            color: #38bdf8;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .exercise-diagram-box {
-            background-color: #0f172a;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid #334155;
-        }
-
-        .diagram-svg {
-            width: 75px;
-            height: 75px;
-            background-color: #1e293b;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 1px solid #475569;
-        }
-
-        .guide-info {
-            flex: 1;
-        }
-
-        .guide-desc {
-            font-size: 0.8rem;
-            color: #cbd5e1;
-            line-height: 1.35;
-            margin-bottom: 4px;
-        }
-
-        .muscle-target-tag {
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: #10b981;
-            background-color: rgba(16, 185, 129, 0.15);
-            border: 1px solid #059669;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-bottom: 4px;
-            display: inline-block;
-        }
-
-        .item-target-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: bold;
-            color: #60a5fa;
-            background-color: rgba(30, 58, 138, 0.5);
-            border: 1px solid #1d4ed8;
-            padding: 1px 6px;
-            border-radius: 4px;
-            margin-bottom: 4px;
-        }
-
-        .yt-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            color: #ff4545;
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-decoration: none;
-            background-color: #2a1215;
-            padding: 3px 6px;
-            border-radius: 4px;
-            border: 1px solid #5c1d24;
-        }
-
         .controls-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1895,6 +402,7 @@
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
+            user-select: none;
         }
 
         .num-val {
@@ -2116,6 +624,19 @@
             display: flex;
             justify-content: space-between;
         }
+
+        .btn-csv-download {
+            width: 100%;
+            padding: 10px;
+            background-color: #059669;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 <body>
@@ -2215,33 +736,38 @@
                 <h3 style="color:#93c5fd; margin-bottom:6px;">🥤 50代男性のプロテイン・タンパク質ガイド</h3>
                 <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5;">1日の必要量: <strong>体重 × 1.2〜1.5g</strong>（体重70kgなら約80〜100g）。<br>トレーニング直後45分以内または朝一番の摂取が最も効果的です！</p>
                 <div style="margin-top:12px;">
-                    <button class="btn-spa-action" style="width:100%; border-color:#3b82f6; color:#93c5fd;" onclick="recordProteinLog('プロテイン 25g 摂取')">🥤 プロテイン1杯（25g）を記録する</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. サウナ＆温泉タブ（10分・20分選択可能） -->
-        <div id="cat-spa" class="tab-content">
-            <div class="spa-card">
-                <div class="spa-title">♨️ サウナ・ジャグジー リカバリー記録</div>
-                <p style="font-size:0.8rem; color:#fed7aa;">血行促進・筋疲労の除去に。ワンタップで記録！</p>
-                <div class="spa-buttons">
-                    <button class="btn-spa-action" onclick="recordSpaActivity('サウナ 10分')">🧖‍♂️ サウナ 10分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('サウナ 20分')">🧖‍♂️ サウナ 20分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('ジャグジー 10分')">🛁 ジャグジー 10分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('ジャグジー 20分')">🛁 ジャグジー 20分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('サウナ＋ジャグジー 30分')">🔥 併用 30分</button>
-                    <button class="btn-spa-action" onclick="recordSpaActivity('温冷交互浴 15分')">❄️ 温冷交互浴 15分</button>
+                    <button class="btn-spa-action" style="width:100%; border-color:#3b82f6; color:#93c5fd;" onclick="recordProteinLog('プロテイン 25g 摂取', 25)">🥤 プロテイン1杯（25g）を記録する</button>
                 </div>
             </div>
             <div class="chart-card">
-                <h4 style="color:#fb923c; margin-bottom:8px; font-size:0.9rem;">♨️ 温冷交互浴の推奨時間目安</h4>
+                <h4 style="color:#60a5fa; margin-bottom:8px; font-size:0.9rem;">📊 プロテイン日別摂取量（g）推移</h4>
+                <canvas id="proteinChart" height="160"></canvas>
+            </div>
+        </div>
+
+        <!-- 4. サウナ＆温泉タブ（1単位＝8分設定） -->
+        <div id="cat-spa" class="tab-content">
+            <div class="spa-card">
+                <div class="spa-title">♨️ サウナ・ジャグジー リカバリー記録</div>
+                <p style="font-size:0.8rem; color:#fed7aa;">血行促進・筋疲労除去に。ジャグジーは1単位8分設定！</p>
+                <div class="spa-buttons">
+                    <button class="btn-spa-action" onclick="recordSpaActivity('サウナ 8分', 8)">🧖‍♂️ サウナ 8分</button>
+                    <button class="btn-spa-action" onclick="recordSpaActivity('サウナ 16分', 16)">🧖‍♂️ サウナ 16分</button>
+                    <button class="btn-spa-action" onclick="recordSpaActivity('ジャグジー 8分', 8)">🛁 ジャグジー 8分</button>
+                    <button class="btn-spa-action" onclick="recordSpaActivity('ジャグジー 16分', 16)">🛁 ジャグジー 16分</button>
+                    <button class="btn-spa-action" onclick="recordSpaActivity('サウナ＋ジャグジー 24分', 24)">🔥 併用 24分</button>
+                    <button class="btn-spa-action" onclick="recordSpaActivity('温冷交互浴 16分', 16)">❄️ 温冷交互浴 16分</button>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h4 style="color:#fb923c; margin-bottom:8px; font-size:0.9rem;">♨️ 温冷交互浴の推奨時間目安（ジャグジー1単位8分基準）</h4>
                 <canvas id="spaGuideChart" height="160"></canvas>
             </div>
         </div>
 
         <!-- 5. 記録・グラフタブ -->
         <div id="cat-logs" class="tab-content">
+            <button class="btn-csv-download" onclick="downloadLogsCSV()">📥 全記録データをCSV保存（Excel / スプレッドシート用）</button>
             <div class="chart-card">
                 <h4 style="color:#60a5fa; margin-bottom:8px; font-size:0.9rem;">📈 重量・回数の成長推移グラフ</h4>
                 <select id="chart-exercise-select" class="chart-select" onchange="updateChart()"></select>
@@ -2260,9 +786,11 @@
         const MOTIVATIONAL_QUOTES = [
             { text: "限界を決めるのは自分自身だ。あと1回挙げた時、身体は確実に変わる。", author: "アーノルド・シュワルツェネッガー", type: "名言" },
             { text: "準備に妥協がなければ、結果に対して不安になることはない。", author: "イチロー", type: "アスリート" },
-            { text: "サウナやジャグジーで温まると、筋肉の疲労物質が抜けやすくなり回復が早まる！", author: "コンディショニング雑学", type: "豆知識" },
-            { text: "今日やらなかった後悔は、明日やってくる筋肉痛よりずっと重い。", author: "トレーニング格言", type: "モチベーション" },
-            { text: "プロテインはトレーニング後45分以内または朝一番に飲むと効果絶大！", author: "栄養雑学", type: "豆知識" }
+            { text: "サウナと水風呂の温冷交互浴は、自律神経を整えて睡眠の質を劇的に高める！", author: "サウナ豆知識", type: "豆知識" },
+            { text: "ジャグジーのジェット水流は血流を促し、筋トレ後の筋肉痛やコリを優しくほぐす！", author: "ジャグジー豆知識", type: "豆知識" },
+            { text: "サウナで汗を流すとHSP（ヒートショックタンパク質）が生まれ、傷ついた細胞の修復が早まる！", author: "健康豆知識", type: "豆知識" },
+            { text: "プロテインはトレーニング後45分以内または朝一番に飲むと効果絶大！", author: "栄養雑学", type: "豆知識" },
+            { text: "今日やらなかった後悔は、明日やってくる筋肉痛よりずっと重い。", author: "トレーニング格言", type: "モチベーション" }
         ];
 
         const MORNING_STEPS = [
@@ -2281,60 +809,79 @@
             { name: "5. 全身前屈リセット", query: "前屈 柔らかくなる ストレッチ" }
         ];
 
+        /* 部位ごとの自動交換グループ */
+        const EXERCISE_SWAP_GROUPS = {
+            "胸": ["バーベルベンチプレス", "チェストプレス", "インクラインダンベルプレス", "ケーブルフライ"],
+            "背中": ["バーベルデッドリフト", "ラットプルダウン", "シーテッドローイング"],
+            "肩": ["バーベルショルダープレス", "ショルダープレス", "サイドレイズ"],
+            "腕": ["バーベルカール", "ダンベルカール", "プレスダウン"],
+            "脚・体幹": ["バーベルスクワット", "レッグプレス", "デッドバグ"]
+        };
+
         const EXERCISE_DIAGRAMS = {
             "バーベルベンチプレス": {
+                group: "胸",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><rect x="15" y="65" width="70" height="8" fill="#64748b"/><circle cx="30" cy="55" r="6" fill="#f8fafc"/><path d="M 30 60 L 70 60 L 80 85" stroke="#38bdf8" stroke-width="6" fill="none"/><line x1="10" y1="35" x2="90" y2="35" stroke="#ef4444" stroke-width="6"/></svg>`,
                 desc: "仰向けで重量を押し上げる（胸の厚み・腕のバルクアップ）",
                 muscle: "💪 効く部位: 大胸筋（胸全般）・三頭筋（腕の裏）",
-                target: "🎯 50代目安: 40〜60 kg"
+                target: "🎯 50代目安: 40〜60 kg",
+                type: "barbell"
             },
             "チェストプレス": {
+                group: "胸",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><rect x="25" y="30" width="10" height="50" fill="#64748b"/><circle cx="35" cy="35" r="6" fill="#f8fafc"/><path d="M 35 45 L 65 45 M 65 35 L 65 55" stroke="#10b981" stroke-width="5"/></svg>`,
                 desc: "座ってグリップを前面へ押し出し胸に厚みをつくる",
                 muscle: "💪 効く部位: 大胸筋・三角筋前部",
-                target: "🎯 50代目安: 35〜50 kg"
+                target: "🎯 50代目安: 35〜50 kg",
+                type: "machine"
             },
             "インクラインダンベルプレス": {
+                group: "胸",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><line x1="20" y1="80" x2="60" y2="40" stroke="#64748b" stroke-width="6"/><circle cx="45" cy="35" r="6" fill="#f8fafc"/><path d="M 45 40 L 70 15" stroke="#38bdf8" stroke-width="5"/></svg>`,
                 desc: "ベンチを傾けて斜め上へ押し上げ胸上部を引き締める",
                 muscle: "💪 効く部位: 大胸筋上部（鎖骨周り）",
-                target: "🎯 50代目安: 10〜18 kg（片手）"
+                target: "🎯 50代目安: 10〜18 kg",
+                type: "dumbbell"
             },
             "バーベルカール": {
+                group: "腕",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70" stroke="#38bdf8" stroke-width="6"/><line x1="20" y1="30" x2="50" y2="30" stroke="#ef4444" stroke-width="6"/></svg>`,
                 desc: "肘の位置を固定し、バーベルを持ち上げて力こぶをつくる",
                 muscle: "💪 効く部位: 上腕二頭筋（力こぶ）",
-                target: "🎯 50代目安: 15〜25 kg"
+                target: "🎯 50代目安: 15〜25 kg",
+                type: "barbell"
             },
             "ダンベルカール": {
+                group: "腕",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70" stroke="#38bdf8" stroke-width="6"/><circle cx="30" cy="35" r="5" fill="#ef4444"/></svg>`,
                 desc: "片手ずつダンベルを引き上げ力こぶを強烈に収縮させる",
                 muscle: "💪 効く部位: 上腕二頭筋",
-                target: "🎯 50代目安: 8〜14 kg（片手）"
+                target: "🎯 50代目安: 8〜14 kg",
+                type: "dumbbell"
             },
             "バーベルスクワット": {
+                group: "脚・体幹",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="22" r="6" fill="#f8fafc"/><rect x="20" y="28" width="60" height="5" fill="#ef4444"/><path d="M 50 28 L 50 50 L 35 75 L 25 90 M 50 50 L 65 75 L 75 90" stroke="#38bdf8" stroke-width="6" fill="none"/></svg>`,
                 desc: "お尻を引いて腰を深める。10kmマラソンを支える脚力土台",
                 muscle: "💪 効く部位: 太もも（大腿四頭筋）・お尻（大臀筋）",
-                target: "🎯 50代目安: 50〜75 kg"
-            },
-            "アンクルホップ＆ボクシングステップ": {
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 65 L 40 85 M 50 65 L 60 85" stroke="#38bdf8" stroke-width="6"/></svg>`,
-                desc: "つま先でバウンドし足首のバネを鍛える（マラソン推進力＆ステップ）",
-                muscle: "💪 効く部位: ふくらはぎ（下腿三頭筋）・足首の腱",
-                target: "🎯 50代目安: 20〜30 回 × 3セット"
+                target: "🎯 50代目安: 50〜75 kg",
+                type: "barbell"
             },
             "バーベルデッドリフト": {
+                group: "背中",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="45" cy="25" r="6" fill="#f8fafc"/><line x1="15" y1="75" x2="85" y2="75" stroke="#ef4444" stroke-width="6"/></svg>`,
                 desc: "床からバーベルを引き上げ全身の体幹と背面を強化する",
                 muscle: "💪 効く部位: 背中・もも裏・お尻",
-                target: "🎯 50代目安: 60〜85 kg"
+                target: "🎯 50代目安: 60〜85 kg",
+                type: "barbell"
             },
             "ラットプルダウン": {
+                group: "背中",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><line x1="15" y1="20" x2="85" y2="20" stroke="#ef4444" stroke-width="6"/><circle cx="50" cy="40" r="6" fill="#f8fafc"/></svg>`,
                 desc: "バーを胸の上に引き下ろし逆三角形の広い背中をつくる",
                 muscle: "💪 効く部位: 広背筋・肩甲骨周辺",
-                target: "🎯 50代目安: 35〜45 kg"
+                target: "🎯 50代目安: 35〜45 kg",
+                type: "machine"
             }
         };
 
@@ -2351,15 +898,15 @@
             "木": { title: "肩・パンチ力強化", special: null },
             "金": { title: "休養", special: "今日は休養日（トレーニングなし）" },
             "土": { title: "全身・胸・マラソン脚力", special: null },
-            "日": { title: "胸・腕・ボクシングステップ", special: null }
+            "日": { title: "胸・腕・調整", special: null }
         };
 
         const INITIAL_MENU = {
             "月": ["バーベルベンチプレス", "チェストプレス", "インクラインダンベルプレス", "バーベルカール", "デッドバグ"],
             "火": ["バーベルデッドリフト", "ラットプルダウン", "シーテッドローイング", "ダンベルカール", "フェイスプル"],
             "木": ["バーベルショルダープレス", "ショルダープレス", "サイドレイズ", "ケーブルフライ", "デッドバグ"],
-            "土": ["バーベルスクワット", "バーベルベンチプレス", "アンクルホップ＆ボクシングステップ", "ラットプルダウン", "バーベルショルダープレス", "バーベルカール"],
-            "日": ["バーベルベンチプレス", "インクラインダンベルプレス", "バーベルデッドリフト", "アンクルホップ＆ボクシングステップ", "ダンベルカール", "デッドバグ"]
+            "土": ["バーベルスクワット", "バーベルベンチプレス", "ラットプルダウン", "バーベルショルダープレス", "バーベルカール"],
+            "日": ["バーベルベンチプレス", "インクラインダンベルプレス", "バーベルデッドリフト", "ダンベルカール", "デッドバグ"]
         };
 
         let realTodayDayOfWeek = "";
@@ -2377,8 +924,11 @@
 
         let myChart = null;
         let spaChart = null;
+        let proteinChart = null;
         let stretchInterval = null;
         let morningInterval = null;
+        let holdTimer = null;
+        let holdInterval = null;
 
         function getTodayInfo() {
             const now = new Date();
@@ -2404,6 +954,8 @@
 
             document.getElementById(catId).classList.add('active');
             event.currentTarget.classList.add('active');
+
+            if (catId === 'cat-protein') initProteinChart();
         }
 
         function initApp() {
@@ -2437,7 +989,7 @@
                 const names = INITIAL_MENU[day] || [];
                 state.exercises = names.map(name => ({
                     name: name,
-                    weight: name.includes("バーベル") ? 40.0 : 20.0,
+                    weight: name.includes("バーベル") ? 40.0 : 12.0,
                     reps: 10,
                     setsData: [
                         { count: 0, locked: false, counting: false },
@@ -2466,17 +1018,43 @@
             switchSelectedDay(realTodayDayOfWeek);
         }
 
-        function swapExercise(idx) {
-            const currentName = state.exercises[idx].name;
-            const newName = prompt(`「${currentName}」から変更する種目名を入力してください:`, currentName);
-            if (newName && newName.trim() !== "") {
-                state.exercises[idx].name = newName.trim();
-                saveState();
-                renderExercises();
+        /* 自動ランダム同部位種目交換機能 */
+        function autoSwapExercise(idx) {
+            const curName = state.exercises[idx].name;
+            let groupKey = "胸";
+
+            for (const [key, list] of Object.entries(EXERCISE_SWAP_GROUPS)) {
+                if (list.includes(curName)) {
+                    groupKey = key;
+                    break;
+                }
             }
+
+            const candidates = EXERCISE_SWAP_GROUPS[groupKey] || EXERCISE_SWAP_GROUPS["胸"];
+            const available = candidates.filter(n => n !== curName);
+            const nextName = available[Math.floor(Math.random() * available.length)] || candidates[0];
+
+            state.exercises[idx].name = nextName;
+            saveState();
+            renderExercises();
         }
 
-        function recordSpaActivity(actName) {
+        /* 長押し（連続変化）処理 */
+        function startHold(idx, key, delta) {
+            updateVal(idx, key, delta);
+            holdTimer = setTimeout(() => {
+                holdInterval = setInterval(() => {
+                    updateVal(idx, key, delta);
+                }, 100);
+            }, 400);
+        }
+
+        function endHold() {
+            clearTimeout(holdTimer);
+            clearInterval(holdInterval);
+        }
+
+        function recordSpaActivity(actName, durationMin) {
             const { dateStr, now } = getTodayInfo();
             const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
             const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
@@ -2485,7 +1063,7 @@
                 timestamp: `${dateStr.replace(/-/g, '/')} ${timeStr}`,
                 exercise: `♨️ ${actName}`,
                 weight: 0,
-                reps: 0,
+                reps: durationMin || 8,
                 sets: 1
             });
 
@@ -2494,7 +1072,7 @@
             alert(`「${actName}」の記録を追加しました！`);
         }
 
-        function recordProteinLog(actName) {
+        function recordProteinLog(actName, grams) {
             const { dateStr, now } = getTodayInfo();
             const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
             const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
@@ -2503,13 +1081,36 @@
                 timestamp: `${dateStr.replace(/-/g, '/')} ${timeStr}`,
                 exercise: `🥤 ${actName}`,
                 weight: 0,
-                reps: 0,
+                reps: grams || 25,
                 sets: 1
             });
 
             localStorage.setItem("kintore_logs", JSON.stringify(logs));
             renderHistoryLogs();
+            initProteinChart();
             alert(`「${actName}」の記録を追加しました！`);
+        }
+
+        /* CSVダウンロード（Excel/スプレッドシート対応） */
+        function downloadLogsCSV() {
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            if (logs.length === 0) {
+                alert("保存する記録がありません。");
+                return;
+            }
+
+            let csvContent = "\uFEFF日時,種目・内容,重量(kg),回数・分・g,セット数\n";
+            logs.forEach(l => {
+                csvContent += `"${l.timestamp}","${l.exercise}",${l.weight},${l.reps},${l.sets}\n`;
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `training_logs_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
         }
 
         function startSpeechCount(exIdx, setIdx) {
@@ -2674,21 +1275,52 @@
             });
         }
 
+        function initProteinChart() {
+            const ctx = document.getElementById('proteinChart').getContext('2d');
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            const proteinLogs = logs.filter(l => l.exercise.includes('🥤')).reverse();
+
+            const labels = proteinLogs.map(l => l.timestamp.split(' ')[0]);
+            const grams = proteinLogs.map(l => l.reps);
+
+            if (proteinChart) proteinChart.destroy();
+
+            proteinChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'タンパク質摂取量 (g)',
+                        data: grams,
+                        backgroundColor: '#3b82f6'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' } },
+                        y: { ticks: { color: '#94a3b8' } }
+                    },
+                    plugins: { legend: { labels: { color: '#f8fafc' } } }
+                }
+            });
+        }
+
         function initSpaChart() {
             const ctx = document.getElementById('spaGuideChart').getContext('2d');
             spaChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['サウナ', '水風呂', 'ジャグジー', '合計'],
+                    labels: ['サウナ', '水風呂', 'ジャグジー(1単位8分)', '合計'],
                     datasets: [
                         {
                             label: '推奨 下限 (分)',
-                            data: [8, 1, 10, 19],
+                            data: [8, 1, 8, 17],
                             backgroundColor: '#f97316'
                         },
                         {
                             label: '推奨 上限 (分)',
-                            data: [12, 2, 15, 29],
+                            data: [12, 2, 16, 30],
                             backgroundColor: '#38bdf8'
                         }
                     ]
@@ -2772,15 +1404,20 @@
                     svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="30" r="6" fill="#f8fafc"/><path d="M 50 36 L 50 65 L 35 85 M 50 65 L 65 85" stroke="#38bdf8" stroke-width="6" fill="none"/></svg>`,
                     desc: "フォームと姿勢を意識して丁寧に行いましょう。",
                     muscle: "💪 効く部位: 全身の筋肉・体幹",
-                    target: "🎯 50代目安: 20〜40 kg"
+                    target: "🎯 50代目安: 20〜40 kg",
+                    type: ex.name.includes("ダンベル") ? "dumbbell" : (ex.name.includes("バーベル") ? "barbell" : "other")
                 };
                 const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name + ' フォーム Shorts')}`;
+
+                const weightNoteText = diagram.type === 'barbell' 
+                    ? "※バー（シャフト）自体の重さ（20kg等）も含めた合計重量"
+                    : (diagram.type === 'dumbbell' ? "※ダンベル1本（片手分）の重量" : "");
 
                 card.innerHTML = `
                     <div class="card-top">
                         <div class="exercise-name">
                             ${ex.name}
-                            <button class="btn-swap-ex" onclick="swapExercise(${idx})">🔄 種目を変更</button>
+                            <button class="btn-swap-ex" onclick="autoSwapExercise(${idx})">🔄 種目を変更</button>
                         </div>
                         ${ex.completed ? `<button class="btn-edit-lock" onclick="toggleComplete(${idx})">✏️ 記録を編集</button>` : ''}
                     </div>
@@ -2795,21 +1432,23 @@
                         </div>
                     </div>
 
+                    ${weightNoteText ? `<div class="weight-note">${weightNoteText}</div>` : ''}
+
                     <div class="controls-row">
                         <div class="input-group">
                             <label>重量 (kg)</label>
                             <div class="number-control">
-                                <button class="btn-num" onclick="updateVal(${idx}, 'weight', -0.5)" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
+                                <button class="btn-num" onmousedown="startHold(${idx}, 'weight', -0.5)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, 'weight', -0.5)" ontouchend="endHold()" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
                                 <div class="num-val">${ex.weight.toFixed(1)}</div>
-                                <button class="btn-num" onclick="updateVal(${idx}, 'weight', 0.5)" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
+                                <button class="btn-num" onmousedown="startHold(${idx}, 'weight', 0.5)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, 'weight', 0.5)" ontouchend="endHold()" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
                             </div>
                         </div>
                         <div class="input-group">
                             <label>目標回数</label>
                             <div class="number-control">
-                                <button class="btn-num" onclick="updateVal(${idx}, 'reps', -1)" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
+                                <button class="btn-num" onmousedown="startHold(${idx}, 'reps', -1)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, 'reps', -1)" ontouchend="endHold()" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
                                 <div class="num-val">${ex.reps}回</div>
-                                <button class="btn-num" onclick="updateVal(${idx}, 'reps', 1)" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
+                                <button class="btn-num" onmousedown="startHold(${idx}, 'reps', 1)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, 'reps', 1)" ontouchend="endHold()" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
                             </div>
                         </div>
                     </div>
