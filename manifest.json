@@ -1,15 +1,16 @@
 {
-  "name": "筋トレアプリ",
-  "short_name": "筋トレ",
+  "name": "50to60 Project",
+  "short_name": "50to60",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#1e293b",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/2548/2548537.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
