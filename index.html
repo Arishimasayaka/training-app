@@ -811,9 +811,9 @@
 
         /* 部位ごとの自動交換グループ */
         const EXERCISE_SWAP_GROUPS = {
-            "胸": ["バーベルベンチプレス", "チェストプレス", "インクラインダンベルプレス", "ケーブルフライ"],
+            "胸": ["バーベルベンチプレス", "チェストプレス", "インクラインダンベルプレス"],
             "背中": ["バーベルデッドリフト", "ラットプルダウン", "シーテッドローイング"],
-            "肩": ["バーベルショルダープレス", "ショルダープレス", "サイドレイズ"],
+            "肩": ["バーベルショルダープレス", "ショルダープレス", "サイドレイズ", "ケーブルフライ"],
             "腕": ["バーベルカール", "ダンベルカール", "プレスダウン"],
             "脚・体幹": ["バーベルスクワット", "レッグプレス", "デッドバグ"]
         };
@@ -843,6 +843,14 @@
                 target: "🎯 50代目安: 10〜18 kg",
                 type: "dumbbell"
             },
+            "ケーブルフライ": {
+                group: "肩",
+                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70 M 50 45 L 20 50 M 50 45 L 80 50" stroke="#38bdf8" stroke-width="5"/></svg>`,
+                desc: "ケーブルを身体の前で絞り込み、胸・肩の収縮を高める",
+                muscle: "💪 効く部位: 大胸筋内側・三角筋前部",
+                target: "🎯 50代目安: 10〜20 kg",
+                type: "machine"
+            },
             "バーベルカール": {
                 group: "腕",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70" stroke="#38bdf8" stroke-width="6"/><line x1="20" y1="30" x2="50" y2="30" stroke="#ef4444" stroke-width="6"/></svg>`,
@@ -858,6 +866,14 @@
                 muscle: "💪 効く部位: 上腕二頭筋",
                 target: "🎯 50代目安: 8〜14 kg",
                 type: "dumbbell"
+            },
+            "プレスダウン": {
+                group: "腕",
+                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70 M 50 40 L 50 60" stroke="#38bdf8" stroke-width="6"/></svg>`,
+                desc: "ケーブルを下に押し下げ、二の腕（上腕三頭筋）を太く引き締める",
+                muscle: "💪 効く部位: 上腕三頭筋（二の腕）",
+                target: "🎯 50代目安: 15〜25 kg",
+                type: "machine"
             },
             "バーベルスクワット": {
                 group: "脚・体幹",
@@ -892,21 +908,22 @@
         ];
 
         const SCHEDULE = {
-            "月": { title: "胸・腕集中（最優先強化）", special: null },
-            "火": { title: "背中・二の腕", special: null },
+            "月": { title: "胸・二の腕集中（週のスタート日）", special: null },
+            "火": { title: "背中・三の腕", special: null },
             "水": { title: "ボクシングレッスン", special: "今日はボクシングレッスン（トレーニングなし）" },
-            "木": { title: "肩・パンチ力強化", special: null },
+            "木": { title: "肩・パンチ力（ケーブルフライ）", special: null },
             "金": { title: "休養", special: "今日は休養日（トレーニングなし）" },
             "土": { title: "全身・胸・マラソン脚力", special: null },
-            "日": { title: "胸・腕・調整", special: null }
+            "日": { title: "背中・脚・二の腕調整日", special: null }
         };
 
+        /* 月曜・日曜の重複解消＆木曜にケーブルフライを配置 */
         const INITIAL_MENU = {
-            "月": ["バーベルベンチプレス", "チェストプレス", "インクラインダンベルプレス", "バーベルカール", "デッドバグ"],
+            "月": ["バーベルベンチプレス", "インクラインダンベルプレス", "バーベルカール", "プレスダウン", "デッドバグ"],
             "火": ["バーベルデッドリフト", "ラットプルダウン", "シーテッドローイング", "ダンベルカール", "フェイスプル"],
             "木": ["バーベルショルダープレス", "ショルダープレス", "サイドレイズ", "ケーブルフライ", "デッドバグ"],
             "土": ["バーベルスクワット", "バーベルベンチプレス", "ラットプルダウン", "バーベルショルダープレス", "バーベルカール"],
-            "日": ["バーベルベンチプレス", "インクラインダンベルプレス", "バーベルデッドリフト", "ダンベルカール", "デッドバグ"]
+            "日": ["チェストプレス", "ラットプルダウン", "シーテッドローイング", "ダンベルカール", "バーベルスクワット"]
         };
 
         let realTodayDayOfWeek = "";
@@ -958,6 +975,12 @@
             if (catId === 'cat-protein') initProteinChart();
         }
 
+        function getLastRecordedWeight(exName) {
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            const match = logs.find(l => l.exercise === exName && l.weight > 0);
+            return match ? match.weight : null;
+        }
+
         function initApp() {
             const { dateStr, dayOfWeek } = getTodayInfo();
             realTodayDayOfWeek = dayOfWeek;
@@ -985,19 +1008,28 @@
 
             if (saved) {
                 state.exercises = JSON.parse(saved);
+                // 保存済みデータがある場合も最終登録重量を補完更新
+                state.exercises.forEach(ex => {
+                    const lastW = getLastRecordedWeight(ex.name);
+                    if (lastW && !ex.completed) ex.weight = lastW;
+                });
             } else {
                 const names = INITIAL_MENU[day] || [];
-                state.exercises = names.map(name => ({
-                    name: name,
-                    weight: name.includes("バーベル") ? 40.0 : 12.0,
-                    reps: 10,
-                    setsData: [
-                        { count: 0, locked: false, counting: false },
-                        { count: 0, locked: false, counting: false },
-                        { count: 0, locked: false, counting: false }
-                    ],
-                    completed: false
-                }));
+                state.exercises = names.map(name => {
+                    const lastW = getLastRecordedWeight(name);
+                    const defaultW = name.includes("バーベル") ? 40.0 : 12.0;
+                    return {
+                        name: name,
+                        weight: lastW || defaultW,
+                        reps: 10,
+                        setsData: [
+                            { count: 0, locked: false, counting: false },
+                            { count: 0, locked: false, counting: false },
+                            { count: 0, locked: false, counting: false }
+                        ],
+                        completed: false
+                    };
+                });
                 saveState();
             }
         }
@@ -1018,7 +1050,6 @@
             switchSelectedDay(realTodayDayOfWeek);
         }
 
-        /* 自動ランダム同部位種目交換機能 */
         function autoSwapExercise(idx) {
             const curName = state.exercises[idx].name;
             let groupKey = "胸";
@@ -1035,18 +1066,21 @@
             const nextName = available[Math.floor(Math.random() * available.length)] || candidates[0];
 
             state.exercises[idx].name = nextName;
+            const lastW = getLastRecordedWeight(nextName);
+            if (lastW) state.exercises[idx].weight = lastW;
+
             saveState();
             renderExercises();
         }
 
-        /* 長押し（連続変化）処理 */
+        /* 長押しの反応を遅く＆ゆったりに調整（0.8秒待機、0.25秒ピッチ） */
         function startHold(idx, key, delta) {
             updateVal(idx, key, delta);
             holdTimer = setTimeout(() => {
                 holdInterval = setInterval(() => {
                     updateVal(idx, key, delta);
-                }, 100);
-            }, 400);
+                }, 250);
+            }, 800);
         }
 
         function endHold() {
@@ -1091,7 +1125,6 @@
             alert(`「${actName}」の記録を追加しました！`);
         }
 
-        /* CSVダウンロード（Excel/スプレッドシート対応） */
         function downloadLogsCSV() {
             const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
             if (logs.length === 0) {
