@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>トレーニングアプリ</title>
+    <title>50to60 Project</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1e293b">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -67,6 +67,32 @@
             font-size: 0.85rem;
         }
 
+        .date-picker-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            background-color: #0f172a;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+
+        .date-picker-row label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            font-weight: bold;
+        }
+
+        .date-picker-row input[type="date"] {
+            background-color: #1e293b;
+            color: white;
+            border: 1px solid #475569;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
         .day-tabs {
             display: flex;
             justify-content: space-between;
@@ -112,7 +138,7 @@
             background-color: #1e293b;
             border-bottom: 1px solid #334155;
             position: sticky;
-            top: 86px;
+            top: 122px;
             z-index: 90;
             white-space: nowrap;
         }
@@ -143,7 +169,7 @@
         }
 
         .workout-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #ffffff;
         }
@@ -156,6 +182,34 @@
             border-radius: 4px;
             font-size: 0.75rem;
             cursor: pointer;
+        }
+
+        .quick-actions-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .btn-quick-act {
+            padding: 8px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            border: 1px solid #334155;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-quick-none {
+            background-color: #334155;
+            color: #f1f5f9;
+        }
+
+        .btn-quick-walk {
+            background-color: #065f46;
+            color: #a7f3d0;
+            border-color: #059669;
         }
 
         .progress-container {
@@ -260,9 +314,27 @@
             margin-bottom: 8px;
         }
 
+        .muscle-badge {
+            font-size: 0.85rem;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 6px;
+            color: white;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .muscle-badge-胸 { background-color: #ef4444; }
+        .muscle-badge-背 { background-color: #3b82f6; }
+        .muscle-badge-肩 { background-color: #eab308; color: #000; }
+        .muscle-badge-腕 { background-color: #a855f7; }
+        .muscle-badge-脚 { background-color: #10b981; }
+
         .exercise-name {
             font-size: 1.1rem;
             font-weight: bold;
+            display: flex;
+            align-items: center;
         }
 
         .btn-swap-ex {
@@ -366,30 +438,63 @@
             margin-bottom: 6px;
         }
 
-        .controls-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+        .sets-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             margin-bottom: 10px;
         }
 
-        .input-group {
+        .set-item-card {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .set-item-card.locked {
+            background-color: #0d2720;
+            border-color: #10b981;
+        }
+
+        .set-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .set-label {
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: #38bdf8;
+        }
+
+        .set-controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .sub-control-box {
             display: flex;
             flex-direction: column;
             gap: 2px;
         }
 
-        .input-group label {
-            font-size: 0.75rem;
+        .sub-control-box label {
+            font-size: 0.7rem;
             color: var(--text-sub);
         }
 
         .number-control {
             display: flex;
             align-items: center;
-            background-color: #0f172a;
+            background-color: #1e293b;
             border-radius: 6px;
-            border: 1px solid #334155;
+            border: 1px solid #475569;
             overflow: hidden;
         }
 
@@ -397,9 +502,9 @@
             background-color: #334155;
             color: white;
             border: none;
-            width: 36px;
-            height: 36px;
-            font-size: 1.1rem;
+            width: 32px;
+            height: 32px;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             user-select: none;
@@ -409,51 +514,24 @@
             flex: 1;
             text-align: center;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
-        .sets-container {
+        .set-action-row {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 10px;
-        }
-
-        .set-item-card {
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 6px;
-            padding: 6px 10px;
-            display: flex;
-            align-items: center;
             justify-content: space-between;
-        }
-
-        .set-item-card.locked {
-            background-color: #0d2720;
-            border-color: #10b981;
-        }
-
-        .set-label {
-            font-weight: bold;
-            font-size: 0.8rem;
-            color: var(--text-sub);
-        }
-
-        .counter-box {
-            display: flex;
             align-items: center;
-            gap: 6px;
+            margin-top: 2px;
         }
 
         .btn-start-speech {
             background-color: #0284c7;
             color: white;
             border: none;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
         }
 
@@ -462,11 +540,9 @@
         }
 
         .count-display {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: bold;
             color: #38bdf8;
-            min-width: 45px;
-            text-align: center;
         }
 
         .btn-finish-set {
@@ -643,8 +719,14 @@
 
     <header>
         <div class="header-top">
-            <h1>トレーニングアプリ</h1>
+            <h1>50to60 Project</h1>
             <div id="today-badge" class="today-badge">-</div>
+        </div>
+
+        <div class="date-picker-row">
+            <label>📅 記録対象日:</label>
+            <input type="date" id="target-date-picker" onchange="onDateSelectionChange()">
+            <button id="btn-today-reset" class="btn-reset-today" onclick="resetToToday()" style="display:none;">今日へ戻る</button>
         </div>
 
         <div class="day-tabs">
@@ -659,7 +741,6 @@
 
         <div class="workout-title-row">
             <div id="workout-title" class="workout-title">読み込み中...</div>
-            <button id="btn-today-reset" class="btn-reset-today" onclick="resetToToday()" style="display:none;">今日へ戻る</button>
         </div>
 
         <div class="progress-container">
@@ -677,6 +758,11 @@
     </nav>
 
     <main>
+        <div class="quick-actions-bar">
+            <button class="btn-quick-act btn-quick-none" onclick="toggleWorkoutNone()">🚫 今日はトレーニングなし</button>
+            <button class="btn-quick-act btn-quick-walk" onclick="recordWifeWalking()">🚶‍♂️ 奥様とウォーキング（有酸素完了）</button>
+        </div>
+
         <div class="quote-card">
             <div class="quote-header">
                 <span id="quote-tag" class="quote-tag">🔥 モチベーション</span>
@@ -789,8 +875,7 @@
             { text: "サウナと水風呂の温冷交互浴は、自律神経を整えて睡眠の質を劇的に高める！", author: "サウナ豆知識", type: "豆知識" },
             { text: "ジャグジーのジェット水流は血流を促し、筋トレ後の筋肉痛やコリを優しくほぐす！", author: "ジャグジー豆知識", type: "豆知識" },
             { text: "サウナで汗を流すとHSP（ヒートショックタンパク質）が生まれ、傷ついた細胞の修復が早まる！", author: "健康豆知識", type: "豆知識" },
-            { text: "プロテインはトレーニング後45分以内または朝一番に飲むと効果絶大！", author: "栄養雑学", type: "豆知識" },
-            { text: "今日やらなかった後悔は、明日やってくる筋肉痛よりずっと重い。", author: "トレーニング格言", type: "モチベーション" }
+            { text: "プロテインはトレーニング後45分以内または朝一番に飲むと効果絶大！", author: "栄養雑学", type: "豆知識" }
         ];
 
         const MORNING_STEPS = [
@@ -809,7 +894,6 @@
             { name: "5. 全身前屈リセット", query: "前屈 柔らかくなる ストレッチ" }
         ];
 
-        /* 部位ごとの自動交換グループ */
         const EXERCISE_SWAP_GROUPS = {
             "胸": ["バーベルベンチプレス", "チェストプレス", "インクラインダンベルプレス"],
             "背中": ["バーベルデッドリフト", "ラットプルダウン", "シーテッドローイング"],
@@ -883,6 +967,14 @@
                 target: "🎯 50代目安: 50〜75 kg",
                 type: "barbell"
             },
+            "デッドバグ": {
+                group: "脚・体幹",
+                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><rect x="20" y="55" width="60" height="8" fill="#64748b"/><path d="M 35 40 L 35 55 M 65 40 L 65 55" stroke="#38bdf8" stroke-width="6"/></svg>`,
+                desc: "仰向けで対角の手足をゆっくり動かし腰の負担なく腹筋を鍛える",
+                muscle: "💪 効く部位: 腹直筋・体幹インナーマッスル",
+                target: "🎯 50代目安: 自重 10〜15 回",
+                type: "other"
+            },
             "バーベルデッドリフト": {
                 group: "背中",
                 svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="45" cy="25" r="6" fill="#f8fafc"/><line x1="15" y1="75" x2="85" y2="75" stroke="#ef4444" stroke-width="6"/></svg>`,
@@ -902,9 +994,10 @@
         };
 
         const INITIAL_PAST_LOGS = [
-            { timestamp: "2026/09/17 09:30", exercise: "バーベルベンチプレス", weight: 45.0, reps: 10, sets: 3 },
-            { timestamp: "2026/09/17 09:30", exercise: "ケーブルフライ", weight: 10.0, reps: 10, sets: 3 },
-            { timestamp: "2026/09/12 09:30", exercise: "バーベルスクワット", weight: 50.0, reps: 10, sets: 3 }
+            { timestamp: "2026/09/26 09:30", exercise: "バーベルベンチプレス", weight: 45.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/26 09:30", exercise: "ケーブルフライ", weight: 10.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/26 18:00", exercise: "🥤 プロテイン 25g 摂取", weight: 0, reps: 25, sets: 1 },
+            { timestamp: "2026/09/26 19:00", exercise: "🥤 プロテイン 25g 摂取", weight: 0, reps: 25, sets: 1 }
         ];
 
         const SCHEDULE = {
@@ -917,7 +1010,6 @@
             "日": { title: "背中・脚・二の腕調整日", special: null }
         };
 
-        /* 月曜・日曜の重複解消＆木曜にケーブルフライを配置 */
         const INITIAL_MENU = {
             "月": ["バーベルベンチプレス", "インクラインダンベルプレス", "バーベルカール", "プレスダウン", "デッドバグ"],
             "火": ["バーベルデッドリフト", "ラットプルダウン", "シーテッドローイング", "ダンベルカール", "フェイスプル"],
@@ -926,11 +1018,14 @@
             "日": ["チェストプレス", "ラットプルダウン", "シーテッドローイング", "ダンベルカール", "バーベルスクワット"]
         };
 
+        let realTodayDateStr = "";
         let realTodayDayOfWeek = "";
+        let selectedDateStr = "";
         let selectedDayOfWeek = "";
 
         let state = {
             exercises: [],
+            workoutNone: false,
             stretchIndex: 0,
             stretchTime: 60,
             stretchRunning: false,
@@ -955,6 +1050,11 @@
             const dateStr = `${year}-${month}-${date}`;
             const dayOfWeek = WEEKDAYS[now.getDay()];
             return { dateStr, dayOfWeek, now };
+        }
+
+        function getDayOfWeekFromDateStr(dStr) {
+            const d = new Date(dStr);
+            return WEEKDAYS[d.getDay()];
         }
 
         function getRandomQuote() {
@@ -983,14 +1083,18 @@
 
         function initApp() {
             const { dateStr, dayOfWeek } = getTodayInfo();
+            realTodayDateStr = dateStr;
             realTodayDayOfWeek = dayOfWeek;
+            selectedDateStr = dateStr;
             selectedDayOfWeek = dayOfWeek;
+
+            document.getElementById("target-date-picker").value = dateStr;
 
             if (!localStorage.getItem("kintore_logs")) {
                 localStorage.setItem("kintore_logs", JSON.stringify(INITIAL_PAST_LOGS));
             }
 
-            loadDayData(selectedDayOfWeek);
+            loadDateData(selectedDateStr, selectedDayOfWeek);
 
             getRandomQuote();
             renderHeader();
@@ -1002,30 +1106,38 @@
             initSpaChart();
         }
 
-        function loadDayData(day) {
-            const key = "kintore_menu_" + day;
+        function onDateSelectionChange() {
+            const picker = document.getElementById("target-date-picker");
+            if (!picker.value) return;
+            selectedDateStr = picker.value;
+            selectedDayOfWeek = getDayOfWeekFromDateStr(selectedDateStr);
+
+            loadDateData(selectedDateStr, selectedDayOfWeek);
+            renderHeader();
+            renderContent();
+        }
+
+        function loadDateData(dateStr, dayStr) {
+            const key = "kintore_menu_date_" + dateStr;
             const saved = localStorage.getItem(key);
 
             if (saved) {
-                state.exercises = JSON.parse(saved);
-                // 保存済みデータがある場合も最終登録重量を補完更新
-                state.exercises.forEach(ex => {
-                    const lastW = getLastRecordedWeight(ex.name);
-                    if (lastW && !ex.completed) ex.weight = lastW;
-                });
+                const parsed = JSON.parse(saved);
+                state.exercises = parsed.exercises || [];
+                state.workoutNone = parsed.workoutNone || false;
             } else {
-                const names = INITIAL_MENU[day] || [];
+                state.workoutNone = false;
+                const names = INITIAL_MENU[dayStr] || [];
                 state.exercises = names.map(name => {
                     const lastW = getLastRecordedWeight(name);
                     const defaultW = name.includes("バーベル") ? 40.0 : 12.0;
+                    const w = lastW || defaultW;
                     return {
                         name: name,
-                        weight: lastW || defaultW,
-                        reps: 10,
                         setsData: [
-                            { count: 0, locked: false, counting: false },
-                            { count: 0, locked: false, counting: false },
-                            { count: 0, locked: false, counting: false }
+                            { weight: w, reps: 10, count: 0, locked: false, counting: false },
+                            { weight: w, reps: 10, count: 0, locked: false, counting: false },
+                            { weight: w, reps: 10, count: 0, locked: false, counting: false }
                         ],
                         completed: false
                     };
@@ -1035,19 +1147,52 @@
         }
 
         function saveState() {
-            const key = "kintore_menu_" + selectedDayOfWeek;
-            localStorage.setItem(key, JSON.stringify(state.exercises));
+            const key = "kintore_menu_date_" + selectedDateStr;
+            localStorage.setItem(key, JSON.stringify({
+                exercises: state.exercises,
+                workoutNone: state.workoutNone
+            }));
         }
 
-        function switchSelectedDay(day) {
-            selectedDayOfWeek = day;
-            loadDayData(day);
+        function switchSelectedDay(dayStr) {
+            const now = new Date();
+            const currentDayIdx = now.getDay();
+            const targetDayIdx = WEEKDAYS.indexOf(dayStr);
+            const diff = targetDayIdx - currentDayIdx;
+
+            const targetDate = new Date();
+            targetDate.setDate(now.getDate() + diff);
+
+            const year = targetDate.getFullYear();
+            const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+            const date = String(targetDate.getDate()).padStart(2, '0');
+
+            selectedDateStr = `${year}-${month}-${date}`;
+            selectedDayOfWeek = dayStr;
+
+            document.getElementById("target-date-picker").value = selectedDateStr;
+
+            loadDateData(selectedDateStr, selectedDayOfWeek);
             renderHeader();
             renderContent();
         }
 
         function resetToToday() {
-            switchSelectedDay(realTodayDayOfWeek);
+            initApp();
+        }
+
+        function toggleWorkoutNone() {
+            state.workoutNone = !state.workoutNone;
+            saveState();
+            if (state.workoutNone) {
+                recordSpaActivity("休養日（トレーニングなし）", 0);
+            }
+            renderHeader();
+            renderContent();
+        }
+
+        function recordWifeWalking() {
+            recordSpaActivity("🚶‍♂️ 奥様とウォーキング（有酸素完了）", 30);
         }
 
         function autoSwapExercise(idx) {
@@ -1066,21 +1211,24 @@
             const nextName = available[Math.floor(Math.random() * available.length)] || candidates[0];
 
             state.exercises[idx].name = nextName;
-            const lastW = getLastRecordedWeight(nextName);
-            if (lastW) state.exercises[idx].weight = lastW;
+            const lastW = getLastRecordedWeight(nextName) || 12.0;
+
+            state.exercises[idx].setsData.forEach(s => {
+                s.weight = lastW;
+            });
 
             saveState();
             renderExercises();
         }
 
-        /* 長押しの反応を遅く＆ゆったりに調整（0.8秒待機、0.25秒ピッチ） */
-        function startHold(idx, key, delta) {
-            updateVal(idx, key, delta);
+        /* 超低感度長押し（1.2秒後待機、0.35秒ピッチ） */
+        function startHold(exIdx, setIdx, key, delta) {
+            updateVal(exIdx, setIdx, key, delta);
             holdTimer = setTimeout(() => {
                 holdInterval = setInterval(() => {
-                    updateVal(idx, key, delta);
-                }, 250);
-            }, 800);
+                    updateVal(exIdx, setIdx, key, delta);
+                }, 350);
+            }, 1200);
         }
 
         function endHold() {
@@ -1089,12 +1237,11 @@
         }
 
         function recordSpaActivity(actName, durationMin) {
-            const { dateStr, now } = getTodayInfo();
-            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            const timeStr = "12:00";
             const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
 
             logs.unshift({
-                timestamp: `${dateStr.replace(/-/g, '/')} ${timeStr}`,
+                timestamp: `${selectedDateStr.replace(/-/g, '/')} ${timeStr}`,
                 exercise: `♨️ ${actName}`,
                 weight: 0,
                 reps: durationMin || 8,
@@ -1103,16 +1250,15 @@
 
             localStorage.setItem("kintore_logs", JSON.stringify(logs));
             renderHistoryLogs();
-            alert(`「${actName}」の記録を追加しました！`);
+            alert(`「${actName}」を ${selectedDateStr} の記録として追加しました！`);
         }
 
         function recordProteinLog(actName, grams) {
-            const { dateStr, now } = getTodayInfo();
-            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            const timeStr = "12:00";
             const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
 
             logs.unshift({
-                timestamp: `${dateStr.replace(/-/g, '/')} ${timeStr}`,
+                timestamp: `${selectedDateStr.replace(/-/g, '/')} ${timeStr}`,
                 exercise: `🥤 ${actName}`,
                 weight: 0,
                 reps: grams || 25,
@@ -1122,7 +1268,7 @@
             localStorage.setItem("kintore_logs", JSON.stringify(logs));
             renderHistoryLogs();
             initProteinChart();
-            alert(`「${actName}」の記録を追加しました！`);
+            alert(`「${actName}」を ${selectedDateStr} の記録として追加しました！`);
         }
 
         function downloadLogsCSV() {
@@ -1154,7 +1300,7 @@
             renderExercises();
 
             let current = 1;
-            const target = state.exercises[exIdx].reps || 10;
+            const target = set.reps || 10;
 
             const speakNext = () => {
                 if (current > target) {
@@ -1165,7 +1311,7 @@
                     const allLocked = state.exercises[exIdx].setsData.every(s => s.locked);
                     if (allLocked) {
                         state.exercises[exIdx].completed = true;
-                        saveHistoryLog(state.exercises[exIdx].name, state.exercises[exIdx].weight, state.exercises[exIdx].reps, 3);
+                        saveHistoryLog(state.exercises[exIdx].name, set.weight, set.reps, 3);
                     }
 
                     saveState();
@@ -1197,12 +1343,10 @@
         }
 
         function saveHistoryLog(exName, weight, reps, setsCount) {
-            const { dateStr, now } = getTodayInfo();
-            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
             const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
 
             logs.unshift({
-                timestamp: `${dateStr.replace(/-/g, '/')} ${timeStr}`,
+                timestamp: `${selectedDateStr.replace(/-/g, '/')} 12:00`,
                 exercise: exName,
                 weight: weight,
                 reps: reps,
@@ -1374,7 +1518,7 @@
         function renderHeader() {
             document.getElementById("today-badge").innerText = "本日: " + realTodayDayOfWeek + "曜日";
             const info = SCHEDULE[selectedDayOfWeek];
-            document.getElementById("workout-title").innerText = selectedDayOfWeek + "曜日： " + info.title;
+            document.getElementById("workout-title").innerText = `${selectedDateStr} (${selectedDayOfWeek})： ${info.title}`;
 
             document.querySelectorAll('.btn-day-tab').forEach(btn => {
                 const dayStr = btn.innerText.trim().charAt(0);
@@ -1383,9 +1527,12 @@
             });
 
             const btnReset = document.getElementById("btn-today-reset");
-            btnReset.style.display = (selectedDayOfWeek !== realTodayDayOfWeek) ? "block" : "none";
+            btnReset.style.display = (selectedDateStr !== realTodayDateStr) ? "inline-block" : "none";
 
-            if (info.special) {
+            if (state.workoutNone) {
+                document.getElementById("progress-bar").style.width = "100%";
+                document.getElementById("progress-text").innerText = "本日のトレーニングなし（完了）";
+            } else if (info.special) {
                 document.getElementById("progress-bar").style.width = "0%";
                 document.getElementById("progress-text").innerText = "";
             } else {
@@ -1405,11 +1552,23 @@
 
             specialContainer.innerHTML = "";
 
+            if (state.workoutNone) {
+                specialContainer.innerHTML = `
+                    <div style="background-color:#1e293b; border:1px solid #475569; border-radius:12px; padding:16px; text-align:center; margin-bottom:12px;">
+                        <h3 style="color:#f8fafc;">🚫 本日のトレーニングは休養（なし）に設定されています</h3>
+                        <p style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">上部ボタンからいつでも解除できます。</p>
+                    </div>
+                `;
+                uncompletedSection.style.display = "none";
+                completedSection.style.display = "none";
+                return;
+            }
+
             if (info.special) {
                 specialContainer.innerHTML = `
-                    <div class="special-day-card">
-                        <div class="special-day-title">${info.special}</div>
-                        <div class="special-day-desc">しっかりと身体を休めてコンディションを整えましょう。</div>
+                    <div style="background-color:#1e293b; border:1px solid #475569; border-radius:12px; padding:16px; text-align:center; margin-bottom:12px;">
+                        <h3 style="color:#f8fafc;">${info.special}</h3>
+                        <p style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">しっかりと身体を休めてコンディションを整えましょう。</p>
                     </div>
                 `;
                 uncompletedSection.style.display = "none";
@@ -1434,12 +1593,14 @@
                 card.className = "exercise-card" + (ex.completed ? " completed" : "");
                 
                 const diagram = EXERCISE_DIAGRAMS[ex.name] || {
+                    group: "胸",
                     svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="30" r="6" fill="#f8fafc"/><path d="M 50 36 L 50 65 L 35 85 M 50 65 L 65 85" stroke="#38bdf8" stroke-width="6" fill="none"/></svg>`,
                     desc: "フォームと姿勢を意識して丁寧に行いましょう。",
                     muscle: "💪 効く部位: 全身の筋肉・体幹",
                     target: "🎯 50代目安: 20〜40 kg",
                     type: ex.name.includes("ダンベル") ? "dumbbell" : (ex.name.includes("バーベル") ? "barbell" : "other")
                 };
+
                 const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name + ' フォーム Shorts')}`;
 
                 const weightNoteText = diagram.type === 'barbell' 
@@ -1449,6 +1610,7 @@
                 card.innerHTML = `
                     <div class="card-top">
                         <div class="exercise-name">
+                            <span class="muscle-badge muscle-badge-${diagram.group}">[${diagram.group}]</span>
                             ${ex.name}
                             <button class="btn-swap-ex" onclick="autoSwapExercise(${idx})">🔄 種目を変更</button>
                         </div>
@@ -1467,42 +1629,45 @@
 
                     ${weightNoteText ? `<div class="weight-note">${weightNoteText}</div>` : ''}
 
-                    <div class="controls-row">
-                        <div class="input-group">
-                            <label>重量 (kg)</label>
-                            <div class="number-control">
-                                <button class="btn-num" onmousedown="startHold(${idx}, 'weight', -0.5)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, 'weight', -0.5)" ontouchend="endHold()" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
-                                <div class="num-val">${ex.weight.toFixed(1)}</div>
-                                <button class="btn-num" onmousedown="startHold(${idx}, 'weight', 0.5)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, 'weight', 0.5)" ontouchend="endHold()" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label>目標回数</label>
-                            <div class="number-control">
-                                <button class="btn-num" onmousedown="startHold(${idx}, 'reps', -1)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, 'reps', -1)" ontouchend="endHold()" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
-                                <div class="num-val">${ex.reps}回</div>
-                                <button class="btn-num" onmousedown="startHold(${idx}, 'reps', 1)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, 'reps', 1)" ontouchend="endHold()" ${ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="sets-container">
                         ${ex.setsData.map((s, sIdx) => `
                             <div class="set-item-card ${s.locked || ex.completed ? 'locked' : ''}">
-                                <div class="set-label">セット ${sIdx + 1}</div>
-                                <div class="counter-box">
+                                <div class="set-header-row">
+                                    <div class="set-label">セット ${sIdx + 1}</div>
+                                    <button class="btn-finish-set" onclick="toggleLockSet(${idx}, ${sIdx})" ${ex.completed ? 'style="display:none;"' : ''}>
+                                        ${s.locked ? '解除' : '手動完了'}
+                                    </button>
+                                </div>
+
+                                <div class="set-controls-grid">
+                                    <div class="sub-control-box">
+                                        <label>重量 (kg)</label>
+                                        <div class="number-control">
+                                            <button class="btn-num" onmousedown="startHold(${idx}, ${sIdx}, 'weight', -0.5)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, ${sIdx}, 'weight', -0.5)" ontouchend="endHold()" ${s.locked || ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
+                                            <div class="num-val">${s.weight.toFixed(1)}</div>
+                                            <button class="btn-num" onmousedown="startHold(${idx}, ${sIdx}, 'weight', 0.5)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, ${sIdx}, 'weight', 0.5)" ontouchend="endHold()" ${s.locked || ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
+                                        </div>
+                                    </div>
+                                    <div class="sub-control-box">
+                                        <label>目標回数</label>
+                                        <div class="number-control">
+                                            <button class="btn-num" onmousedown="startHold(${idx}, ${sIdx}, 'reps', -1)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, ${sIdx}, 'reps', -1)" ontouchend="endHold()" ${s.locked || ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
+                                            <div class="num-val">${s.reps}回</div>
+                                            <button class="btn-num" onmousedown="startHold(${idx}, ${sIdx}, 'reps', 1)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(${idx}, ${sIdx}, 'reps', 1)" ontouchend="endHold()" ${s.locked || ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="set-action-row">
                                     ${s.locked || ex.completed ? `
-                                        <div class="count-display" style="color:#10b981;">✓ ${s.count} 回完了</div>
+                                        <div class="count-display" style="color:#10b981;">✓ ${s.count || s.reps} 回完了</div>
                                     ` : `
                                         <button class="btn-start-speech ${s.counting ? 'counting' : ''}" onclick="startSpeechCount(${idx}, ${sIdx})">
-                                            ▶ ${s.counting ? 'カウント中...' : '開始'}
+                                            ▶ ${s.counting ? 'カウント中...' : '自動音声カウント開始'}
                                         </button>
-                                        <div class="count-display">${s.count} / ${ex.reps}</div>
+                                        <div class="count-display">${s.count} / ${s.reps}</div>
                                     `}
                                 </div>
-                                <button class="btn-finish-set" onclick="toggleLockSet(${idx}, ${sIdx})" ${ex.completed ? 'style="display:none;"' : ''}>
-                                    ${s.locked ? '解除' : '手動完了'}
-                                </button>
                             </div>
                         `).join('')}
                     </div>
@@ -1625,13 +1790,13 @@
             set.locked = !set.locked;
 
             if (set.locked && set.count === 0) {
-                set.count = state.exercises[exIdx].reps || 10;
+                set.count = set.reps || 10;
             }
 
             const allLocked = state.exercises[exIdx].setsData.every(s => s.locked);
             if (allLocked) {
                 state.exercises[exIdx].completed = true;
-                saveHistoryLog(state.exercises[exIdx].name, state.exercises[exIdx].weight, state.exercises[exIdx].reps, 3);
+                saveHistoryLog(state.exercises[exIdx].name, set.weight, set.reps, 3);
             }
 
             saveState();
@@ -1639,11 +1804,12 @@
             renderExercises();
         }
 
-        function updateVal(idx, key, delta) {
+        function updateVal(exIdx, setIdx, key, delta) {
+            const set = state.exercises[exIdx].setsData[setIdx];
             if (key === 'weight') {
-                state.exercises[idx].weight = Math.max(0, state.exercises[idx].weight + delta);
+                set.weight = Math.max(0, set.weight + delta);
             } else if (key === 'reps') {
-                state.exercises[idx].reps = Math.max(1, state.exercises[idx].reps + delta);
+                set.reps = Math.max(1, set.reps + delta);
             }
             saveState();
             renderExercises();
@@ -1654,9 +1820,10 @@
             if (state.exercises[exIdx].completed) {
                 state.exercises[exIdx].setsData.forEach(s => {
                     s.locked = true;
-                    if (s.count === 0) s.count = state.exercises[exIdx].reps || 10;
+                    if (s.count === 0) s.count = s.reps || 10;
                 });
-                saveHistoryLog(state.exercises[exIdx].name, state.exercises[exIdx].weight, state.exercises[exIdx].reps, 3);
+                const firstSet = state.exercises[exIdx].setsData[0];
+                saveHistoryLog(state.exercises[exIdx].name, firstSet.weight, firstSet.reps, 3);
             } else {
                 state.exercises[exIdx].setsData.forEach(s => s.locked = false);
             }
