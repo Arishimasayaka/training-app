@@ -206,10 +206,22 @@
             color: #f1f5f9;
         }
 
+        .btn-quick-none.active-act {
+            background-color: #991b1b;
+            color: #fca5a5;
+            border-color: #ef4444;
+        }
+
         .btn-quick-walk {
             background-color: #065f46;
             color: #a7f3d0;
             border-color: #059669;
+        }
+
+        .btn-quick-walk.active-act {
+            background-color: #1e3a8a;
+            color: #93c5fd;
+            border-color: #3b82f6;
         }
 
         .progress-container {
@@ -371,14 +383,13 @@
             border: 1px solid #334155;
         }
 
-        .diagram-svg {
-            width: 75px;
-            height: 75px;
-            background-color: #1e293b;
+        .diagram-img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            background-color: #ffffff;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 4px;
             flex-shrink: 0;
             border: 1px solid #475569;
         }
@@ -433,9 +444,14 @@
         }
 
         .weight-note {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #fbbf24;
-            margin-bottom: 6px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            background-color: rgba(251, 191, 36, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
         }
 
         .sets-container {
@@ -524,21 +540,6 @@
             margin-top: 2px;
         }
 
-        .btn-start-speech {
-            background-color: #0284c7;
-            color: white;
-            border: none;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-
-        .btn-start-speech.counting {
-            background-color: #d97706;
-        }
-
         .count-display {
             font-size: 0.9rem;
             font-weight: bold;
@@ -549,9 +550,10 @@
             background-color: #10b981;
             color: white;
             border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
             cursor: pointer;
         }
 
@@ -689,16 +691,42 @@
             border: 1px solid #334155;
             border-radius: var(--border-radius);
             padding: 10px;
-            max-height: 250px;
+            max-height: 280px;
             overflow-y: auto;
             font-size: 0.85rem;
         }
 
         .log-item {
-            padding: 6px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #1e293b;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+        }
+
+        .log-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .btn-log-edit {
+            background-color: #334155;
+            color: #38bdf8;
+            border: 1px solid #475569;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+
+        .btn-log-del {
+            background-color: #450a0a;
+            color: #fca5a5;
+            border: 1px solid #7f1d1d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
         }
 
         .btn-csv-download {
@@ -713,6 +741,36 @@
             cursor: pointer;
             margin-bottom: 12px;
         }
+
+        .habit-calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .habit-day-box {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 6px;
+            text-align: center;
+            font-size: 0.75rem;
+        }
+
+        .habit-day-box.done {
+            border-color: #10b981;
+            background-color: #0d2720;
+        }
+
+        .habit-mark {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .mark-yes { color: #10b981; }
+        .mark-no { color: #64748b; }
     </style>
 </head>
 <body>
@@ -759,8 +817,8 @@
 
     <main>
         <div class="quick-actions-bar">
-            <button class="btn-quick-act btn-quick-none" onclick="toggleWorkoutNone()">🚫 今日はトレーニングなし</button>
-            <button class="btn-quick-act btn-quick-walk" onclick="recordWifeWalking()">🚶‍♂️ 奥様とウォーキング（有酸素完了）</button>
+            <button id="btn-quick-none" class="btn-quick-act btn-quick-none" onclick="toggleWorkoutNone()">🚫 今日はトレーニングなし</button>
+            <button id="btn-quick-walk" class="btn-quick-act btn-quick-walk" onclick="toggleWifeWalking()">🚶‍♂️ 奥様とウォーキング（有酸素完了）</button>
         </div>
 
         <div class="quote-card">
@@ -854,13 +912,20 @@
         <!-- 5. 記録・グラフタブ -->
         <div id="cat-logs" class="tab-content">
             <button class="btn-csv-download" onclick="downloadLogsCSV()">📥 全記録データをCSV保存（Excel / スプレッドシート用）</button>
+            
+            <div class="chart-card">
+                <h4 style="color:#10b981; margin-bottom:4px; font-size:0.9rem;">🚶‍♂️ ウォーキング＆リカバリー（直近14日間 ○×表示）</h4>
+                <div id="habit-calendar" class="habit-calendar-grid"></div>
+            </div>
+
             <div class="chart-card">
                 <h4 style="color:#60a5fa; margin-bottom:8px; font-size:0.9rem;">📈 重量・回数の成長推移グラフ</h4>
                 <select id="chart-exercise-select" class="chart-select" onchange="updateChart()"></select>
                 <canvas id="growthChart" height="180"></canvas>
             </div>
+
             <div style="margin-top: 16px;">
-                <div class="section-header">📜 過去の全記録（トレーニング・プロテイン・サウナ）</div>
+                <div class="section-header">📜 過去の全記録（編集・削除可能）</div>
                 <div id="log-list" class="log-list"></div>
             </div>
         </div>
@@ -874,7 +939,6 @@
             { text: "準備に妥協がなければ、結果に対して不安になることはない。", author: "イチロー", type: "アスリート" },
             { text: "サウナと水風呂の温冷交互浴は、自律神経を整えて睡眠の質を劇的に高める！", author: "サウナ豆知識", type: "豆知識" },
             { text: "ジャグジーのジェット水流は血流を促し、筋トレ後の筋肉痛やコリを優しくほぐす！", author: "ジャグジー豆知識", type: "豆知識" },
-            { text: "サウナで汗を流すとHSP（ヒートショックタンパク質）が生まれ、傷ついた細胞の修復が早まる！", author: "健康豆知識", type: "豆知識" },
             { text: "プロテインはトレーニング後45分以内または朝一番に飲むと効果絶大！", author: "栄養雑学", type: "豆知識" }
         ];
 
@@ -895,127 +959,128 @@
         ];
 
         const EXERCISE_SWAP_GROUPS = {
-            "胸": ["バーベルベンチプレス", "チェストプレス", "インクラインダンベルプレス"],
-            "背中": ["バーベルデッドリフト", "ラットプルダウン", "シーテッドローイング"],
-            "肩": ["バーベルショルダープレス", "ショルダープレス", "サイドレイズ", "ケーブルフライ"],
-            "腕": ["バーベルカール", "ダンベルカール", "プレスダウン"],
-            "脚・体幹": ["バーベルスクワット", "レッグプレス", "デッドバグ"]
+            "胸": ["チェストプレスマシン", "インクラインダンベルプレス", "ケーブルフライ"],
+            "背中": ["ラットプルダウン", "シーテッドローイング", "バーベルデッドリフト"],
+            "肩": ["ショルダープレスマシン", "サイドレイズ", "ケーブルフライ"],
+            "腕": ["ケーブル・プレスダウン", "ダンベルカール", "バーベルカール"],
+            "脚・体幹": ["レッグプレスマシン", "レッグエクステンション", "デッドバグ"]
         };
 
         const EXERCISE_DIAGRAMS = {
-            "バーベルベンチプレス": {
+            "チェストプレスマシン": {
                 group: "胸",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><rect x="15" y="65" width="70" height="8" fill="#64748b"/><circle cx="30" cy="55" r="6" fill="#f8fafc"/><path d="M 30 60 L 70 60 L 80 85" stroke="#38bdf8" stroke-width="6" fill="none"/><line x1="10" y1="35" x2="90" y2="35" stroke="#ef4444" stroke-width="6"/></svg>`,
-                desc: "仰向けで重量を押し上げる（胸の厚み・腕のバルクアップ）",
-                muscle: "💪 効く部位: 大胸筋（胸全般）・三頭筋（腕の裏）",
-                target: "🎯 50代目安: 40〜60 kg",
-                type: "barbell"
-            },
-            "チェストプレス": {
-                group: "胸",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><rect x="25" y="30" width="10" height="50" fill="#64748b"/><circle cx="35" cy="35" r="6" fill="#f8fafc"/><path d="M 35 45 L 65 45 M 65 35 L 65 55" stroke="#10b981" stroke-width="5"/></svg>`,
-                desc: "座ってグリップを前面へ押し出し胸に厚みをつくる",
-                muscle: "💪 効く部位: 大胸筋・三角筋前部",
-                target: "🎯 50代目安: 35〜50 kg",
+                img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Chest_press_machine.png",
+                desc: "座ってグリップを胸の前で押し出す（胸のバルクアップ・安全高重量）",
+                muscle: "💪 効く部位: 大胸筋（胸全般）・三頭筋",
+                target: "🎯 50代目安: 35〜55 kg",
                 type: "machine"
             },
             "インクラインダンベルプレス": {
                 group: "胸",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><line x1="20" y1="80" x2="60" y2="40" stroke="#64748b" stroke-width="6"/><circle cx="45" cy="35" r="6" fill="#f8fafc"/><path d="M 45 40 L 70 15" stroke="#38bdf8" stroke-width="5"/></svg>`,
-                desc: "ベンチを傾けて斜め上へ押し上げ胸上部を引き締める",
+                img: "https://upload.wikimedia.org/wikipedia/commons/a/a2/Incline_Dumbbell_Press.png",
+                desc: "ベンチを傾けて斜め上へ持ち上げ胸上部を立体的に引き締める",
                 muscle: "💪 効く部位: 大胸筋上部（鎖骨周り）",
                 target: "🎯 50代目安: 10〜18 kg",
                 type: "dumbbell"
             },
             "ケーブルフライ": {
-                group: "肩",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70 M 50 45 L 20 50 M 50 45 L 80 50" stroke="#38bdf8" stroke-width="5"/></svg>`,
-                desc: "ケーブルを身体の前で絞り込み、胸・肩の収縮を高める",
+                group: "胸",
+                img: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Cable_Fly.png",
+                desc: "ケーブルを前面で絞り込み、胸中央の深い溝とパンチ力をつくる",
                 muscle: "💪 効く部位: 大胸筋内側・三角筋前部",
                 target: "🎯 50代目安: 10〜20 kg",
                 type: "machine"
             },
-            "バーベルカール": {
-                group: "腕",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70" stroke="#38bdf8" stroke-width="6"/><line x1="20" y1="30" x2="50" y2="30" stroke="#ef4444" stroke-width="6"/></svg>`,
-                desc: "肘の位置を固定し、バーベルを持ち上げて力こぶをつくる",
-                muscle: "💪 効く部位: 上腕二頭筋（力こぶ）",
-                target: "🎯 50代目安: 15〜25 kg",
-                type: "barbell"
+            "ラットプルダウン": {
+                group: "背中",
+                img: "https://upload.wikimedia.org/wikipedia/commons/8/87/Lat_pulldown.png",
+                desc: "バーを胸の上に引き下ろし、綺麗な逆三角形の背中をつくる",
+                muscle: "💪 効く部位: 広背筋・肩甲骨周辺",
+                target: "🎯 50代目安: 35〜50 kg",
+                type: "machine"
             },
-            "ダンベルカール": {
-                group: "腕",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70" stroke="#38bdf8" stroke-width="6"/><circle cx="30" cy="35" r="5" fill="#ef4444"/></svg>`,
-                desc: "片手ずつダンベルを引き上げ力こぶを強烈に収縮させる",
-                muscle: "💪 効く部位: 上腕二頭筋",
-                target: "🎯 50代目安: 8〜14 kg",
+            "シーテッドローイング": {
+                group: "背中",
+                img: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Seated_Cable_Row.png",
+                desc: "お腹に向けてグリップを引き寄せ、背中の厚み・猫背改善を図る",
+                muscle: "💪 効く部位: 僧帽筋・広背筋中央",
+                target: "🎯 50代目安: 30〜45 kg",
+                type: "machine"
+            },
+            "ショルダープレスマシン": {
+                group: "肩",
+                img: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Shoulder_Press_Machine.png",
+                desc: "頭上へ安全に押し上げ、男らしい立体的な丸い肩をつくる",
+                muscle: "💪 効く部位: 三角筋前部・側面",
+                target: "🎯 50代目安: 20〜35 kg",
+                type: "machine"
+            },
+            "サイドレイズ": {
+                group: "肩",
+                img: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Side_Lateral_Raise.png",
+                desc: "ダンベルを体頭横に持ち上げ、肩幅の広さを強調する",
+                muscle: "💪 効く部位: 三角筋中部（肩の横）",
+                target: "🎯 50代目安: 4〜8 kg",
                 type: "dumbbell"
             },
-            "プレスダウン": {
+            "ケーブル・プレスダウン": {
                 group: "腕",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="25" r="6" fill="#f8fafc"/><path d="M 50 31 L 50 70 M 50 40 L 50 60" stroke="#38bdf8" stroke-width="6"/></svg>`,
-                desc: "ケーブルを下に押し下げ、二の腕（上腕三頭筋）を太く引き締める",
+                img: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Triceps_Pushdown.png",
+                desc: "バーを下に押し下げ、太く引き締まった二の腕をつくる",
                 muscle: "💪 効く部位: 上腕三頭筋（二の腕）",
                 target: "🎯 50代目安: 15〜25 kg",
                 type: "machine"
             },
-            "バーベルスクワット": {
+            "ダンベルカール": {
+                group: "腕",
+                img: "https://upload.wikimedia.org/wikipedia/commons/0/08/Dumbbell_Biceps_Curl.png",
+                desc: "肘を固定してダンベルを引き上げ、力こぶの高さを出す",
+                muscle: "💪 効く部位: 上腕二頭筋（力こぶ）",
+                target: "🎯 50代目安: 8〜14 kg",
+                type: "dumbbell"
+            },
+            "レッグプレスマシン": {
                 group: "脚・体幹",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="22" r="6" fill="#f8fafc"/><rect x="20" y="28" width="60" height="5" fill="#ef4444"/><path d="M 50 28 L 50 50 L 35 75 L 25 90 M 50 50 L 65 75 L 75 90" stroke="#38bdf8" stroke-width="6" fill="none"/></svg>`,
-                desc: "お尻を引いて腰を深める。10kmマラソンを支える脚力土台",
-                muscle: "💪 効く部位: 太もも（大腿四頭筋）・お尻（大臀筋）",
-                target: "🎯 50代目安: 50〜75 kg",
-                type: "barbell"
+                img: "https://upload.wikimedia.org/wikipedia/commons/3/36/Leg_Press.png",
+                desc: "プレートを足裏で押し出す。腰を痛めずマラソン用の強靭な下半身をつくる",
+                muscle: "💪 効く部位: 大腿四頭筋・臀筋",
+                target: "🎯 50代目安: 60〜100 kg",
+                type: "machine"
             },
             "デッドバグ": {
                 group: "脚・体幹",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><rect x="20" y="55" width="60" height="8" fill="#64748b"/><path d="M 35 40 L 35 55 M 65 40 L 65 55" stroke="#38bdf8" stroke-width="6"/></svg>`,
-                desc: "仰向けで対角の手足をゆっくり動かし腰の負担なく腹筋を鍛える",
+                img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Dead_Bug_Exercise.png",
+                desc: "仰向けで手足を交互に動かし、腰の保護と腹筋（体幹）を強化する",
                 muscle: "💪 効く部位: 腹直筋・体幹インナーマッスル",
                 target: "🎯 50代目安: 自重 10〜15 回",
                 type: "other"
-            },
-            "バーベルデッドリフト": {
-                group: "背中",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="45" cy="25" r="6" fill="#f8fafc"/><line x1="15" y1="75" x2="85" y2="75" stroke="#ef4444" stroke-width="6"/></svg>`,
-                desc: "床からバーベルを引き上げ全身の体幹と背面を強化する",
-                muscle: "💪 効く部位: 背中・もも裏・お尻",
-                target: "🎯 50代目安: 60〜85 kg",
-                type: "barbell"
-            },
-            "ラットプルダウン": {
-                group: "背中",
-                svg: `<svg viewBox="0 0 100 100" width="55" height="55"><line x1="15" y1="20" x2="85" y2="20" stroke="#ef4444" stroke-width="6"/><circle cx="50" cy="40" r="6" fill="#f8fafc"/></svg>`,
-                desc: "バーを胸の上に引き下ろし逆三角形の広い背中をつくる",
-                muscle: "💪 効く部位: 広背筋・肩甲骨周辺",
-                target: "🎯 50代目安: 35〜45 kg",
-                type: "machine"
             }
         };
 
         const INITIAL_PAST_LOGS = [
-            { timestamp: "2026/09/26 09:30", exercise: "バーベルベンチプレス", weight: 45.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/26 09:30", exercise: "チェストプレスマシン", weight: 45.0, reps: 10, sets: 3 },
             { timestamp: "2026/09/26 09:30", exercise: "ケーブルフライ", weight: 10.0, reps: 10, sets: 3 },
             { timestamp: "2026/09/26 18:00", exercise: "🥤 プロテイン 25g 摂取", weight: 0, reps: 25, sets: 1 },
-            { timestamp: "2026/09/26 19:00", exercise: "🥤 プロテイン 25g 摂取", weight: 0, reps: 25, sets: 1 }
+            { timestamp: "2026/09/26 19:00", exercise: "🥤 プロテイン 25g 摂取", weight: 0, reps: 25, sets: 1 },
+            { timestamp: "2026/09/27 08:30", exercise: "🚶‍♂️ 奥様とウォーキング（有酸素完了）", weight: 0, reps: 30, sets: 1 }
         ];
 
         const SCHEDULE = {
-            "月": { title: "胸・二の腕集中（週のスタート日）", special: null },
+            "月": { title: "胸・二の腕集中（大型ジム・マシン中心）", special: null },
             "火": { title: "背中・三の腕", special: null },
             "水": { title: "ボクシングレッスン", special: "今日はボクシングレッスン（トレーニングなし）" },
             "木": { title: "肩・パンチ力（ケーブルフライ）", special: null },
             "金": { title: "休養", special: "今日は休養日（トレーニングなし）" },
-            "土": { title: "全身・胸・マラソン脚力", special: null },
+            "土": { title: "全身・胸・マラソン脚力（レッグプレス）", special: null },
             "日": { title: "背中・脚・二の腕調整日", special: null }
         };
 
         const INITIAL_MENU = {
-            "月": ["バーベルベンチプレス", "インクラインダンベルプレス", "バーベルカール", "プレスダウン", "デッドバグ"],
-            "火": ["バーベルデッドリフト", "ラットプルダウン", "シーテッドローイング", "ダンベルカール", "フェイスプル"],
-            "木": ["バーベルショルダープレス", "ショルダープレス", "サイドレイズ", "ケーブルフライ", "デッドバグ"],
-            "土": ["バーベルスクワット", "バーベルベンチプレス", "ラットプルダウン", "バーベルショルダープレス", "バーベルカール"],
-            "日": ["チェストプレス", "ラットプルダウン", "シーテッドローイング", "ダンベルカール", "バーベルスクワット"]
+            "月": ["チェストプレスマシン", "インクラインダンベルプレス", "ケーブル・プレスダウン", "デッドバグ"],
+            "火": ["ラットプルダウン", "シーテッドローイング", "ダンベルカール"],
+            "木": ["ショルダープレスマシン", "サイドレイズ", "ケーブルフライ"],
+            "土": ["レッグプレスマシン", "チェストプレスマシン", "ラットプルダウン", "ダンベルカール"],
+            "日": ["シーテッドローイング", "レッグプレスマシン", "ケーブル・プレスダウン"]
         };
 
         let realTodayDateStr = "";
@@ -1026,6 +1091,7 @@
         let state = {
             exercises: [],
             workoutNone: false,
+            wifeWalking: false,
             stretchIndex: 0,
             stretchTime: 60,
             stretchRunning: false,
@@ -1073,6 +1139,7 @@
             event.currentTarget.classList.add('active');
 
             if (catId === 'cat-protein') initProteinChart();
+            if (catId === 'cat-logs') renderHabitCalendar();
         }
 
         function getLastRecordedWeight(exName) {
@@ -1104,6 +1171,7 @@
             renderHistoryLogs();
             initChartSelect();
             initSpaChart();
+            renderHabitCalendar();
         }
 
         function onDateSelectionChange() {
@@ -1125,8 +1193,10 @@
                 const parsed = JSON.parse(saved);
                 state.exercises = parsed.exercises || [];
                 state.workoutNone = parsed.workoutNone || false;
+                state.wifeWalking = parsed.wifeWalking || false;
             } else {
                 state.workoutNone = false;
+                state.wifeWalking = false;
                 const names = INITIAL_MENU[dayStr] || [];
                 state.exercises = names.map(name => {
                     const lastW = getLastRecordedWeight(name);
@@ -1150,7 +1220,8 @@
             const key = "kintore_menu_date_" + selectedDateStr;
             localStorage.setItem(key, JSON.stringify({
                 exercises: state.exercises,
-                workoutNone: state.workoutNone
+                workoutNone: state.workoutNone,
+                wifeWalking: state.wifeWalking
             }));
         }
 
@@ -1184,15 +1255,39 @@
         function toggleWorkoutNone() {
             state.workoutNone = !state.workoutNone;
             saveState();
+
             if (state.workoutNone) {
                 recordSpaActivity("休養日（トレーニングなし）", 0);
+            } else {
+                removeLogByExerciseAndDate("休養日（トレーニングなし）", selectedDateStr);
             }
+
             renderHeader();
             renderContent();
         }
 
-        function recordWifeWalking() {
-            recordSpaActivity("🚶‍♂️ 奥様とウォーキング（有酸素完了）", 30);
+        function toggleWifeWalking() {
+            state.wifeWalking = !state.wifeWalking;
+            saveState();
+
+            if (state.wifeWalking) {
+                recordSpaActivity("🚶‍♂️ 奥様とウォーキング（有酸素完了）", 30);
+            } else {
+                removeLogByExerciseAndDate("ウォーキング", selectedDateStr);
+            }
+
+            renderHeader();
+            renderContent();
+            renderHabitCalendar();
+        }
+
+        function removeLogByExerciseAndDate(keyword, dateStr) {
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            const targetDateFormatted = dateStr.replace(/-/g, '/');
+            const filtered = logs.filter(l => !(l.timestamp.startsWith(targetDateFormatted) && l.exercise.includes(keyword)));
+            localStorage.setItem("kintore_logs", JSON.stringify(filtered));
+            renderHistoryLogs();
+            renderHabitCalendar();
         }
 
         function autoSwapExercise(idx) {
@@ -1221,7 +1316,6 @@
             renderExercises();
         }
 
-        /* 超低感度長押し（1.2秒後待機、0.35秒ピッチ） */
         function startHold(exIdx, setIdx, key, delta) {
             updateVal(exIdx, setIdx, key, delta);
             holdTimer = setTimeout(() => {
@@ -1237,11 +1331,10 @@
         }
 
         function recordSpaActivity(actName, durationMin) {
-            const timeStr = "12:00";
             const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
 
             logs.unshift({
-                timestamp: `${selectedDateStr.replace(/-/g, '/')} ${timeStr}`,
+                timestamp: `${selectedDateStr.replace(/-/g, '/')} 12:00`,
                 exercise: `♨️ ${actName}`,
                 weight: 0,
                 reps: durationMin || 8,
@@ -1250,15 +1343,14 @@
 
             localStorage.setItem("kintore_logs", JSON.stringify(logs));
             renderHistoryLogs();
-            alert(`「${actName}」を ${selectedDateStr} の記録として追加しました！`);
+            renderHabitCalendar();
         }
 
         function recordProteinLog(actName, grams) {
-            const timeStr = "12:00";
             const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
 
             logs.unshift({
-                timestamp: `${selectedDateStr.replace(/-/g, '/')} ${timeStr}`,
+                timestamp: `${selectedDateStr.replace(/-/g, '/')} 12:00`,
                 exercise: `🥤 ${actName}`,
                 weight: 0,
                 reps: grams || 25,
@@ -1269,6 +1361,69 @@
             renderHistoryLogs();
             initProteinChart();
             alert(`「${actName}」を ${selectedDateStr} の記録として追加しました！`);
+        }
+
+        function editLogItem(index) {
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            const item = logs[index];
+            if (!item) return;
+
+            const newWeight = prompt("重量 (kg) を入力してください:", item.weight);
+            if (newWeight === null) return;
+
+            const newReps = prompt("回数 / 摂取量(g) / 時間(分) を入力してください:", item.reps);
+            if (newReps === null) return;
+
+            item.weight = parseFloat(newWeight) || 0;
+            item.reps = parseInt(newReps, 10) || 0;
+
+            localStorage.setItem("kintore_logs", JSON.stringify(logs));
+            renderHistoryLogs();
+            updateChart();
+            initProteinChart();
+            renderHabitCalendar();
+        }
+
+        function deleteLogItem(index) {
+            if (!confirm("この過去記録を削除してもよろしいですか？")) return;
+
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            logs.splice(index, 1);
+
+            localStorage.setItem("kintore_logs", JSON.stringify(logs));
+            renderHistoryLogs();
+            updateChart();
+            initProteinChart();
+            renderHabitCalendar();
+        }
+
+        function renderHabitCalendar() {
+            const calendarContainer = document.getElementById("habit-calendar");
+            if (!calendarContainer) return;
+
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            const days = [];
+            const now = new Date();
+
+            for (let i = 13; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(now.getDate() - i);
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const date = String(d.getDate()).padStart(2, '0');
+                const dateStr = `${year}/${month}/${date}`;
+                const displayStr = `${month}/${date}`;
+
+                const hasWalk = logs.some(l => l.timestamp.startsWith(dateStr) && l.exercise.includes("ウォーキング"));
+                days.push({ dateStr, displayStr, hasWalk });
+            }
+
+            calendarContainer.innerHTML = days.map(d => `
+                <div class="habit-day-box ${d.hasWalk ? 'done' : ''}">
+                    <div>${d.displayStr}</div>
+                    <div class="habit-mark ${d.hasWalk ? 'mark-yes' : 'mark-no'}">${d.hasWalk ? '◯' : '✕'}</div>
+                </div>
+            `).join('');
         }
 
         function downloadLogsCSV() {
@@ -1290,56 +1445,6 @@
             a.download = `training_logs_${new Date().toISOString().slice(0,10)}.csv`;
             a.click();
             URL.revokeObjectURL(url);
-        }
-
-        function startSpeechCount(exIdx, setIdx) {
-            const set = state.exercises[exIdx].setsData[setIdx];
-            if (set.locked || set.counting) return;
-
-            set.counting = true;
-            renderExercises();
-
-            let current = 1;
-            const target = set.reps || 10;
-
-            const speakNext = () => {
-                if (current > target) {
-                    set.count = target;
-                    set.locked = true;
-                    set.counting = false;
-
-                    const allLocked = state.exercises[exIdx].setsData.every(s => s.locked);
-                    if (allLocked) {
-                        state.exercises[exIdx].completed = true;
-                        saveHistoryLog(state.exercises[exIdx].name, set.weight, set.reps, 3);
-                    }
-
-                    saveState();
-                    renderHeader();
-                    renderExercises();
-                    return;
-                }
-
-                set.count = current;
-                renderExercises();
-
-                if ('speechSynthesis' in window) {
-                    const uttr = new SpeechSynthesisUtterance(current.toString());
-                    uttr.lang = 'ja-JP';
-                    uttr.rate = 1.0;
-
-                    const voices = window.speechSynthesis.getVoices();
-                    const femaleVoice = voices.find(v => v.lang.includes('ja') && (v.name.includes('Female') || v.name.includes('Kyoko') || v.name.includes('Google')));
-                    if (femaleVoice) uttr.voice = femaleVoice;
-
-                    window.speechSynthesis.speak(uttr);
-                }
-
-                current++;
-                setTimeout(speakNext, 2000);
-            };
-
-            speakNext();
         }
 
         function saveHistoryLog(exName, weight, reps, setsCount) {
@@ -1367,12 +1472,16 @@
                 return;
             }
 
-            container.innerHTML = logs.map(l => `
+            container.innerHTML = logs.map((l, index) => `
                 <div class="log-item">
                     <div>
                         <strong>${l.exercise}</strong> ${(l.exercise.includes('♨️') || l.exercise.includes('🥤')) ? '' : `(${l.weight}kg × ${l.reps}回 × ${l.sets}セット)`}
+                        <div class="log-time" style="font-size:0.75rem; color:#94a3b8;">${l.timestamp}</div>
                     </div>
-                    <div class="log-time">${l.timestamp}</div>
+                    <div class="log-actions">
+                        <button class="btn-log-edit" onclick="editLogItem(${index})">編集</button>
+                        <button class="btn-log-del" onclick="deleteLogItem(${index})">削除</button>
+                    </div>
                 </div>
             `).join('');
         }
@@ -1520,6 +1629,24 @@
             const info = SCHEDULE[selectedDayOfWeek];
             document.getElementById("workout-title").innerText = `${selectedDateStr} (${selectedDayOfWeek})： ${info.title}`;
 
+            const btnNone = document.getElementById("btn-quick-none");
+            if (state.workoutNone) {
+                btnNone.innerText = "↩️ 筋トレなし取消（アンドゥ）";
+                btnNone.classList.add("active-act");
+            } else {
+                btnNone.innerText = "🚫 今日はトレーニングなし";
+                btnNone.classList.remove("active-act");
+            }
+
+            const btnWalk = document.getElementById("btn-quick-walk");
+            if (state.wifeWalking) {
+                btnWalk.innerText = "↩️ ウォーキング取消（アンドゥ）";
+                btnWalk.classList.add("active-act");
+            } else {
+                btnWalk.innerText = "🚶‍♂️ 奥様とウォーキング（有酸素完了）";
+                btnWalk.classList.remove("active-act");
+            }
+
             document.querySelectorAll('.btn-day-tab').forEach(btn => {
                 const dayStr = btn.innerText.trim().charAt(0);
                 btn.classList.toggle('active', dayStr === selectedDayOfWeek);
@@ -1556,7 +1683,7 @@
                 specialContainer.innerHTML = `
                     <div style="background-color:#1e293b; border:1px solid #475569; border-radius:12px; padding:16px; text-align:center; margin-bottom:12px;">
                         <h3 style="color:#f8fafc;">🚫 本日のトレーニングは休養（なし）に設定されています</h3>
-                        <p style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">上部ボタンからいつでも解除できます。</p>
+                        <p style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">誤タップの場合は上部の「↩️ 筋トレなし取消」で元に戻せます。</p>
                     </div>
                 `;
                 uncompletedSection.style.display = "none";
@@ -1594,7 +1721,7 @@
                 
                 const diagram = EXERCISE_DIAGRAMS[ex.name] || {
                     group: "胸",
-                    svg: `<svg viewBox="0 0 100 100" width="55" height="55"><circle cx="50" cy="30" r="6" fill="#f8fafc"/><path d="M 50 36 L 50 65 L 35 85 M 50 65 L 65 85" stroke="#38bdf8" stroke-width="6" fill="none"/></svg>`,
+                    img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Chest_press_machine.png",
                     desc: "フォームと姿勢を意識して丁寧に行いましょう。",
                     muscle: "💪 効く部位: 全身の筋肉・体幹",
                     target: "🎯 50代目安: 20〜40 kg",
@@ -1618,7 +1745,7 @@
                     </div>
 
                     <div class="exercise-diagram-box">
-                        <div class="diagram-svg">${diagram.svg}</div>
+                        <img src="${diagram.img}" alt="${ex.name}" class="diagram-img" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/4/4f/Chest_press_machine.png';">
                         <div class="guide-info">
                             <div class="item-target-badge">${diagram.target}</div>
                             <div class="muscle-target-tag">${diagram.muscle}</div>
@@ -1659,14 +1786,9 @@
                                 </div>
 
                                 <div class="set-action-row">
-                                    ${s.locked || ex.completed ? `
-                                        <div class="count-display" style="color:#10b981;">✓ ${s.count || s.reps} 回完了</div>
-                                    ` : `
-                                        <button class="btn-start-speech ${s.counting ? 'counting' : ''}" onclick="startSpeechCount(${idx}, ${sIdx})">
-                                            ▶ ${s.counting ? 'カウント中...' : '自動音声カウント開始'}
-                                        </button>
-                                        <div class="count-display">${s.count} / ${s.reps}</div>
-                                    `}
+                                    <div class="count-display" style="color:${s.locked || ex.completed ? '#10b981' : '#38bdf8'};">
+                                        ${s.locked || ex.completed ? `✓ ${s.count || s.reps} 回完了` : `${s.count || 0} / ${s.reps}`}
+                                    </div>
                                 </div>
                             </div>
                         `).join('')}
