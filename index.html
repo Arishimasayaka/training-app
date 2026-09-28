@@ -186,19 +186,30 @@
 
         .quick-actions-bar {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
             margin-bottom: 12px;
         }
 
         .btn-quick-act {
-            padding: 8px;
+            padding: 8px 4px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             border: 1px solid #334155;
             cursor: pointer;
             text-align: center;
+        }
+
+        .btn-quick-boxing {
+            background-color: #831843;
+            color: #fbcfe8;
+            border-color: #be185d;
+        }
+
+        .btn-quick-boxing.active-act {
+            background-color: #be185d;
+            color: white;
         }
 
         .btn-quick-none {
@@ -209,7 +220,6 @@
         .btn-quick-none.active-act {
             background-color: #991b1b;
             color: #fca5a5;
-            border-color: #ef4444;
         }
 
         .btn-quick-walk {
@@ -221,7 +231,6 @@
         .btn-quick-walk.active-act {
             background-color: #1e3a8a;
             color: #93c5fd;
-            border-color: #3b82f6;
         }
 
         .progress-container {
@@ -713,9 +722,10 @@
             background-color: #334155;
             color: #38bdf8;
             border: 1px solid #475569;
-            padding: 2px 6px;
+            padding: 4px 8px;
             border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
+            font-weight: bold;
             cursor: pointer;
         }
 
@@ -723,9 +733,10 @@
             background-color: #450a0a;
             color: #fca5a5;
             border: 1px solid #7f1d1d;
-            padding: 2px 6px;
+            padding: 4px 8px;
             border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
+            font-weight: bold;
             cursor: pointer;
         }
 
@@ -771,6 +782,84 @@
 
         .mark-yes { color: #10b981; }
         .mark-no { color: #64748b; }
+
+        /* 編集モーダル */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal-card {
+            background-color: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 12px;
+            padding: 18px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #38bdf8;
+            margin-bottom: 12px;
+        }
+
+        .modal-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .modal-field label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+        }
+
+        .modal-field input {
+            background-color: #0f172a;
+            color: white;
+            border: 1px solid #334155;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .btn-modal-save {
+            flex: 1;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-modal-cancel {
+            flex: 1;
+            background-color: #475569;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -817,8 +906,9 @@
 
     <main>
         <div class="quick-actions-bar">
-            <button id="btn-quick-none" class="btn-quick-act btn-quick-none" onclick="toggleWorkoutNone()">🚫 今日はトレーニングなし</button>
-            <button id="btn-quick-walk" class="btn-quick-act btn-quick-walk" onclick="toggleWifeWalking()">🚶‍♂️ 奥様とウォーキング（有酸素完了）</button>
+            <button id="btn-quick-boxing" class="btn-quick-act btn-quick-boxing" onclick="toggleBoxingDay()">🥊 今日はボクシング</button>
+            <button id="btn-quick-none" class="btn-quick-act btn-quick-none" onclick="toggleWorkoutNone()">🚫 筋トレなし</button>
+            <button id="btn-quick-walk" class="btn-quick-act btn-quick-walk" onclick="toggleWifeWalking()">🚶‍♂️ 奥様と散歩</button>
         </div>
 
         <div class="quote-card">
@@ -925,11 +1015,38 @@
             </div>
 
             <div style="margin-top: 16px;">
-                <div class="section-header">📜 過去の全記録（編集・削除可能）</div>
+                <div class="section-header">📜 過去の全記録（直接編集・削除可能）</div>
                 <div id="log-list" class="log-list"></div>
             </div>
         </div>
     </main>
+
+    <!-- 過去ログ編集モーダル -->
+    <div id="edit-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-title">✏️ 記録データの編集</div>
+            <div class="modal-field">
+                <label>種目 / 項目名</label>
+                <input type="text" id="modal-exercise-name" disabled style="opacity:0.7;">
+            </div>
+            <div class="modal-field">
+                <label>日時 (例: 2026/09/27 12:00)</label>
+                <input type="text" id="modal-timestamp">
+            </div>
+            <div class="modal-field" id="modal-weight-box">
+                <label>重量 (kg)</label>
+                <input type="number" id="modal-weight" step="0.5">
+            </div>
+            <div class="modal-field">
+                <label id="modal-reps-label">回数 / 摂取量(g) / 時間(分)</label>
+                <input type="number" id="modal-reps">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-modal-save" onclick="saveModalEdit()">保存する</button>
+                <button class="btn-modal-cancel" onclick="closeModal()">キャンセル</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
@@ -1087,9 +1204,11 @@
         let realTodayDayOfWeek = "";
         let selectedDateStr = "";
         let selectedDayOfWeek = "";
+        let currentEditIndex = -1;
 
         let state = {
             exercises: [],
+            boxingDay: false,
             workoutNone: false,
             wifeWalking: false,
             stretchIndex: 0,
@@ -1192,9 +1311,11 @@
             if (saved) {
                 const parsed = JSON.parse(saved);
                 state.exercises = parsed.exercises || [];
+                state.boxingDay = parsed.boxingDay || false;
                 state.workoutNone = parsed.workoutNone || false;
                 state.wifeWalking = parsed.wifeWalking || false;
             } else {
+                state.boxingDay = false;
                 state.workoutNone = false;
                 state.wifeWalking = false;
                 const names = INITIAL_MENU[dayStr] || [];
@@ -1220,6 +1341,7 @@
             const key = "kintore_menu_date_" + selectedDateStr;
             localStorage.setItem(key, JSON.stringify({
                 exercises: state.exercises,
+                boxingDay: state.boxingDay,
                 workoutNone: state.workoutNone,
                 wifeWalking: state.wifeWalking
             }));
@@ -1250,6 +1372,20 @@
 
         function resetToToday() {
             initApp();
+        }
+
+        function toggleBoxingDay() {
+            state.boxingDay = !state.boxingDay;
+            saveState();
+
+            if (state.boxingDay) {
+                recordSpaActivity("🥊 ボクシングレッスン（有酸素運動）", 45);
+            } else {
+                removeLogByExerciseAndDate("ボクシング", selectedDateStr);
+            }
+
+            renderHeader();
+            renderContent();
         }
 
         function toggleWorkoutNone() {
@@ -1363,21 +1499,47 @@
             alert(`「${actName}」を ${selectedDateStr} の記録として追加しました！`);
         }
 
-        function editLogItem(index) {
+        function openModalEdit(index) {
             const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
             const item = logs[index];
             if (!item) return;
 
-            const newWeight = prompt("重量 (kg) を入力してください:", item.weight);
-            if (newWeight === null) return;
+            currentEditIndex = index;
+            document.getElementById("modal-exercise-name").value = item.exercise;
+            document.getElementById("modal-timestamp").value = item.timestamp;
+            document.getElementById("modal-weight").value = item.weight || 0;
+            document.getElementById("modal-reps").value = item.reps || 0;
 
-            const newReps = prompt("回数 / 摂取量(g) / 時間(分) を入力してください:", item.reps);
-            if (newReps === null) return;
+            const isSpecial = item.exercise.includes('♨️') || item.exercise.includes('🥤');
+            document.getElementById("modal-weight-box").style.display = isSpecial ? "none" : "flex";
 
-            item.weight = parseFloat(newWeight) || 0;
-            item.reps = parseInt(newReps, 10) || 0;
+            if (item.exercise.includes('🥤')) {
+                document.getElementById("modal-reps-label").innerText = "摂取量 (g)";
+            } else if (item.exercise.includes('♨️') || item.exercise.includes('ウォーキング')) {
+                document.getElementById("modal-reps-label").innerText = "時間 (分)";
+            } else {
+                document.getElementById("modal-reps-label").innerText = "完了回数";
+            }
+
+            document.getElementById("edit-modal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("edit-modal").style.display = "none";
+            currentEditIndex = -1;
+        }
+
+        function saveModalEdit() {
+            if (currentEditIndex < 0) return;
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            const item = logs[currentEditIndex];
+
+            item.timestamp = document.getElementById("modal-timestamp").value;
+            item.weight = parseFloat(document.getElementById("modal-weight").value) || 0;
+            item.reps = parseInt(document.getElementById("modal-reps").value, 10) || 0;
 
             localStorage.setItem("kintore_logs", JSON.stringify(logs));
+            closeModal();
             renderHistoryLogs();
             updateChart();
             initProteinChart();
@@ -1475,11 +1637,11 @@
             container.innerHTML = logs.map((l, index) => `
                 <div class="log-item">
                     <div>
-                        <strong>${l.exercise}</strong> ${(l.exercise.includes('♨️') || l.exercise.includes('🥤')) ? '' : `(${l.weight}kg × ${l.reps}回 × ${l.sets}セット)`}
+                        <strong>${l.exercise}</strong> ${(l.exercise.includes('♨️') || l.exercise.includes('🥤')) ? `(${l.reps}単位/g/分)` : `(${l.weight}kg × ${l.reps}回 × ${l.sets}セット)`}
                         <div class="log-time" style="font-size:0.75rem; color:#94a3b8;">${l.timestamp}</div>
                     </div>
                     <div class="log-actions">
-                        <button class="btn-log-edit" onclick="editLogItem(${index})">編集</button>
+                        <button class="btn-log-edit" onclick="openModalEdit(${index})">編集</button>
                         <button class="btn-log-del" onclick="deleteLogItem(${index})">削除</button>
                     </div>
                 </div>
@@ -1629,21 +1791,30 @@
             const info = SCHEDULE[selectedDayOfWeek];
             document.getElementById("workout-title").innerText = `${selectedDateStr} (${selectedDayOfWeek})： ${info.title}`;
 
+            const btnBoxing = document.getElementById("btn-quick-boxing");
+            if (state.boxingDay) {
+                btnBoxing.innerText = "↩️ ボクシング取消";
+                btnBoxing.classList.add("active-act");
+            } else {
+                btnBoxing.innerText = "🥊 ボクシング";
+                btnBoxing.classList.remove("active-act");
+            }
+
             const btnNone = document.getElementById("btn-quick-none");
             if (state.workoutNone) {
-                btnNone.innerText = "↩️ 筋トレなし取消（アンドゥ）";
+                btnNone.innerText = "↩️ 筋トレなし取消";
                 btnNone.classList.add("active-act");
             } else {
-                btnNone.innerText = "🚫 今日はトレーニングなし";
+                btnNone.innerText = "🚫 筋トレなし";
                 btnNone.classList.remove("active-act");
             }
 
             const btnWalk = document.getElementById("btn-quick-walk");
             if (state.wifeWalking) {
-                btnWalk.innerText = "↩️ ウォーキング取消（アンドゥ）";
+                btnWalk.innerText = "↩️ 散歩取消";
                 btnWalk.classList.add("active-act");
             } else {
-                btnWalk.innerText = "🚶‍♂️ 奥様とウォーキング（有酸素完了）";
+                btnWalk.innerText = "🚶‍♂️ 奥様と散歩";
                 btnWalk.classList.remove("active-act");
             }
 
@@ -1656,9 +1827,9 @@
             const btnReset = document.getElementById("btn-today-reset");
             btnReset.style.display = (selectedDateStr !== realTodayDateStr) ? "inline-block" : "none";
 
-            if (state.workoutNone) {
+            if (state.boxingDay || state.workoutNone) {
                 document.getElementById("progress-bar").style.width = "100%";
-                document.getElementById("progress-text").innerText = "本日のトレーニングなし（完了）";
+                document.getElementById("progress-text").innerText = state.boxingDay ? "本日のボクシング完了（筋トレ繰り越し）" : "本日のトレーニングなし（完了）";
             } else if (info.special) {
                 document.getElementById("progress-bar").style.width = "0%";
                 document.getElementById("progress-text").innerText = "";
@@ -1679,11 +1850,23 @@
 
             specialContainer.innerHTML = "";
 
+            if (state.boxingDay) {
+                specialContainer.innerHTML = `
+                    <div style="background-color:#831843; border:1px solid #be185d; border-radius:12px; padding:16px; text-align:center; margin-bottom:12px;">
+                        <h3 style="color:#fbcfe8;">🥊 本日はボクシングレッスン完了！</h3>
+                        <p style="font-size:0.8rem; color:#f472b6; margin-top:4px;">本日の筋トレメニューは明日以降へ繰り越されます。「↩️ ボクシング取消」で元に戻せます。</p>
+                    </div>
+                `;
+                uncompletedSection.style.display = "none";
+                completedSection.style.display = "none";
+                return;
+            }
+
             if (state.workoutNone) {
                 specialContainer.innerHTML = `
                     <div style="background-color:#1e293b; border:1px solid #475569; border-radius:12px; padding:16px; text-align:center; margin-bottom:12px;">
                         <h3 style="color:#f8fafc;">🚫 本日のトレーニングは休養（なし）に設定されています</h3>
-                        <p style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">誤タップの場合は上部の「↩️ 筋トレなし取消」で元に戻せます。</p>
+                        <p style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">「↩️ 筋トレなし取消」で元に戻せます。</p>
                     </div>
                 `;
                 uncompletedSection.style.display = "none";
