@@ -445,4 +445,1005 @@
             color: #ffffff;
             text-decoration: none;
             display: flex;
-            align
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .exercise-name-link:hover {
+            color: #38bdf8;
+            text-decoration: underline;
+        }
+
+        .yt-icon-tag {
+            font-size: 0.7rem;
+            background-color: #ff4545;
+            color: white;
+            padding: 1px 4px;
+            border-radius: 4px;
+            margin-left: 6px;
+            font-weight: bold;
+        }
+
+        .btn-swap-ex {
+            background-color: #334155;
+            border: 1px solid #475569;
+            color: #fbbf24;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 6px;
+        }
+
+        .btn-edit-lock {
+            background-color: #334155;
+            border: 1px solid #475569;
+            color: #38bdf8;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .exercise-diagram-box {
+            background-color: #0f172a;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #334155;
+        }
+
+        .diagram-img {
+            width: 85px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+            border: 1px solid #475569;
+            background-color: #0f172a;
+        }
+
+        .guide-info {
+            flex: 1;
+        }
+
+        .guide-desc {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            line-height: 1.35;
+            margin-bottom: 4px;
+        }
+
+        .muscle-target-tag {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #10b981;
+            background-color: rgba(16, 185, 129, 0.15);
+            border: 1px solid #059669;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .item-target-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: #60a5fa;
+            background-color: rgba(30, 58, 138, 0.5);
+            border: 1px solid #1d4ed8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        .sets-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .set-item-card {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .set-item-card.locked {
+            background-color: #0d2720;
+            border-color: #10b981;
+        }
+
+        .set-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .set-label {
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: #38bdf8;
+        }
+
+        .set-controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .sub-control-box {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sub-control-box label {
+            font-size: 0.7rem;
+            color: var(--text-sub);
+        }
+
+        .number-control {
+            display: flex;
+            align-items: center;
+            background-color: #1e293b;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            overflow: hidden;
+        }
+
+        .btn-num {
+            background-color: #334155;
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .num-val {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .set-action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2px;
+        }
+
+        .count-display {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .btn-finish-set {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-complete {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .timer-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-top: 12px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+
+        .timer-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            font-family: monospace;
+            margin: 6px 0;
+            color: #38bdf8;
+        }
+
+        .stretch-nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            background-color: #0f172a;
+            padding: 4px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+        }
+
+        .btn-stretch-step {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            background: transparent;
+            border: 1px solid #334155;
+            color: var(--text-sub);
+            font-weight: bold;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .btn-stretch-step.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-stretch-arrow {
+            background-color: #334155;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .btn-timer {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .spa-card {
+            background: linear-gradient(135deg, #451a03, #1e293b);
+            border: 1px solid #f97316;
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-top: 12px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .spa-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-spa-action {
+            background-color: #292524;
+            border: 1px solid #78350f;
+            color: #fdba74;
+            padding: 12px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            touch-action: manipulation;
+        }
+
+        .btn-spa-action:active {
+            background-color: #451a03;
+            transform: scale(0.98);
+        }
+
+        .protein-card {
+            background: linear-gradient(135deg, #1e3a8a, #0f172a);
+            border: 1px solid #3b82f6;
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .chart-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 14px;
+            border: 1px solid #334155;
+            margin-top: 12px;
+        }
+
+        .chart-select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            background-color: #0f172a;
+            color: white;
+            border: 1px solid #334155;
+            margin-bottom: 10px;
+        }
+
+        .log-list {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: var(--border-radius);
+            padding: 10px;
+            max-height: 280px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+        }
+
+        .log-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .log-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .btn-log-edit {
+            background-color: #334155;
+            color: #38bdf8;
+            border: 1px solid #475569;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-log-del {
+            background-color: #450a0a;
+            color: #fca5a5;
+            border: 1px solid #7f1d1d;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-csv-download {
+            width: 100%;
+            padding: 10px;
+            background-color: #059669;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+
+        .habit-calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .habit-day-box {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 6px;
+            text-align: center;
+            font-size: 0.75rem;
+        }
+
+        .habit-day-box.done {
+            border-color: #10b981;
+            background-color: #0d2720;
+        }
+
+        .habit-mark {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .mark-yes { color: #10b981; }
+        .mark-no { color: #64748b; }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal-card {
+            background-color: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 12px;
+            padding: 18px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #38bdf8;
+            margin-bottom: 12px;
+        }
+
+        .modal-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .modal-field label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+        }
+
+        .modal-field input {
+            background-color: #0f172a;
+            color: white;
+            border: 1px solid #334155;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .btn-modal-save {
+            flex: 1;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-modal-cancel {
+            flex: 1;
+            background-color: #475569;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <h1>50to60 Training App</h1>
+            <div id="today-badge" class="today-badge">-</div>
+        </div>
+
+        <div class="date-picker-row">
+            <label>📅 記録対象日:</label>
+            <input type="date" id="target-date-picker" onchange="onDateSelectionChange()">
+            <button id="btn-today-reset" class="btn-reset-today" onclick="resetToToday()" style="display:none;">今日へ戻る</button>
+        </div>
+
+        <div class="day-tabs">
+            <button class="btn-day-tab" onclick="switchSelectedDay('月')">月</button>
+            <button class="btn-day-tab" onclick="switchSelectedDay('火')">火</button>
+            <button class="btn-day-tab" onclick="switchSelectedDay('水')">水</button>
+            <button class="btn-day-tab" onclick="switchSelectedDay('木')">木</button>
+            <button class="btn-day-tab" onclick="switchSelectedDay('金')">金</button>
+            <button class="btn-day-tab" onclick="switchSelectedDay('土')">土</button>
+            <button class="btn-day-tab" onclick="switchSelectedDay('日')">日</button>
+        </div>
+
+        <div class="workout-title-row">
+            <div id="workout-title" class="workout-title">読み込み中...</div>
+        </div>
+
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="progress-text" class="progress-text">0 / 0 完了</div>
+    </header>
+
+    <nav class="category-nav">
+        <button class="btn-cat-tab active" onclick="switchCategory('cat-workout')">🏋️ トレーニング</button>
+        <button class="btn-cat-tab" onclick="switchCategory('cat-stretch')">🧘 柔軟・朝夜</button>
+        <button class="btn-cat-tab" onclick="switchCategory('cat-protein')">🥤 プロテイン</button>
+        <button class="btn-cat-tab" onclick="switchCategory('cat-spa')">♨️ サウナ</button>
+        <button class="btn-cat-tab" onclick="switchCategory('cat-logs')">📜 記録・グラフ</button>
+    </nav>
+
+    <main>
+        <div class="quick-actions-bar">
+            <button id="btn-quick-boxing" class="btn-quick-act btn-quick-boxing" onclick="toggleBoxingDay()">🥊 今日はボクシング</button>
+            <button id="btn-quick-none" class="btn-quick-act btn-quick-none" onclick="toggleWorkoutNone()">🚫 筋トレなし</button>
+            <button id="btn-quick-walk" class="btn-quick-act btn-quick-walk" onclick="toggleWifeWalking()">🚶‍♂️ 奥様と散歩</button>
+        </div>
+
+        <div class="quote-card">
+            <div class="quote-header">
+                <span id="quote-tag" class="quote-tag">🔥 モチベーション</span>
+                <button class="quote-refresh-btn" onclick="getRandomQuote()">🔄 別の名言</button>
+            </div>
+            <div id="quote-text" class="quote-text">読み込み中...</div>
+            <div id="quote-author" class="quote-author" style="font-size:0.75rem; color:#cbd5e1; text-align:right;"></div>
+        </div>
+
+        <!-- 1. トレーニングタブ -->
+        <div id="cat-workout" class="tab-content active">
+            <div id="special-day-container"></div>
+
+            <div class="add-exercise-box">
+                <div class="add-ex-title">➕ 空いているマシン・種目を追加</div>
+                <div class="add-ex-form-rows">
+                    <div class="add-ex-row-1">
+                        <select id="body-part-select" onchange="onCategoryFilterChange()" style="flex: 1;">
+                            <option value="胸">胸</option>
+                            <option value="背中">背中</option>
+                            <option value="肩">肩</option>
+                            <option value="腕">腕</option>
+                            <option value="脚・腹筋">脚・腹筋</option>
+                        </select>
+                        <select id="preset-ex-select" onchange="onExerciseSelectChange()" style="flex: 2;"></select>
+                    </div>
+                    <div class="add-ex-row-2">
+                        <div class="input-group-item">
+                            <input type="number" id="custom-ex-weight" placeholder="0" step="0.5">
+                            <span class="input-unit-label">kg</span>
+                        </div>
+                        <div class="input-group-item">
+                            <input type="number" id="custom-ex-reps" placeholder="10" value="10">
+                            <span class="input-unit-label">回/秒</span>
+                        </div>
+                        <button class="btn-add-ex-submit" onclick="addCustomExercise()">＋ 追加</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="uncompleted-section">
+                <div class="section-header">🌆 トレーニング中</div>
+                <div id="uncompleted-list"></div>
+            </div>
+            <div id="completed-section" style="margin-top: 20px;">
+                <div class="section-header">✅ 完了済み（ロック中）</div>
+                <div id="completed-list"></div>
+            </div>
+        </div>
+
+        <!-- 2. 柔軟・朝夜コンディショニングタブ -->
+        <div id="cat-stretch" class="tab-content">
+            <div id="morning-section" class="timer-card" style="background: linear-gradient(135deg, #064e3b, #0f172a); border-color: #10b981;">
+                <h3>🌅 朝コンディショニング（5分）</h3>
+                <p style="color: #a7f3d0; font-size: 0.8rem;">マインドフルネス瞑想＆スッキリストレッチ</p>
+                <div class="stretch-nav-bar" style="margin-top: 10px;">
+                    <button class="btn-stretch-arrow" onclick="moveMorningStep(-1)">◀</button>
+                    <div id="morning-step-dots" style="display:flex; gap:4px;"></div>
+                    <button class="btn-stretch-arrow" onclick="moveMorningStep(1)">▶</button>
+                </div>
+                <div id="morning-name" style="font-weight: bold; font-size: 1rem; color: #6ee7b7;"></div>
+                <div style="margin-top: 4px;"><a id="morning-yt-link" href="#" target="_blank" class="yt-link">🎬 Shorts動画を見る</a></div>
+                <div id="morning-timer" class="timer-display" style="color: #6ee7b7;">01:00</div>
+                <button id="morning-start-btn" class="btn-timer" style="background-color: #059669;" onclick="toggleMorningTimer()">スタート</button>
+            </div>
+
+            <div id="stretch-section" class="timer-card">
+                <h3>🧘 夕方：前屈・もも裏ストレッチ（5分）</h3>
+                <p style="color: var(--text-sub); font-size: 0.8rem;">硬い方向け（息を吐きながら伸ばす）</p>
+                <div class="stretch-nav-bar" style="margin-top: 10px;">
+                    <button class="btn-stretch-arrow" onclick="moveStretchStep(-1)">◀</button>
+                    <div id="stretch-step-dots" style="display:flex; gap:4px;"></div>
+                    <button class="btn-stretch-arrow" onclick="moveStretchStep(1)">▶</button>
+                </div>
+                <div id="stretch-name" style="font-weight: bold; font-size: 1rem; color: #38bdf8;"></div>
+                <div style="margin-top: 4px;"><a id="stretch-yt-link" href="#" target="_blank" class="yt-link">🎬 Shorts動画を見る</a></div>
+                <div id="stretch-timer" class="timer-display">01:00</div>
+                <button id="stretch-start-btn" class="btn-timer" onclick="toggleStretchTimer()">スタート</button>
+            </div>
+        </div>
+
+        <!-- 3. プロテイン＆栄養タブ -->
+        <div id="cat-protein" class="tab-content">
+            <div class="protein-card">
+                <h3 style="color:#93c5fd; margin-bottom:6px;">🥤 50代男性のプロテイン・タンパク質ガイド</h3>
+                <p style="font-size:0.85rem; color:#e2e8f0; line-height:1.5;">1日の必要量: <strong>体重 × 1.2〜1.5g</strong>（体重70kgなら約80〜100g）。<br>トレーニング直後45分以内または朝一番の摂取が最も効果的です！</p>
+                <div style="margin-top:12px;">
+                    <button class="btn-spa-action" style="width:100%; border-color:#3b82f6; color:#93c5fd;" onclick="recordProteinLog('プロテイン 25g 摂取', 25)">🥤 プロテイン1杯（25g）を記録する</button>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h4 style="color:#60a5fa; margin-bottom:8px; font-size:0.9rem;">📊 プロテイン日別摂取量（g）推移</h4>
+                <canvas id="proteinChart" height="160"></canvas>
+            </div>
+        </div>
+
+        <!-- 4. サウナ＆温泉タブ -->
+        <div id="cat-spa" class="tab-content">
+            <div class="spa-card">
+                <div class="spa-title">♨️ サウナ・ジャグジー リカバリー記録</div>
+                <p style="font-size:0.8rem; color:#fed7aa;">血行促進・筋疲労除去に。ジャグジーは1単位8分設定！</p>
+                <div class="spa-buttons">
+                    <button type="button" class="btn-spa-action" onclick="recordSpaActivity('サウナ 8分', 8)">🧖‍♂️ サウナ 8分</button>
+                    <button type="button" class="btn-spa-action" onclick="recordSpaActivity('サウナ 16分', 16)">🧖‍♂️ サウナ 16分</button>
+                    <button type="button" class="btn-spa-action" onclick="recordSpaActivity('ジャグジー 8分', 8)">🛁 ジャグジー 8分</button>
+                    <button type="button" class="btn-spa-action" onclick="recordSpaActivity('ジャグジー 16分', 16)">🛁 ジャグジー 16分</button>
+                    <button type="button" class="btn-spa-action" onclick="recordSpaActivity('サウナ＋ジャグジー 24分', 24)">🔥 併用 24分</button>
+                    <button type="button" class="btn-spa-action" onclick="recordSpaActivity('温冷交互浴 16分', 16)">❄️ 温冷交互浴 16分</button>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h4 style="color:#fb923c; margin-bottom:8px; font-size:0.9rem;">♨️ 温冷交互浴の推奨時間目安（ジャグジー1単位8分基準）</h4>
+                <canvas id="spaGuideChart" height="160"></canvas>
+            </div>
+        </div>
+
+        <!-- 5. 記録・グラフタブ -->
+        <div id="cat-logs" class="tab-content">
+            <button class="btn-csv-download" onclick="downloadLogsCSV()">📥 全記録データをCSV保存（Excel / スプレッドシート用）</button>
+            
+            <div class="chart-card">
+                <h4 style="color:#10b981; margin-bottom:4px; font-size:0.9rem;">🚶‍♂️ ウォーキング＆リカバリー（直近14日間 ○×表示）</h4>
+                <div id="habit-calendar" class="habit-calendar-grid"></div>
+            </div>
+
+            <div class="chart-card">
+                <h4 style="color:#60a5fa; margin-bottom:8px; font-size:0.9rem;">📈 重量・回数の成長推移グラフ</h4>
+                <select id="chart-exercise-select" class="chart-select" onchange="updateChart()"></select>
+                <canvas id="growthChart" height="180"></canvas>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <div class="section-header">📜 過去の全記録（直接編集・削除可能）</div>
+                <div id="log-list" class="log-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 過去ログ編集モーダル -->
+    <div id="edit-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-title">✏️ 記録データの編集</div>
+            <div class="modal-field">
+                <label>種目 / 項目名</label>
+                <input type="text" id="modal-exercise-name" disabled style="opacity:0.7;">
+            </div>
+            <div class="modal-field">
+                <label>日時 (例: 2026/10/04 12:00)</label>
+                <input type="text" id="modal-timestamp">
+            </div>
+            <div class="modal-field" id="modal-weight-box">
+                <label>重量 (kg)</label>
+                <input type="number" id="modal-weight" step="0.5">
+            </div>
+            <div class="modal-field">
+                <label id="modal-reps-label">回数 / 摂取量(g) / 時間(分)</label>
+                <input type="number" id="modal-reps">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-modal-save" onclick="saveModalEdit()">保存する</button>
+                <button class="btn-modal-cancel" onclick="closeModal()">キャンセル</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
+
+        const MOTIVATIONAL_QUOTES = [
+            { text: "限界を決めるのは自分自身だ。あと1回挙げた時、身体は確実に変わる。", author: "アーノルド・シュワルツェネッガー", type: "名言" },
+            { text: "準備に妥協がなければ、結果に対して不安になることはない。", author: "イチロー", type: "アスリート" },
+            { text: "サウナと水風呂の温冷交互浴は、自律神経を整えて睡眠の質を劇的に高める！", author: "サウナ豆知識", type: "豆知識" },
+            { text: "ジャグジーのジェット水流は血流を促し、筋トレ後の筋肉痛やコリを優しくほぐす！", author: "ジャグジー豆知識", type: "豆知識" },
+            { text: "プロテインはトレーニング後45分以内または朝一番に飲むと効果絶大！", author: "栄養雑学", type: "豆知識" }
+        ];
+
+        const MORNING_STEPS = [
+            { name: "1. 深呼吸マインドフルネス瞑想", query: "マインドフルネス 瞑想 やり方" },
+            { name: "2. キャット＆カウ（背中ストレッチ）", query: "キャットアンドカウ ストレッチ" },
+            { name: "3. 股関節・腸腰筋あさストレッチ", query: "股関節 腸腰筋 ストレッチ" },
+            { name: "4. もも裏朝の軽め伸ばし", query: "ハムストリングス ストレッチ" },
+            { name: "5. 全身伸び＆ポジティブ呼吸", query: "全身伸び ストレッチ" }
+        ];
+
+        const HAMSTRING_STRETCHES = [
+            { name: "1. ジャックナイフストレッチ", query: "ジャックナイフストレッチ 前屈" },
+            { name: "2. 骨盤立て片足伸ばし", query: "ハムストリングス 骨盤 ストレッチ" },
+            { name: "3. 股関節前側伸ばし", query: "股関節前側 ストレッチ" },
+            { name: "4. お尻・臀筋ストレッチ", query: "お尻 臀筋 ストレッチ" },
+            { name: "5. 全身前屈リセット", query: "前屈 柔らかくなる ストレッチ" }
+        ];
+
+        const CATEGORY_PRESETS = {
+            "胸": ["チェストプレスマシン", "インクラインダンベルプレス", "ケーブルフライ", "ペックフライマシン", "腕立て伏せ（プッシュアップ）", "ディップス"],
+            "背中": ["ラットプルダウン", "シーテッドローイング", "懸垂（チンニング）", "バーベルデッドリフト", "ワンハンドローイング"],
+            "肩": ["ショルダープレスマシン", "サイドレイズ", "リアレイズマシン"],
+            "腕": ["ケーブル・プレスダウン", "ダンベルカール", "バーベルカール", "アームカールマシン"],
+            "脚・腹筋": ["レッグプレスマシン", "レッグエクステンション", "レッグカールマシン", "ファーマーズウォーク", "プランク", "サイドプランク", "デッドバグ", "アブベンチクランチ"]
+        };
+
+        const EXERCISE_SWAP_GROUPS = {
+            "胸": ["チェストプレスマシン", "インクラインダンベルプレス", "ペックフライマシン", "腕立て伏せ（プッシュアップ）"],
+            "背中": ["ラットプルダウン", "シーテッドローイング", "懸垂（チンニング）", "ワンハンドローイング"],
+            "肩": ["ショルダープレスマシン", "サイドレイズ", "リアレイズマシン"],
+            "腕": ["ケーブル・プレスダウン", "ダンベルカール", "アームカールマシン"],
+            "脚・体幹": ["レッグプレスマシン", "レッグエクステンション", "ファーマーズウォーク", "プランク", "デッドバグ"]
+        };
+
+        const EXERCISE_DIAGRAMS = {
+            "チェストプレスマシン": {
+                group: "胸",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="チェストプレス" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><rect x=\\'25\\' y=\\'20\\' width=\\'10\\' height=\\'60\\' fill=\\'#64748b\\'/><circle cx=\\'45\\' cy=\\'35\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 45 45 L 75 45 M 75 35 L 75 55\\' stroke=\\'#ef4444\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "座ってグリップを胸の前で押し出す（胸のバルクアップ・安全高重量）",
+                muscle: "💪 効く部位: 大胸筋（胸全般）・三頭筋",
+                target: "🎯 50代目安: 35〜55 kg",
+                type: "machine"
+            },
+            "腕立て伏せ（プッシュアップ）": {
+                group: "胸",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="腕立て伏せ" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><rect x=\\'15\\' y=\\'65\\' width=\\'70\\' height=\\'6\\' fill=\\'#64748b\\'/><circle cx=\\'30\\' cy=\\'50\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 30 58 L 75 58\\' stroke=\\'#ef4444\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "自重で手幅を広げて体を上下させる。胸と体幹の自重ベース基本種目",
+                muscle: "💪 効く部位: 大胸筋・上腕三頭筋・体幹",
+                target: "🎯 50代目安: 自重 10〜20 回",
+                type: "other"
+            },
+            "ディップス": {
+                group: "胸",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="ディップス" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><rect x=\\'25\\' y=\\'40\\' width=\\'8\\' height=\\'50\\' fill=\\'#64748b\\'/><rect x=\\'67\\' y=\\'40\\' width=\\'8\\' height=\\'50\\' fill=\\'#64748b\\'/><circle cx=\\'50\\' cy=\\'25\\' r=\\'8\\' fill=\\'#f8fafc\\'/></svg>';">`,
+                desc: "自重で身体を上下させて胸下部と腕の裏側を強烈に鍛える",
+                muscle: "💪 効く部位: 大胸筋下部・上腕三頭筋",
+                target: "🎯 50代目安: 自重 8〜15 回",
+                type: "other"
+            },
+            "懸垂（チンニング）": {
+                group: "背中",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="懸垂" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><line x1=\\'20\\' y1=\\'20\\' x2=\\'80\\' y2=\\'20\\' stroke=\\'#3b82f6\\' stroke-width=\\'6\\'/><circle cx=\\'50\\' cy=\\'35\\' r=\\'8\\' fill=\\'#f8fafc\\'/></svg>';">`,
+                desc: "バーを握り身体を引き上げる。広背筋を最大収縮させる究極の自重種目",
+                muscle: "💪 効く部位: 広背筋・背中全般・二頭筋",
+                target: "🎯 50代目安: 自重 5〜12 回",
+                type: "other"
+            },
+            "ファーマーズウォーク": {
+                group: "脚・体幹",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="ファーマーズウォーク" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><circle cx=\\'50\\' cy=\\'25\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 50 33 L 50 70 M 35 45 L 35 65 M 65 45 L 65 65\\' stroke=\\'#10b981\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "両手に高重量のダンベルを持ち直立して歩く。全身の体幹・握力・足腰を直撃",
+                muscle: "💪 効く部位: 全身の体幹・握力・僧帽筋・脚力",
+                target: "🎯 50代目安: 片手 12〜20 kg × 30秒〜1分",
+                type: "dumbbell"
+            },
+            "プランク": {
+                group: "脚・体幹",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="プランク" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><rect x=\\'15\\' y=\\'65\\' width=\\'70\\' height=\\'6\\' fill=\\'#64748b\\'/><circle cx=\\'25\\' cy=\\'50\\' r=\\'8\\' fill=\\'#f8fafc\\'/><line x1=\\'25\\' y1=\\'58\\' x2=\\'80\\' y2=\\'58\\' stroke=\\'#10b981\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "前腕と爪先で体を一直線に保つ。腰を痛めずお腹周りを固定引き締め",
+                muscle: "💪 効く部位: 腹直筋・体幹インナーマッスル",
+                target: "🎯 50代目安: 自重 30〜60 秒",
+                type: "other"
+            },
+            "サイドプランク": {
+                group: "脚・体幹",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="サイドプランク" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><circle cx=\\'30\\' cy=\\'45\\' r=\\'8\\' fill=\\'#f8fafc\\'/><line x1=\\'30\\' y1=\\'53\\' x2=\\'80\\' y2=\\'70\\' stroke=\\'#10b981\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "横向きで片肘をついて腰を浮かせる。脇腹（腹斜筋）と体幹の安定性を強化",
+                muscle: "💪 効く部位: 腹斜筋（脇腹）・体幹",
+                target: "🎯 50代目安: 左右 各30 秒",
+                type: "other"
+            },
+            "インクラインダンベルプレス": {
+                group: "胸",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="インクラインプレス" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><line x1=\\'20\\' y1=\\'80\\' x2=\\'60\\' y2=\\'40\\' stroke=\\'#64748b\\' stroke-width=\\'6\\'/><circle cx=\\'45\\' cy=\\'35\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 45 40 L 70 15\\' stroke=\\'#ef4444\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "ベンチを傾けて斜め上へ持ち上げ胸上部を立体的に引き締める",
+                muscle: "💪 効く部位: 大胸筋上部（鎖骨周り）",
+                target: "🎯 50代目安: 10〜18 kg",
+                type: "dumbbell"
+            },
+            "ケーブルフライ": {
+                group: "胸",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="ケーブルフライ" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><circle cx=\\'50\\' cy=\\'25\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 50 33 L 50 70 M 50 45 L 20 50 M 50 45 L 80 50\\' stroke=\\'#38bdf8\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "ケーブルを前面で絞り込み、胸中央の深い溝とパンチ力をつくる",
+                muscle: "💪 効く部位: 大胸筋内側・三角筋前部",
+                target: "🎯 50代目安: 10〜20 kg",
+                type: "machine"
+            },
+            "ラットプルダウン": {
+                group: "背中",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="ラットプルダウン" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><line x1=\\'15\\' y1=\\'20\\' x2=\\'85\\' y2=\\'20\\' stroke=\\'#3b82f6\\' stroke-width=\\'6\\'/><circle cx=\\'50\\' cy=\\'40\\' r=\\'8\\' fill=\\'#f8fafc\\'/></svg>';">`,
+                desc: "バーを胸の上に引き下ろし、綺麗な逆三角形の背中をつくる",
+                muscle: "💪 効く部位: 広背筋・肩甲骨周辺",
+                target: "🎯 50代目安: 35〜50 kg",
+                type: "machine"
+            },
+            "シーテッドローイング": {
+                group: "背中",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="シーテッドローイング" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><rect x=\\'15\\' y=\\'30\\' width=\\'10\\' height=\\'50\\' fill=\\'#64748b\\'/><circle cx=\\'45\\' cy=\\'45\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 45 45 L 15 45\\' stroke=\\'#3b82f6\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "お腹に向けてグリップを引き寄せ、背中の厚み・猫背改善を図る",
+                muscle: "💪 効く部位: 僧帽筋・広背筋中央",
+                target: "🎯 50代目安: 30〜45 kg",
+                type: "machine"
+            },
+            "ショルダープレスマシン": {
+                group: "肩",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="ショルダープレス" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><circle cx=\\'50\\' cy=\\'45\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 25 25 L 75 25\\' stroke=\\'#eab308\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "頭上へ安全に押し上げ、男らしい立体的な丸い肩をつくる",
+                muscle: "💪 効く部位: 三角筋前部・側面",
+                target: "🎯 50代目安: 20〜35 kg",
+                type: "machine"
+            },
+            "サイドレイズ": {
+                group: "肩",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="サイドレイズ" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><circle cx=\\'50\\' cy=\\'25\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 50 33 L 50 70 M 50 45 L 15 45 M 50 45 L 85 45\\' stroke=\\'#eab308\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "ダンベルを体頭横に持ち上げ、肩幅の広さを強調する",
+                muscle: "💪 効く部位: 三角筋中部（肩の横）",
+                target: "🎯 50代目安: 4〜8 kg",
+                type: "dumbbell"
+            },
+            "ケーブル・プレスダウン": {
+                group: "腕",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="プレスダウン" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><circle cx=\\'50\\' cy=\\'25\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 50 33 L 50 70 M 50 45 L 50 65\\' stroke=\\'#a855f7\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "バーを下に押し下げ、太く引き締まった二の腕をつくる",
+                muscle: "💪 効く部位: 上腕三頭筋（二の腕）",
+                target: "🎯 50代目安: 15〜25 kg",
+                type: "machine"
+            },
+            "ダンベルカール": {
+                group: "腕",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="ダンベルカール" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><circle cx=\\'50\\' cy=\\'25\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 50 33 L 50 70\\' stroke=\\'#a855f7\\' stroke-width=\\'6\\'/><circle cx=\\'30\\' cy=\\'35\\' r=\\'6\\' fill=\\'#ef4444\\'/></svg>';">`,
+                desc: "肘を固定してダンベルを引き上げ、力こぶの高さを出す",
+                muscle: "💪 効く部位: 上腕二頭筋（力こぶ）",
+                target: "🎯 50代目安: 8〜14 kg",
+                type: "dumbbell"
+            },
+            "レッグプレスマシン": {
+                group: "脚・体幹",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="レッグプレス" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><rect x=\\'15\\' y=\\'15\\' width=\\'20\\' height=\\'70\\' fill=\\'#64748b\\'/><circle cx=\\'55\\' cy=\\'50\\' r=\\'8\\' fill=\\'#f8fafc\\'/><path d=\\'M 55 58 L 35 30\\' stroke=\\'#10b981\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "プレートを足裏で押し出す。腰を痛めずマラソン用の強靭な下半身をつくる",
+                muscle: "💪 効く部位: 大腿四頭筋・臀筋",
+                target: "🎯 50代目安: 60〜100 kg",
+                type: "machine"
+            },
+            "デッドバグ": {
+                group: "脚・体幹",
+                svgFallback: `<img src="icon.jpg" class="diagram-img" alt="デッドバグ" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\\'0 0 100 100\\' width=\\'60\\' height=\\'60\\'><rect x=\\'20\\' y=\\'55\\' width=\\'60\\' height=\\'8\\' fill=\\'#64748b\\'/><path d=\\'M 35 40 L 35 55 M 65 40 L 65 55\\' stroke=\\'#10b981\\' stroke-width=\\'6\\'/></svg>';">`,
+                desc: "仰向けで手足を交互に動かし、腰の保護と腹筋（体幹）を強化する",
+                muscle: "💪 効く部位: 腹直筋・体幹インナーマッスル",
+                target: "🎯 50代目安: 自重 10〜15 回",
+                type: "other"
+            }
+        };
+
+        const INITIAL_PAST_LOGS = [
+            { timestamp: "2026/09/26 09:30", exercise: "チェストプレスマシン", weight: 45.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/26 09:30", exercise: "インクラインダンベルプレス", weight: 12.0, reps: 10, sets: 3 },
+            { timestamp: "2026/09/26 18:00", exercise: "🥤 プロテイン 25g 摂取", weight: 0, reps: 25, sets: 1 },
+            { timestamp: "2026/09/26 19:00", exercise: "🥤 プロテイン 25g 摂取", weight: 0, reps: 25, sets: 1 },
+            { timestamp: "2026/09/27 08:30", exercise: "🚶‍♂️ 奥様とウォーキング（有酸素完了）", weight: 0, reps: 30, sets: 1 }
+        ];
+
+        const SCHEDULE = {
+            "月": { title: "胸・二の腕集中（大型ジム・マシン中心）", special: null },
+            "火": { title: "背中・三の腕", special: null },
+            "水": { title: "ボクシングレッスン", special: "今日はボクシングレッスン（トレーニングなし）" },
+            "木": { title: "肩・パンチ力（マシン中心）", special: null },
+            "金": { title: "休養", special: "今日は休養日（トレーニングなし）" },
+            "土": { title: "全身・胸・背中ローイング・脚力", special: null },
+            "日": { title: "背中・胸ケーブル・腕調整日", special: null }
+        };
+
+        const INITIAL_MENU = {
+            "月": ["チェストプレスマシン", "インクラインダンベルプレス", "ケーブル・プレスダウン", "デッドバグ"],
+            "火": ["ラットプルダウン", "バーベルデッドリフト", "ダンベルカール"],
+            "木": ["ショルダープレスマシン", "サイドレイズ", "デッドバグ"],
+            "土": ["レッグプレスマシン", "チェストプレスマシン", "シーテッドローイング", "ダンベルカール"],
+            "日": ["シーテッドローイング", "ケーブルフライ", "レッグプレスマシン", "ケーブル・プレスダウン"]
+        };
+
+        let realTodayDateStr = "";
+        let realTodayDayOfWeek = "";
+        let selectedDateStr = "";
+        let selectedDayOfWeek = "";
+        let currentEditIndex = -1;
+
+        let state = {
+            exercises: [],
+            boxingDay: false,
+            workoutNone: false,
+            wifeWalking: false,
+            stretchIndex: 0,
+            stretchTime: 60,
+            stretchRunning: false,
+            morningIndex: 0,
+            morningTime: 60,
+            morningRunning: false
+        };
+
+        let myChart = null;
+        let spaChart = null;
+        let proteinChart = null;
+        let stretchInterval = null;
+        let morningInterval = null;
+        let holdTimer = null;
+        let holdInterval = null;
+
+        function getTodayInfo() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+            const dateStr = `${year}-${month}-${date}`;
+            const dayOfWeek = WEEKDAYS[now.getDay()];
+            return { dateStr, dayOfWeek, now };
+        }
+
+        function getDayOfWeekFromDateStr(dStr) {
+            const d = new Date(dStr);
+            return WEEKDAYS[d.getDay()];
+        }
+
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length);
+            const quote = MOTIVATIONAL_QUOTES[randomIndex];
+            document.getElementById("quote-tag").innerText = "🔥 " + quote.type;
+            document.getElementById("quote-text").innerText = `「${quote.text}」`;
+            document.getElementById("quote-author").innerText = quote.author ? `— ${quote.author}` : "";
+        }
+
+        function switchCategory(catId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.btn-cat-tab').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(catId).classList.add('active');
+            event.currentTarget.classList.add('active');
+
+            if (catId === 'cat-protein') initProteinChart();
+            if (catId === 'cat-logs') renderHabitCalendar();
+        }
+
+        function getLastRecordedData(exName) {
+            const logs = JSON.parse(localStorage.getItem("kintore_logs") || "[]");
+            const match = logs.find(l => l.exercise === exName);
+            if (match) {
+                return { weight: match.weight, reps: match.reps };
+            }
+            return null;
+        }
+
+        function initApp() {
+            const { dateStr, dayOfWeek } = getTodayInfo();
+            realTodayDateStr = dateStr;
+            realTodayDay
