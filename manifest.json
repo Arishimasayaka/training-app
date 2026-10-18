@@ -1,5 +1,5 @@
 {
-  "name": "50to60 Project",
+  "name": "50to60 Training App",
   "short_name": "50to60",
   "start_url": "index.html",
   "display": "standalone",
@@ -9,7 +9,8 @@
     {
       "src": "icon.jpg",
       "sizes": "192x192 512x512",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
   ]
 }
