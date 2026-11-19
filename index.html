@@ -1,11 +1,16 @@
+
+
+
+HTML のアイコン
+index
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>50to60 Training App - 12W Bulk</title>
-    <meta name="theme-color" content="#1e293b">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <meta name="theme-color" content="#1e293b">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -779,10 +784,10 @@
     </div>
 
     <script>
-        window.onerror = function(msg, url, lineNo) {
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
             const box = document.getElementById("special-day-container");
             if (box) {
-                box.innerHTML = `<div style="background:#7f1d1d;border:1px solid #ef4444;color:#fecaca;padding:12px;border-radius:8px;margin-bottom:12px;font-size:0.8rem;">⚠️ エラー検出: ${msg} (行:${lineNo})<br><button type="button" onclick="localStorage.clear();location.reload();" style="margin-top:8px;padding:6px 12px;background:#ef4444;color:white;border:none;border-radius:4px;font-weight:bold;">データを初期化して再起動</button></div>`;
+                box.innerHTML = `<div style="background:#7f1d1d;border:1px solid #ef4444;color:#fecaca;padding:12px;border-radius:8px;margin-bottom:12px;font-size:0.8rem;">⚠️ エラー検出: ${msg} (行:${lineNo})<br><button onclick="localStorage.clear();location.reload();" style="margin-top:8px;padding:6px 12px;background:#ef4444;color:white;border:none;border-radius:4px;font-weight:bold;">データを初期化して再起動</button></div>`;
             }
             return false;
         };
@@ -925,4 +930,1135 @@
                 svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><circle cx="50" cy="45" r="8" fill="#f8fafc"/><path d="M 25 25 L 75 25" stroke="#eab308" stroke-width="6"/></svg>`,
                 desc: "グリップを真上へ押し上げ、180cmのフレームに映える広い肩幅をつくる",
                 muscle: "💪 部位: 三角筋前部・中部",
-                target: "
+                target: "🎯 12W目安: 8〜12回 × 3セット",
+                defaultReps: 10,
+                defaultWeight: 20.0
+            },
+            "サイドレイズ": {
+                group: "肩",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><circle cx="50" cy="25" r="8" fill="#f8fafc"/><path d="M 50 33 L 50 70 M 50 45 L 15 45 M 50 45 L 85 45" stroke="#eab308" stroke-width="6"/></svg>`,
+                desc: "ダンベルを真横に肩の高さまで持ち上げ、逆三角形のシルエットを強調",
+                muscle: "💪 部位: 三角筋中部（肩の横）",
+                target: "🎯 12W目安: 12〜15回 × 3セット",
+                defaultReps: 12,
+                defaultWeight: 5.0
+            },
+            "リアレイズマシン": {
+                group: "肩",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><circle cx="50" cy="25" r="8" fill="#f8fafc"/><path d="M 35 45 L 15 55 M 65 45 L 85 55" stroke="#eab308" stroke-width="6"/></svg>`,
+                desc: "マシンに胸をつけて座り、腕を後ろへ開いて肩の後部（丸み）をつくる",
+                muscle: "💪 部位: 三角筋後部",
+                target: "🎯 12W目安: 12〜15回 × 3セット",
+                defaultReps: 12,
+                defaultWeight: 15.0
+            },
+            "ケーブル・プレスダウン": {
+                group: "腕",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><circle cx="50" cy="25" r="8" fill="#f8fafc"/><path d="M 50 33 L 50 70 M 50 45 L 50 65" stroke="#a855f7" stroke-width="6"/></svg>`,
+                desc: "肘を体側に固定したままバーを真下へ押し切り、太い二の腕をつくる",
+                muscle: "💪 部位: 上腕三頭筋（二の腕）",
+                target: "🎯 12W目安: 10〜15回 × 3セット",
+                defaultReps: 12,
+                defaultWeight: 15.0
+            },
+            "ダンベルカール": {
+                group: "腕",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><circle cx="50" cy="25" r="8" fill="#f8fafc"/><path d="M 50 33 L 50 70" stroke="#a855f7" stroke-width="6"/><circle cx="30" cy="35" r="6" fill="#ef4444"/></svg>`,
+                desc: "反動を使わず肘を固定して巻き上げ、力こぶのピークを高める",
+                muscle: "💪 部位: 上腕二頭筋（力こぶ）",
+                target: "🎯 12W目安: 10〜15回 × 3セット",
+                defaultReps: 12,
+                defaultWeight: 8.0
+            },
+            "レッグプレスマシン": {
+                group: "脚・腹筋",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><rect x="15" y="15" width="20" height="70" fill="#64748b"/><circle cx="55" cy="50" r="8" fill="#f8fafc"/><path d="M 55 58 L 35 30" stroke="#10b981" stroke-width="6"/></svg>`,
+                desc: "腰をシートに密着させて足裏全体で押し出す。全身の筋肥大ホルモンを活性化",
+                muscle: "💪 部位: 大腿四頭筋・大臀筋",
+                target: "🎯 12W目安: 8〜12回 × 3セット",
+                defaultReps: 10,
+                defaultWeight: 60.0
+            },
+            "レッグエクステンション": {
+                group: "脚・腹筋",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><circle cx="40" cy="35" r="8" fill="#f8fafc"/><path d="M 40 43 L 40 65 L 75 65" fill="none" stroke="#10b981" stroke-width="6"/></svg>`,
+                desc: "膝を伸ばし切って太もも前側を強く収縮させ、脚の立体感をつくる",
+                muscle: "💪 部位: 大腿四頭筋",
+                target: "🎯 12W目安: 12〜15回 × 3セット",
+                defaultReps: 12,
+                defaultWeight: 25.0
+            },
+            "レッグカールマシン": {
+                group: "脚・腹筋",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><circle cx="30" cy="50" r="8" fill="#f8fafc"/><path d="M 38 50 L 70 50 L 70 75" fill="none" stroke="#10b981" stroke-width="6"/></svg>`,
+                desc: "膝を曲げて太もも裏（ハムストリングス）を鍛え、下半身の安定性を高める",
+                muscle: "💪 部位: ハムストリングス",
+                target: "🎯 12W目安: 12〜15回 × 3セット",
+                defaultReps: 12,
+                defaultWeight: 20.0
+            },
+            "プランク": {
+                group: "脚・腹筋",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><rect x="15" y="65" width="70" height="6" fill="#64748b"/><circle cx="25" cy="50" r="8" fill="#f8fafc"/><line x1="25" y1="58" x2="80" y2="58" stroke="#10b981" stroke-width="6"/></svg>`,
+                desc: "頭からかかとまで一直線をキープ。腰を痛めずに深層腹筋を強化",
+                muscle: "💪 部位: 腹直筋・体幹インナー",
+                target: "🎯 12W目安: 自重 30〜45秒 × 3セット",
+                defaultReps: 35,
+                defaultWeight: 0
+            },
+            "デッドバグ": {
+                group: "脚・腹筋",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><rect x="20" y="55" width="60" height="8" fill="#64748b"/><path d="M 35 40 L 35 55 M 65 40 L 65 55" stroke="#10b981" stroke-width="6"/></svg>`,
+                desc: "仰向けで腰を床に押し付けたまま対角の手足をゆっくり伸ばす",
+                muscle: "💪 部位: 腹直筋・腹横筋",
+                target: "🎯 12W目安: 自重 10〜15回 × 3セット",
+                defaultReps: 12,
+                defaultWeight: 0
+            },
+            "ファーマーズウォーク": {
+                group: "脚・腹筋",
+                svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><circle cx="50" cy="25" r="8" fill="#f8fafc"/><path d="M 50 33 L 50 70 M 35 45 L 35 65 M 65 45 L 65 65" stroke="#10b981" stroke-width="6"/></svg>`,
+                desc: "両手にダンベルを持ち胸を張って歩く。握力・体幹・全身の連動性を強化",
+                muscle: "💪 部位: 全身・体幹・握力・僧帽筋",
+                target: "🎯 12W目安: 30〜45秒 × 3セット",
+                defaultReps: 35,
+                defaultWeight: 14.0
+            }
+        };
+
+        const INITIAL_PAST_LOGS = [
+            { timestamp: "2026/11/08 10:00", exercise: "チェストプレスマシン", weight: 35.0, reps: 10, sets: 3 },
+            { timestamp: "2026/11/08 10:20", exercise: "インクラインダンベルプレス", weight: 12.0, reps: 10, sets: 3 },
+            { timestamp: "2026/11/08 11:00", exercise: "🥤 プロテイン 25g 摂取", weight: 0, reps: 25, sets: 1 },
+            { timestamp: "2026/11/10 18:30", exercise: "ラットプルダウン", weight: 35.0, reps: 10, sets: 3 },
+            { timestamp: "2026/11/11 19:00", exercise: "♨️ 🥊 ボクシングレッスン（有酸素運動）", weight: 0, reps: 45, sets: 1 }
+        ];
+
+        // 日曜＝Day1(胸・三頭筋)、月曜＝弱点補強・調整（混雑回避入替済）
+        const SCHEDULE = {
+            "日": { title: "Day 1：胸・三頭筋（日曜集中・バルクアップ）", special: null },
+            "月": { title: "弱点補強・腕・体幹調整（月曜混雑回避メニュー）", special: null },
+            "火": { title: "Day 2：背中・二頭筋（引く筋肉集中）", special: null },
+            "水": { title: "ボクシングレッスン（有酸素・回復）", special: "今日はボクシングレッスン（筋トレ休み・糖質補給日）" },
+            "木": { title: "Day 3：肩・体幹（広い肩幅づくり）", special: null },
+            "金": { title: "完全休養（48時間超回復・サウナ推奨）", special: "今日は完全休養日（筋トレなし・栄養と睡眠を優先）" },
+            "土": { title: "Day 4：脚・体幹（下半身強化・筋肥大促進）", special: null }
+        };
+
+        const INITIAL_MENU = {
+            "日": ["チェストプレスマシン", "インクラインダンベルプレス", "ケーブルフライ", "ケーブル・プレスダウン"],
+            "月": ["ディップス", "ダンベルカール", "ファーマーズウォーク", "プランク"],
+            "火": ["ラットプルダウン", "シーテッドローイング", "ワンハンドローイング", "ダンベルカール"],
+            "木": ["ショルダープレスマシン", "サイドレイズ", "リアレイズマシン", "プランク"],
+            "土": ["レッグプレスマシン", "レッグエクステンション", "レッグカールマシン", "デッドバグ"]
+        };
+
+        let realTodayDateStr = "";
+        let realTodayDayOfWeek = "";
+        let selectedDateStr = "";
+        let selectedDayOfWeek = "";
+        let currentEditIndex = -1;
+
+        let state = {
+            exercises: [],
+            boxingDay: false,
+            workoutNone: false,
+            wifeWalking: false,
+            stretchIndex: 0,
+            stretchTime: 60,
+            stretchRunning: false,
+            morningIndex: 0,
+            morningTime: 60,
+            morningRunning: false
+        };
+
+        let myChart = null;
+        let spaChart = null;
+        let proteinChart = null;
+        let stretchInterval = null;
+        let morningInterval = null;
+        let holdTimer = null;
+        let holdInterval = null;
+
+        function getTodayInfo() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+            const dateStr = `${year}-${month}-${date}`;
+            const dayOfWeek = WEEKDAYS[now.getDay()];
+            return { dateStr, dayOfWeek };
+        }
+
+        function getDayOfWeekFromDateStr(dStr) {
+            const parts = dStr.split('-');
+            if (parts.length !== 3) return WEEKDAYS[0];
+            const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+            return WEEKDAYS[d.getDay()] || WEEKDAYS[0];
+        }
+
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length);
+            const quote = MOTIVATIONAL_QUOTES[randomIndex];
+            const tagEl = document.getElementById("quote-tag");
+            const textEl = document.getElementById("quote-text");
+            const authEl = document.getElementById("quote-author");
+            if (tagEl) tagEl.innerText = "🔥 " + quote.type;
+            if (textEl) textEl.innerText = `「${quote.text}」`;
+            if (authEl) authEl.innerText = quote.author ? `— ${quote.author}` : "";
+        }
+
+        function switchCategory(catId, btnEl) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.btn-cat-tab').forEach(btn => btn.classList.remove('active'));
+
+            const target = document.getElementById(catId);
+            if (target) target.classList.add('active');
+            if (btnEl) btnEl.classList.add('active');
+
+            if (catId === 'cat-protein') {
+                updateProteinSummary();
+                initProteinChart();
+            }
+            if (catId === 'cat-logs') renderHabitCalendar();
+        }
+
+        function safeGetLogs() {
+            try {
+                const raw = localStorage.getItem("kintore_logs_v2");
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                return Array.isArray(parsed) ? parsed : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function getLastRecordedData(exName) {
+            const logs = safeGetLogs() || [];
+            const match = logs.find(l => l && l.exercise === exName);
+            if (match) {
+                return { weight: Number(match.weight) || 0, reps: Number(match.reps) || 10 };
+            }
+            return null;
+        }
+
+        function initApp() {
+            try {
+                const { dateStr, dayOfWeek } = getTodayInfo();
+                realTodayDateStr = dateStr;
+                realTodayDayOfWeek = dayOfWeek;
+                selectedDateStr = dateStr;
+                selectedDayOfWeek = dayOfWeek;
+
+                const picker = document.getElementById("target-date-picker");
+                if (picker) {
+                    picker.value = dateStr;
+                    picker.max = realTodayDateStr;
+                }
+
+                if (!safeGetLogs()) {
+                    localStorage.setItem("kintore_logs_v2", JSON.stringify(INITIAL_PAST_LOGS));
+                }
+
+                onCategoryFilterChange();
+                loadDateData(selectedDateStr, selectedDayOfWeek);
+
+                getRandomQuote();
+                renderHeader();
+                renderContent();
+                renderStretchUI();
+                renderMorningUI();
+                renderHistoryLogs();
+                updateProteinSummary();
+                initChartSelect();
+                initSpaChart();
+                renderHabitCalendar();
+            } catch (err) {
+                console.error("Init recovery:", err);
+                localStorage.clear();
+                localStorage.setItem("kintore_logs_v2", JSON.stringify(INITIAL_PAST_LOGS));
+                buildDefaultDayData(selectedDayOfWeek || "木");
+                renderHeader();
+                renderContent();
+            }
+        }
+
+        function onCategoryFilterChange() {
+            const categoryEl = document.getElementById("body-part-select");
+            const presetSelect = document.getElementById("preset-ex-select");
+            if (!categoryEl || !presetSelect) return;
+            const list = CATEGORY_PRESETS[categoryEl.value] || [];
+            presetSelect.innerHTML = list.map(item => `<option value="${item}">${item}</option>`).join('');
+            onExerciseSelectChange();
+        }
+
+        function onExerciseSelectChange() {
+            const presetSelect = document.getElementById("preset-ex-select");
+            const weightInput = document.getElementById("custom-ex-weight");
+            const repsInput = document.getElementById("custom-ex-reps");
+            if (!presetSelect) return;
+
+            const name = presetSelect.value;
+            const diag = EXERCISE_DIAGRAMS[name];
+            const lastData = getLastRecordedData(name);
+            const defaultW = diag ? diag.defaultWeight : 12.0;
+            const defaultR = diag ? diag.defaultReps : 10;
+
+            if (weightInput) weightInput.value = lastData ? lastData.weight : defaultW;
+            if (repsInput) repsInput.value = lastData ? lastData.reps : defaultR;
+        }
+
+        function onDateSelectionChange() {
+            const picker = document.getElementById("target-date-picker");
+            if (!picker || !picker.value) return;
+
+            if (picker.value > realTodayDateStr) {
+                alert("未来の日付（明日以降）の記録入力はできません。");
+                picker.value = selectedDateStr;
+                return;
+            }
+
+            selectedDateStr = picker.value;
+            selectedDayOfWeek = getDayOfWeekFromDateStr(selectedDateStr);
+
+            loadDateData(selectedDateStr, selectedDayOfWeek);
+            renderHeader();
+            renderContent();
+            updateProteinSummary();
+        }
+
+        function loadDateData(dateStr, dayStr) {
+            const key = "kintore_menu_v2_" + dateStr;
+            const saved = localStorage.getItem(key);
+
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    if (parsed && Array.isArray(parsed.exercises)) {
+                        state.exercises = parsed.exercises;
+                        state.boxingDay = Boolean(parsed.boxingDay);
+                        state.workoutNone = Boolean(parsed.workoutNone);
+                        state.wifeWalking = Boolean(parsed.wifeWalking);
+                        return;
+                    }
+                } catch (e) {}
+            }
+            buildDefaultDayData(dayStr);
+        }
+
+        function buildDefaultDayData(dayStr) {
+            state.boxingDay = false;
+            state.workoutNone = false;
+            state.wifeWalking = false;
+            const names = INITIAL_MENU[dayStr] || [];
+            state.exercises = names.map(name => {
+                const diag = EXERCISE_DIAGRAMS[name];
+                const lastData = getLastRecordedData(name);
+                const w = lastData ? lastData.weight : (diag ? diag.defaultWeight : 12.0);
+                const r = lastData ? lastData.reps : (diag ? diag.defaultReps : 10);
+                return {
+                    name: name,
+                    setsData: [
+                        { weight: w, reps: r, count: 0, locked: false },
+                        { weight: w, reps: r, count: 0, locked: false },
+                        { weight: w, reps: r, count: 0, locked: false }
+                    ],
+                    completed: false
+                };
+            });
+            saveState();
+        }
+
+        function saveState() {
+            const key = "kintore_menu_v2_" + selectedDateStr;
+            localStorage.setItem(key, JSON.stringify({
+                exercises: state.exercises,
+                boxingDay: state.boxingDay,
+                workoutNone: state.workoutNone,
+                wifeWalking: state.wifeWalking
+            }));
+        }
+
+        function addCustomExercise() {
+            const selectEl = document.getElementById("preset-ex-select");
+            const weightInput = document.getElementById("custom-ex-weight");
+            const repsInput = document.getElementById("custom-ex-reps");
+            if (!selectEl) return;
+
+            const name = selectEl.value;
+            const diag = EXERCISE_DIAGRAMS[name];
+            const lastData = getLastRecordedData(name);
+            const w = parseFloat(weightInput.value) || (lastData ? lastData.weight : (diag ? diag.defaultWeight : 0));
+            const r = parseInt(repsInput.value, 10) || (lastData ? lastData.reps : (diag ? diag.defaultReps : 10));
+
+            state.exercises.push({
+                name: name,
+                setsData: [
+                    { weight: w, reps: r, count: 0, locked: false },
+                    { weight: w, reps: r, count: 0, locked: false },
+                    { weight: w, reps: r, count: 0, locked: false }
+                ],
+                completed: false
+            });
+
+            saveState();
+            renderHeader();
+            renderExercises();
+        }
+
+        function switchSelectedDay(dayStr) {
+            const parts = realTodayDateStr.split('-');
+            const now = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+            const currentDayIdx = now.getDay();
+            const targetDayIdx = WEEKDAYS.indexOf(dayStr);
+            const diff = targetDayIdx - currentDayIdx;
+
+            const targetDate = new Date(now);
+            targetDate.setDate(now.getDate() + diff);
+
+            const year = targetDate.getFullYear();
+            const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+            const date = String(targetDate.getDate()).padStart(2, '0');
+            const calculatedDateStr = `${year}-${month}-${date}`;
+
+            if (calculatedDateStr > realTodayDateStr) {
+                alert("未来の曜日の記録入力はできません。");
+                return;
+            }
+
+            selectedDateStr = calculatedDateStr;
+            selectedDayOfWeek = dayStr;
+
+            const picker = document.getElementById("target-date-picker");
+            if (picker) picker.value = selectedDateStr;
+
+            loadDateData(selectedDateStr, selectedDayOfWeek);
+            renderHeader();
+            renderContent();
+            updateProteinSummary();
+        }
+
+        function resetToToday() {
+            initApp();
+        }
+
+        function toggleBoxingDay() {
+            state.boxingDay = !state.boxingDay;
+            saveState();
+            if (state.boxingDay) {
+                recordSpaActivity("🥊 ボクシングレッスン（有酸素運動）", 45);
+            } else {
+                removeLogByExerciseAndDate("ボクシング", selectedDateStr);
+            }
+            renderHeader();
+            renderContent();
+        }
+
+        function toggleWorkoutNone() {
+            state.workoutNone = !state.workoutNone;
+            saveState();
+            if (state.workoutNone) {
+                recordSpaActivity("休養日（トレーニングなし）", 0);
+            } else {
+                removeLogByExerciseAndDate("休養日（トレーニングなし）", selectedDateStr);
+            }
+            renderHeader();
+            renderContent();
+        }
+
+        function toggleWifeWalking() {
+            state.wifeWalking = !state.wifeWalking;
+            saveState();
+            if (state.wifeWalking) {
+                recordSpaActivity("🚶‍♂️ 奥様とウォーキング（有酸素完了）", 30);
+            } else {
+                removeLogByExerciseAndDate("ウォーキング", selectedDateStr);
+            }
+            renderHeader();
+            renderContent();
+            renderHabitCalendar();
+        }
+
+        function removeLogByExerciseAndDate(keyword, dateStr) {
+            const logs = safeGetLogs() || [];
+            const targetDateFormatted = dateStr.replace(/-/g, '/');
+            const filtered = logs.filter(l => !(l.timestamp.startsWith(targetDateFormatted) && l.exercise.includes(keyword)));
+            localStorage.setItem("kintore_logs_v2", JSON.stringify(filtered));
+            renderHistoryLogs();
+            renderHabitCalendar();
+        }
+
+        function autoSwapExercise(idx) {
+            const curName = state.exercises[idx].name;
+            let groupKey = "胸";
+            for (const [key, list] of Object.entries(EXERCISE_SWAP_GROUPS)) {
+                if (list.includes(curName)) {
+                    groupKey = key;
+                    break;
+                }
+            }
+            const candidates = EXERCISE_SWAP_GROUPS[groupKey] || EXERCISE_SWAP_GROUPS["胸"];
+            const available = candidates.filter(n => n !== curName);
+            const nextName = available[Math.floor(Math.random() * available.length)] || candidates[0];
+
+            const diag = EXERCISE_DIAGRAMS[nextName];
+            const lastData = getLastRecordedData(nextName);
+            const lastW = lastData ? lastData.weight : (diag ? diag.defaultWeight : 12.0);
+            const lastR = lastData ? lastData.reps : (diag ? diag.defaultReps : 10);
+
+            state.exercises[idx].name = nextName;
+            state.exercises[idx].setsData.forEach(s => {
+                s.weight = lastW;
+                s.reps = lastR;
+            });
+
+            saveState();
+            renderExercises();
+        }
+
+        let lastTouchTime = 0;
+
+        function startHold(e, exIdx, setIdx, key, delta) {
+            if (e) {
+                if (e.type === 'touchstart') {
+                    lastTouchTime = Date.now();
+                } else if (e.type === 'mousedown' && Date.now() - lastTouchTime < 800) {
+                    return;
+                }
+            }
+            endHold();
+            updateVal(exIdx, setIdx, key, delta);
+            holdTimer = setTimeout(() => {
+                holdInterval = setInterval(() => {
+                    updateVal(exIdx, setIdx, key, delta);
+                }, 900);
+            }, 2000);
+        }
+
+        function endHold() {
+            clearTimeout(holdTimer);
+            clearInterval(holdInterval);
+            holdTimer = null;
+            holdInterval = null;
+        }
+
+        function setDirectVal(exIdx, setIdx, key, rawVal) {
+            const set = state.exercises[exIdx].setsData[setIdx];
+            const parsed = parseFloat(rawVal);
+            if (isNaN(parsed)) {
+                renderExercises();
+                return;
+            }
+            if (key === 'weight') {
+                set.weight = Math.max(0, Math.round(parsed * 10) / 10);
+            } else if (key === 'reps') {
+                set.reps = Math.max(1, Math.round(parsed));
+            }
+            saveState();
+            renderExercises();
+        }
+
+        function recordSpaActivity(actName, durationMin) {
+            const logs = safeGetLogs() || [];
+            logs.unshift({
+                timestamp: `${selectedDateStr.replace(/-/g, '/')} 12:00`,
+                exercise: `♨️ ${actName}`,
+                weight: 0,
+                reps: durationMin || 8,
+                sets: 1
+            });
+            localStorage.setItem("kintore_logs_v2", JSON.stringify(logs));
+            renderHistoryLogs();
+            renderHabitCalendar();
+        }
+
+        function recordProteinLog(actName, grams) {
+            const logs = safeGetLogs() || [];
+            logs.unshift({
+                timestamp: `${selectedDateStr.replace(/-/g, '/')} 12:00`,
+                exercise: `🥤 ${actName}`,
+                weight: 0,
+                reps: grams || 25,
+                sets: 1
+            });
+            localStorage.setItem("kintore_logs_v2", JSON.stringify(logs));
+            renderHistoryLogs();
+            updateProteinSummary();
+            initProteinChart();
+            alert(`「${actName}」を ${selectedDateStr} の記録として追加しました！`);
+        }
+
+        function updateProteinSummary() {
+            const logs = safeGetLogs() || [];
+            const datePrefix = selectedDateStr.replace(/-/g, '/');
+            const total = logs
+                .filter(l => l && l.timestamp.startsWith(datePrefix) && l.exercise.includes('🥤'))
+                .reduce((sum, l) => sum + (Number(l.reps) || 0), 0);
+
+            const totalEl = document.getElementById("daily-protein-total");
+            const barEl = document.getElementById("protein-progress-bar");
+            if (totalEl) totalEl.innerText = `${total} g / 目標 130 g (120〜145g)`;
+            if (barEl) barEl.style.width = Math.min(100, Math.round((total / 130) * 100)) + "%";
+        }
+
+        function openModalEdit(index) {
+            const logs = safeGetLogs() || [];
+            const item = logs[index];
+            if (!item) return;
+
+            currentEditIndex = index;
+            document.getElementById("modal-exercise-name").value = item.exercise;
+            document.getElementById("modal-timestamp").value = item.timestamp;
+            document.getElementById("modal-weight").value = item.weight || 0;
+            document.getElementById("modal-reps").value = item.reps || 0;
+
+            const isSpecial = item.exercise.includes('♨️') || item.exercise.includes('🥤');
+            document.getElementById("modal-weight-box").style.display = isSpecial ? "none" : "flex";
+
+            if (item.exercise.includes('🥤')) {
+                document.getElementById("modal-reps-label").innerText = "摂取量 (g)";
+            } else if (item.exercise.includes('♨️') || item.exercise.includes('ウォーキング') || item.exercise.includes('プランク')) {
+                document.getElementById("modal-reps-label").innerText = "時間 (分/秒)";
+            } else {
+                document.getElementById("modal-reps-label").innerText = "完了回数";
+            }
+
+            document.getElementById("edit-modal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("edit-modal").style.display = "none";
+            currentEditIndex = -1;
+        }
+
+        function saveModalEdit() {
+            if (currentEditIndex < 0) return;
+            const logs = safeGetLogs() || [];
+            const item = logs[currentEditIndex];
+
+            item.timestamp = document.getElementById("modal-timestamp").value;
+            item.weight = parseFloat(document.getElementById("modal-weight").value) || 0;
+            item.reps = parseInt(document.getElementById("modal-reps").value, 10) || 0;
+
+            localStorage.setItem("kintore_logs_v2", JSON.stringify(logs));
+            closeModal();
+            renderHistoryLogs();
+            updateChart();
+            updateProteinSummary();
+            initProteinChart();
+            renderHabitCalendar();
+        }
+
+        function deleteLogItem(index) {
+            if (!confirm("この過去記録を削除してもよろしいですか？")) return;
+            const logs = safeGetLogs() || [];
+            logs.splice(index, 1);
+            localStorage.setItem("kintore_logs_v2", JSON.stringify(logs));
+            renderHistoryLogs();
+            updateChart();
+            updateProteinSummary();
+            initProteinChart();
+            renderHabitCalendar();
+        }
+
+        function renderHabitCalendar() {
+            const calendarContainer = document.getElementById("habit-calendar");
+            if (!calendarContainer) return;
+
+            const logs = safeGetLogs() || [];
+            const days = [];
+            const now = new Date();
+
+            for (let i = 13; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(now.getDate() - i);
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const date = String(d.getDate()).padStart(2, '0');
+                const dateStr = `${year}/${month}/${date}`;
+                const displayStr = `${month}/${date}`;
+
+                const hasWalk = logs.some(l => l && l.timestamp.startsWith(dateStr) && l.exercise.includes("ウォーキング"));
+                days.push({ displayStr, hasWalk });
+            }
+
+            calendarContainer.innerHTML = days.map(d => `
+                <div class="habit-day-box ${d.hasWalk ? 'done' : ''}">
+                    <div>${d.displayStr}</div>
+                    <div class="habit-mark ${d.hasWalk ? 'mark-yes' : 'mark-no'}">${d.hasWalk ? '◯' : '✕'}</div>
+                </div>
+            `).join('');
+        }
+
+        function downloadLogsCSV() {
+            const logs = safeGetLogs() || [];
+            if (logs.length === 0) {
+                alert("保存する記録がありません。");
+                return;
+            }
+            let csvContent = String.fromCharCode(0xFEFF) + "日時,種目・内容,重量(kg),回数・分・g,セット数" + String.fromCharCode(10);
+            logs.forEach(l => {
+                csvContent += `"${l.timestamp}","${l.exercise}",${l.weight},${l.reps},${l.sets}` + String.fromCharCode(10);
+            });
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `training_12w_logs_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function saveHistoryLog(exName, weight, reps, setsCount) {
+            const logs = safeGetLogs() || [];
+            logs.unshift({
+                timestamp: `${selectedDateStr.replace(/-/g, '/')} 12:00`,
+                exercise: exName,
+                weight: weight,
+                reps: reps,
+                sets: setsCount
+            });
+            localStorage.setItem("kintore_logs_v2", JSON.stringify(logs));
+            renderHistoryLogs();
+            initChartSelect();
+        }
+
+        function renderHistoryLogs() {
+            const container = document.getElementById("log-list");
+            if (!container) return;
+            const logs = safeGetLogs() || [];
+
+            if (logs.length === 0) {
+                container.innerHTML = "まだ記録はありません。";
+                return;
+            }
+
+            container.innerHTML = logs.map((l, index) => `
+                <div class="log-item">
+                    <div>
+                        <strong>${l.exercise}</strong> ${(l.exercise.includes('♨️') || l.exercise.includes('🥤')) ? `(${l.reps}単位/g/分)` : `(${l.weight}kg × ${l.reps}回 × ${l.sets}セット)`}
+                        <div style="font-size:0.75rem; color:#94a3b8;">${l.timestamp}</div>
+                    </div>
+                    <div class="log-actions">
+                        <button class="btn-log-edit" onclick="openModalEdit(${index})">編集</button>
+                        <button class="btn-log-del" onclick="deleteLogItem(${index})">削除</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function initChartSelect() {
+            const select = document.getElementById("chart-exercise-select");
+            if (!select) return;
+            const logs = safeGetLogs() || [];
+            const exercises = [...new Set(logs.filter(l => l && !l.exercise.includes('♨️') && !l.exercise.includes('🥤')).map(l => l.exercise))];
+            select.innerHTML = exercises.map(ex => `<option value="${ex}">${ex}</option>`).join('');
+            if (exercises.length > 0) updateChart();
+        }
+
+        function updateChart() {
+            if (typeof Chart === 'undefined') return;
+            const select = document.getElementById("chart-exercise-select");
+            const canvas = document.getElementById('growthChart');
+            if (!select || !canvas) return;
+
+            const selectedEx = select.value;
+            const logs = safeGetLogs() || [];
+            const exLogs = logs.filter(l => l && l.exercise === selectedEx).reverse();
+
+            const labels = exLogs.map(l => l.timestamp.split(' ')[0]);
+            const weights = exLogs.map(l => l.weight);
+            const totalReps = exLogs.map(l => l.reps * l.sets);
+
+            const ctx = canvas.getContext('2d');
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: '重量 (kg)', data: weights, borderColor: '#3b82f6', backgroundColor: 'rgba(59, 130, 246, 0.2)', yAxisID: 'y', tension: 0.2 },
+                        { label: '合計回数 (回)', data: totalReps, borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.2)', yAxisID: 'y1', tension: 0.2 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' } },
+                        y: { type: 'linear', display: true, position: 'left', ticks: { color: '#94a3b8' } },
+                        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, ticks: { color: '#94a3b8' } }
+                    },
+                    plugins: { legend: { labels: { color: '#f8fafc' } } }
+                }
+            });
+        }
+
+        function initProteinChart() {
+            if (typeof Chart === 'undefined') return;
+            const canvas = document.getElementById('proteinChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const logs = safeGetLogs() || [];
+            const proteinLogs = logs.filter(l => l && l.exercise.includes('🥤')).reverse();
+
+            const labels = proteinLogs.map(l => l.timestamp.split(' ')[0]);
+            const grams = proteinLogs.map(l => l.reps);
+
+            if (proteinChart) proteinChart.destroy();
+
+            proteinChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{ label: 'タンパク質摂取量 (g)', data: grams, backgroundColor: '#3b82f6' }]
+                },
+                options: {
+                    responsive: true,
+                    scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } },
+                    plugins: { legend: { labels: { color: '#f8fafc' } } }
+                }
+            });
+        }
+
+        function initSpaChart() {
+            if (typeof Chart === 'undefined') return;
+            const canvas = document.getElementById('spaGuideChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (spaChart) spaChart.destroy();
+            spaChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['サウナ', '水風呂', 'ジャグジー(1単位8分)', '合計'],
+                    datasets: [
+                        { label: '推奨 下限 (分)', data: [8, 1, 8, 17], backgroundColor: '#f97316' },
+                        { label: '推奨 上限 (分)', data: [12, 2, 16, 30], backgroundColor: '#38bdf8' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } },
+                    plugins: { legend: { labels: { color: '#f8fafc' } } }
+                }
+            });
+        }
+
+        function renderHeader() {
+            const badge = document.getElementById("today-badge");
+            if (badge) badge.innerText = "本日: " + realTodayDayOfWeek + "曜日";
+            const info = SCHEDULE[selectedDayOfWeek] || SCHEDULE["日"];
+            const titleEl = document.getElementById("workout-title");
+            if (titleEl) titleEl.innerText = `${selectedDateStr} (${selectedDayOfWeek})： ${info.title}`;
+
+            const btnBoxing = document.getElementById("btn-quick-boxing");
+            if (btnBoxing) {
+                btnBoxing.innerText = state.boxingDay ? "↩️ ボクシング取消" : "🥊 ボクシング";
+                btnBoxing.classList.toggle("active-act", state.boxingDay);
+            }
+
+            const btnNone = document.getElementById("btn-quick-none");
+            if (btnNone) {
+                btnNone.innerText = state.workoutNone ? "↩️ 筋トレなし取消" : "🚫 筋トレなし";
+                btnNone.classList.toggle("active-act", state.workoutNone);
+            }
+
+            const btnWalk = document.getElementById("btn-quick-walk");
+            if (btnWalk) {
+                btnWalk.innerText = state.wifeWalking ? "↩️ 散歩取消" : "🚶‍♂️ 奥様と散歩";
+                btnWalk.classList.toggle("active-act", state.wifeWalking);
+            }
+
+            document.querySelectorAll('.btn-day-tab').forEach(btn => {
+                const dayStr = btn.innerText.trim().charAt(0);
+                const currentDayIdx = WEEKDAYS.indexOf(realTodayDayOfWeek);
+                const targetDayIdx = WEEKDAYS.indexOf(dayStr);
+
+                btn.classList.toggle('active', dayStr === selectedDayOfWeek);
+                btn.classList.toggle('is-today-marker', dayStr === realTodayDayOfWeek);
+                btn.classList.toggle('disabled-tab', targetDayIdx > currentDayIdx);
+            });
+
+            const btnReset = document.getElementById("btn-today-reset");
+            if (btnReset) btnReset.style.display = (selectedDateStr !== realTodayDateStr) ? "inline-block" : "none";
+
+            const progressBar = document.getElementById("progress-bar");
+            const progressText = document.getElementById("progress-text");
+
+            if (state.boxingDay || state.workoutNone) {
+                if (progressBar) progressBar.style.width = "100%";
+                if (progressText) progressText.innerText = state.boxingDay ? "本日のボクシング完了（筋トレ繰り越し）" : "本日のトレーニングなし（完了）";
+            } else if (info.special) {
+                if (progressBar) progressBar.style.width = "0%";
+                if (progressText) progressText.innerText = "休養・有酸素日";
+            } else {
+                const total = state.exercises.length;
+                const done = state.exercises.filter(e => e.completed).length;
+                const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+                if (progressBar) progressBar.style.width = pct + "%";
+                if (progressText) progressText.innerText = `${done} / ${total} 完了`;
+            }
+        }
+
+        function renderContent() {
+            const info = SCHEDULE[selectedDayOfWeek] || SCHEDULE["日"];
+            const specialContainer = document.getElementById("special-day-container");
+            const uncompletedSection = document.getElementById("uncompleted-section");
+            const completedSection = document.getElementById("completed-section");
+
+            if (specialContainer) specialContainer.innerHTML = "";
+
+            if (state.boxingDay) {
+                if (specialContainer) {
+                    specialContainer.innerHTML = `<div style="background-color:#831843; border:1px solid #be185d; border-radius:12px; padding:16px; text-align:center; margin-bottom:12px;"><h3 style="color:#fbcfe8;">🥊 本日はボクシングレッスン完了！</h3><p style="font-size:0.8rem; color:#f472b6; margin-top:4px;">消費エネルギー補填のため糖質（100〜250g）とタンパク質をしっかり補給しましょう。</p></div>`;
+                }
+                if (uncompletedSection) uncompletedSection.style.display = "none";
+                if (completedSection) completedSection.style.display = "none";
+                return;
+            }
+
+            if (state.workoutNone || info.special) {
+                const msg = state.workoutNone ? "🚫 本日のトレーニングは休養（なし）に設定されています" : info.special;
+                if (specialContainer) {
+                    specialContainer.innerHTML = `<div style="background-color:#1e293b; border:1px solid #475569; border-radius:12px; padding:16px; text-align:center; margin-bottom:12px;"><h3 style="color:#f8fafc;">${msg}</h3><p style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">48時間の超回復と栄養摂取（1日120〜145gのタンパク質）で筋肉を育てましょう。</p></div>`;
+                }
+                if (uncompletedSection) uncompletedSection.style.display = "none";
+                if (completedSection) completedSection.style.display = "none";
+                return;
+            }
+
+            if (uncompletedSection) uncompletedSection.style.display = "block";
+            if (completedSection) completedSection.style.display = "block";
+            renderExercises();
+        }
+
+        function renderExercises() {
+            const uncompletedList = document.getElementById("uncompleted-list");
+            const completedList = document.getElementById("completed-list");
+            if (uncompletedList) uncompletedList.innerHTML = "";
+            if (completedList) completedList.innerHTML = "";
+
+            state.exercises.forEach((ex, idx) => {
+                const card = document.createElement("div");
+                card.className = "exercise-card" + (ex.completed ? " completed" : "");
+
+                const diagram = EXERCISE_DIAGRAMS[ex.name] || {
+                    group: "胸",
+                    svgFallback: `<svg viewBox="0 0 100 100" width="56" height="56"><circle cx="50" cy="30" r="8" fill="#f8fafc"/><path d="M 50 38 L 50 70 M 50 50 L 25 65 M 50 50 L 75 65" stroke="#38bdf8" stroke-width="6"/></svg>`,
+                    desc: "インターバル60〜90秒を守り、丁寧なフォームで追い込みましょう。",
+                    muscle: "💪 部位: 全身・体幹",
+                    target: "🎯 12W目安: 8〜12回 × 3セット"
+                };
+
+                const badgeGroup = diagram.group.charAt(0);
+                const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name + ' フォーム Shorts')}`;
+                const isTimeBased = ex.name.includes('プランク') || ex.name.includes('ファーマーズ');
+
+                card.innerHTML = `
+                    <div class="card-top">
+                        <div class="exercise-name">
+                            <span class="muscle-badge muscle-badge-${badgeGroup}">[${diagram.group}]</span>
+                            <a href="${ytSearchUrl}" target="_blank" class="exercise-name-link">${ex.name} <span class="yt-icon-tag">🎬 Shorts</span></a>
+                            <button class="btn-swap-ex" onclick="autoSwapExercise(${idx})">🔄 種目変更</button>
+                        </div>
+                        ${ex.completed ? `<button class="btn-edit-lock" onclick="toggleComplete(${idx})">✏️ 編集</button>` : ''}
+                    </div>
+
+                    <div class="exercise-diagram-box">
+                        <div class="diagram-img">${diagram.svgFallback}</div>
+                        <div class="guide-info">
+                            <div class="item-target-badge">${diagram.target}</div>
+                            <div class="muscle-target-tag">${diagram.muscle}</div>
+                            <div class="guide-desc">${diagram.desc}</div>
+                        </div>
+                    </div>
+
+                    <div class="sets-container">
+                        ${ex.setsData.map((s, sIdx) => `
+                            <div class="set-item-card ${s.locked || ex.completed ? 'locked' : ''}">
+                                <div class="set-header-row">
+                                    <div class="set-label">セット ${sIdx + 1} (休憩60〜90秒)</div>
+                                    <button class="btn-finish-set" onclick="toggleLockSet(${idx}, ${sIdx})" ${ex.completed ? 'style="display:none;"' : ''}>
+                                        ${s.locked ? '解除' : '完了'}
+                                    </button>
+                                </div>
+
+                                <div class="set-controls-grid">
+                                    <div class="sub-control-box">
+                                        <label>重量 (kg)</label>
+                                        <div class="number-control">
+                                            <button type="button" class="btn-num" onmousedown="startHold(event, ${idx}, ${sIdx}, 'weight', -0.5)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(event, ${idx}, ${sIdx}, 'weight', -0.5)" ontouchend="endHold()" ontouchcancel="endHold()" ${s.locked || ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
+                                            <input type="number" inputmode="decimal" step="0.5" class="num-val-input" value="${Number(s.weight).toFixed(1)}" onfocus="this.select()" onchange="setDirectVal(${idx}, ${sIdx}, 'weight', this.value)" ${s.locked || ex.completed ? 'disabled' : ''}>
+                                            <button type="button" class="btn-num" onmousedown="startHold(event, ${idx}, ${sIdx}, 'weight', 0.5)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(event, ${idx}, ${sIdx}, 'weight', 0.5)" ontouchend="endHold()" ontouchcancel="endHold()" ${s.locked || ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
+                                        </div>
+                                    </div>
+                                    <div class="sub-control-box">
+                                        <label>${isTimeBased ? '目標秒数' : '目標回数'}</label>
+                                        <div class="number-control">
+                                            <button type="button" class="btn-num" onmousedown="startHold(event, ${idx}, ${sIdx}, 'reps', -1)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(event, ${idx}, ${sIdx}, 'reps', -1)" ontouchend="endHold()" ontouchcancel="endHold()" ${s.locked || ex.completed ? 'disabled style="opacity:0.3;"' : ''}>-</button>
+                                            <input type="number" inputmode="numeric" step="1" class="num-val-input" value="${s.reps}" onfocus="this.select()" onchange="setDirectVal(${idx}, ${sIdx}, 'reps', this.value)" ${s.locked || ex.completed ? 'disabled' : ''}><span class="num-unit-suffix">${isTimeBased ? '秒' : '回'}</span>
+                                            <button type="button" class="btn-num" onmousedown="startHold(event, ${idx}, ${sIdx}, 'reps', 1)" onmouseup="endHold()" onmouseleave="endHold()" ontouchstart="startHold(event, ${idx}, ${sIdx}, 'reps', 1)" ontouchend="endHold()" ontouchcancel="endHold()" ${s.locked || ex.completed ? 'disabled style="opacity:0.3;"' : ''}>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="set-action-row">
+                                    <div class="count-display" style="color:${s.locked || ex.completed ? '#10b981' : '#38bdf8'};">
+                                        ${s.locked || ex.completed ? `✓ ${s.count || s.reps} ${isTimeBased ? '秒' : '回'}完了` : `未完了 (${s.reps}${isTimeBased ? '秒' : '回'})`}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    ${!ex.completed ? `<button class="btn-complete" onclick="toggleComplete(${idx})">この種目を完了（記録保存）</button>` : ''}
+                `;
+
+                if (ex.completed) {
+                    if (completedList) completedList.appendChild(card);
+                } else {
+                    if (uncompletedList) uncompletedList.appendChild(card);
+                }
+            });
+        }
+
+        function renderMorningUI() {
+            const dotsContainer = document.getElementById("morning-step-dots");
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = MORNING_STEPS.map((_, i) => `<button type="button" class="btn-stretch-step ${i === state.morningIndex ? 'active' : ''}" onclick="jumpMorningStep(${i})">${i + 1}</button>`).join('');
+            const cur = MORNING_STEPS[state.morningIndex] || MORNING_STEPS[0];
+            const nameEl = document.getElementById("morning-name");
+            const linkEl = document.getElementById("morning-yt-link");
+            const timerEl = document.getElementById("morning-timer");
+            const btnEl = document.getElementById("morning-start-btn");
+            if (nameEl) nameEl.innerText = cur.name;
+            if (linkEl) linkEl.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(cur.query + ' Shorts')}`;
+            const m = String(Math.floor(state.morningTime / 60)).padStart(2, '0');
+            const s = String(state.morningTime % 60).padStart(2, '0');
+            if (timerEl) timerEl.innerText = `${m}:${s}`;
+            if (btnEl) btnEl.innerText = state.morningRunning ? "一時停止" : "スタート";
+        }
+
+        function jumpMorningStep(idx) {
+            clearInterval(morningInterval);
+            state.morningRunning = false;
+            state.morningIndex = idx;
+            state.morningTime = 60;
+            renderMorningUI();
+        }
+
+        function moveMorningStep(dir) {
+            let next = state.morningIndex + dir;
+            if (next < 0) next = MORNING_STEPS.length - 1;
+            if (next >= MORNING_STEPS.length) next = 0;
+            jumpMorningStep(next);
+        }
+
+        function toggleMorningTimer() {
+            if (state.morningRunning) {
+                clearInterval(morningInterval);
+                state.morningRunning = false;
+            } else {
+                state.morningRunning = true;
+                morningInterval = setInterval(() => {
+                    if (state.morningTime > 0) state.morningTime--;
+                    else moveMorningStep(1);
+                    renderMorningUI();
+                }, 1000);
+            }
+            renderMorningUI();
+        }
+
+        function renderStretchUI() {
+            const dotsContainer = document.getElementById("stretch-step-dots");
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = HAMSTRING_STRETCHES.map((_, i) => `<button class="btn-stretch-step ${i === state.stretchIndex ? 'active' : ''}" onclick="jumpStretchStep(${i})">${i + 1}</button>`).join('');
+            const cur = HAMSTRING_STRETCHES[state.stretchIndex];
+            document.getElementById("stretch-name").innerText = cur.name;
+            document.getElementById("stretch-yt-link").href = `https://www.youtube.com/results?search_query=${encodeURIComponent(cur.query + ' Shorts')}`;
+            const m = String(Math.floor(state.stretchTime / 60)).padStart(2, '0');
+            const s = String(state.stretchTime % 60).padStart(2, '0');
+            document.getElementById("stretch-timer").innerText = `${m}:${s}`;
+            document.getElementById("stretch-start-btn").innerText = state.stretchRunning ? "一時停止" : "スタート";
+        }
+
+        function jumpStretchStep(idx) {
+            clearInterval(stretchInterval);
+            state.stretchRunning = false;
+            state.stretchIndex = idx;
+            state.stretchTime = 60;
+            renderStretchUI();
+        }
+
+        function moveStretchStep(dir) {
+            let next = state.stretchIndex + dir;
+            if (next < 0) next = HAMSTRING_STRETCHES.length - 1;
+            if (next >= HAMSTRING_STRETCHES.length) next = 0;
+            jumpStretchStep(next);
+        }
+
+        function toggleStretchTimer() {
+            if (state.stretchRunning) {
+                clearInterval(stretchInterval);
+                state.stretchRunning = false;
+            } else {
+                state.stretchRunning = true;
+                stretchInterval = setInterval(() => {
+                    if (state.stretchTime > 0) state.stretchTime--;
+                    else moveStretchStep(1);
+                    renderStretchUI();
+                }, 1000);
+            }
+            renderStretchUI();
+        }
+
+        function toggleLockSet(exIdx, setIdx) {
+            const set = state.exercises[exIdx].setsData[setIdx];
+            set.locked = !set.locked;
+            if (set.locked && set.count === 0) set.count = set.reps || 10;
+
+            const allLocked = state.exercises[exIdx].setsData.every(s => s.locked);
+            if (allLocked && !state.exercises[exIdx].completed) {
+                state.exercises[exIdx].completed = true;
+                saveHistoryLog(state.exercises[exIdx].name, set.weight, set.reps, state.exercises[exIdx].setsData.length);
+            }
+            saveState();
+            renderHeader();
+            renderExercises();
+        }
+
+        function updateVal(exIdx, setIdx, key, delta) {
+            const set = state.exercises[exIdx].setsData[setIdx];
+            if (key === 'weight') set.weight = Math.max(0, Math.round((Number(set.weight) + delta) * 10) / 10);
+            else if (key === 'reps') set.reps = Math.max(1, Number(set.reps) + delta);
+            saveState();
+            renderExercises();
+        }
+
+        function toggleComplete(exIdx) {
+            state.exercises[exIdx].completed = !state.exercises[exIdx].completed;
+            if (state.exercises[exIdx].completed) {
+                state.exercises[exIdx].setsData.forEach(s => {
+                    s.locked = true;
+                    if (s.count === 0) s.count = s.reps || 10;
+                });
+                const firstSet = state.exercises[exIdx].setsData[0];
+                saveHistoryLog(state.exercises[exIdx].name, firstSet.weight, firstSet.reps, state.exercises[exIdx].setsData.length);
+            } else {
+                state.exercises[exIdx].setsData.forEach(s => s.locked = false);
+            }
+            saveState();
+            renderHeader();
+            renderExercises();
+        }
+
+        initApp();
+        window.addEventListener('load', function() {
+            initChartSelect();
+            initSpaChart();
+            initProteinChart();
+        });
+    </script>
+</body>
+</html>
